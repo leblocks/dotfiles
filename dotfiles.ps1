@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-This script is an example of how any .ps1 script can provide content to `Get-Help`.
+Meow meow meow meow
 
 .DESCRIPTION
 USAGE
@@ -9,14 +9,11 @@ USAGE
 COMMANDS
     up          run `docker-compose up`
     down        run `docker-compose down`
-    build       run `dotnet build`
-    test        run `dotnet test`
-    ip          get your local ip
     help, -?    show this help message
 #>
 param(
   [Parameter(Position=0, Mandatory=$True)]
-  [ValidateSet("list", "configure", "remove", "update", "help")]
+  [ValidateSet("list", "configure", "install",  "help")]
   [string]$Command,
 
   [Parameter(Position=1, ValueFromRemainingArguments=$true)]
@@ -24,42 +21,36 @@ param(
 )
 
 function List {
-    Write-Host "listing stuff here and there"
+    $os = $IsWindows ? '\.windows' : '\.linux'
+    Get-ChildItem -Recurse -File -Path $PSScriptRoot -Force 
+        | Where { $_.Name -match $os } 
+        | Split-Path -Parent 
+        | Split-Path -Leaf
 }
 
-# todo arguments
 function Configure {
     param (
         [Parameter(Position=0, Mandatory=$True)]
         [string]$Program
     )
-    Write-Host "installing stuff here and there"
+
+    $programs = List
+    if (!($programs -contains $Program)) {
+        # todo use exception
+        Write-Error "Could not find configuration for $Program, check available configurations with 'list' command"
+        exit
+    }
+    Write-Host "installing $Program here and there"
 }
 
-# todo arguments
-function Remove {
-    param (
-        [Parameter(Position=0, Mandatory=$True)]
-        [string]$Program
-    )
-    Write-Host "removing stuff here and there"
-}
-
-# todo arguments
-function Update {
-    param (
-        [Parameter(Position=0, Mandatory=$True)]
-        [string]$Program
-    )
-    Remove $Program
-    Configure $Program
+function Install {
+    Write-Host "installing from packages.txt"
 }
 
 switch ($Command) {
     "list" { List }
     "configure" { Configure $Rest }
-    "remove" { Remove $Rest }
-    "update" { Update $Rest }
+    "Install" { Install }
     "help" { Get-Help $PSCommandPath  }
 }
 
