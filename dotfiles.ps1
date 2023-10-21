@@ -33,6 +33,7 @@ function Configure {
         [Parameter(Position=0, Mandatory=$True)]
         [string]$Program
     )
+     # todo support all
 
     $programs = List
     if (!($programs -contains $Program)) {
