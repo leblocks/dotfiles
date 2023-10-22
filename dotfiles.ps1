@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Meow meow meow meow
+Meow meow meow meow toDododo
 
 .DESCRIPTION
 USAGE
@@ -21,37 +21,48 @@ param(
 )
 
 function List {
-    $os = $IsWindows ? '\.windows' : '\.linux'
-    Get-ChildItem -Recurse -File -Path $PSScriptRoot -Force 
-        | Where { $_.Name -match $os } 
-        | Split-Path -Parent 
+    $osMarker = $IsWindows ? '\.windows' : '\.linux'
+    Get-ChildItem -Recurse -File -Path $PSScriptRoot -Force
+        | Where-Object { $_.Name -match $osMarker }
+        | Split-Path -Parent
         | Split-Path -Leaf
 }
 
+# todo tool naming variable
 function Configure {
-    param (
-        [Parameter(Position=0, Mandatory=$True)]
-        [string]$Program
-    )
-     # todo support all
+    param ([Parameter(Position=0, Mandatory=$True)] [string] $tool)
 
-    $programs = List
-    if (!($programs -contains $Program)) {
-        # todo use exception
-        Write-Error "Could not find configuration for $Program, check available configurations with 'list' command"
+    $availableConfigurations = List
+    [System.Collections.ArrayList] $scriptsToInvoke = @()
+
+    if ($tool -eq "all") {
+        $scriptsToInvoke = $availableConfigurations | ForEach-Object { Get-PathToConfigure $_ }
+    } elseif (-Not ($availableConfigurations -contains $tool)) {
+        Write-Error "Could not find configuration for '$tool', check available configurations with 'dotfiles list' command."
         exit
+    } else {
+        $configurationPath = Get-PathToConfigure $tool
+        $programsToConfigure.Add($configurationPath)
     }
-    Write-Host "installing $Program here and there"
+
+    foreach ($path in $scriptsToInvoke) {
+        Write-Host "running $path"
+        & $path
+    }
 }
 
 function Install {
     Write-Host "installing from packages.txt"
 }
 
+function Get-PathToConfigure($tool) {
+    return Join-Path -Path $PSScriptRoot -ChildPath (Join-Path -Path $tool -ChildPath "configure.ps1")
+}
+
 switch ($Command) {
     "list" { List }
     "configure" { Configure $Rest }
-    "Install" { Install }
-    "help" { Get-Help $PSCommandPath  }
+    "install" { Install }
+    "help" { Get-Help $PSCommandPath }
 }
 

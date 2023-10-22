@@ -1,5 +1,6 @@
 
 if ($IsWindows) {
+    winget install JanDeDobbeleer.OhMyPosh -s winget
 }
 
 if ($IsLinux) {
@@ -13,8 +14,8 @@ if ($IsLinux) {
 }
 
 if (!(Test-Path $PROFILE)) {
-    # TODO use Join-Path instead string template
-    New-Item -ItemType SymbolicLink -Path $PROFILE -Target "$PSScriptRoot/profile.ps1" -Force
+    $pathToProfile = Join-Path -Path $PSScriptRoot -ChildPath profile.ps1
+    New-Item -ItemType SymbolicLink -Path $PROFILE -Target $pathToProfile -Force
 }
 
 . $PROFILE
