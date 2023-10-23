@@ -10,3 +10,4 @@ ripgrep
 shellcheck
 tmux
 tree
+unzip

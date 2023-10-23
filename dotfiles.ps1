@@ -42,7 +42,7 @@ function Configure {
         exit
     } else {
         $configurationPath = Get-PathToConfigure $tool
-        $programsToConfigure.Add($configurationPath)
+        $scriptsToInvoke.Add($configurationPath)
     }
 
     foreach ($path in $scriptsToInvoke) {

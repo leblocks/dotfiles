@@ -6,3 +6,6 @@ bootstrap and single source of development environment configuration
 * core script - cli entry
 * oh-my-posh installation and $profile creation
 * finish help
+* replace Join-Path usage
+* add utility Test-Command
+* add dotfiles to PATH during bootstrap?
