@@ -13,8 +13,8 @@ if ($IsLinux) {
     }
 }
 
-if (!(Test-Path $PROFILE)) {
-    $pathToProfile = Join-Path -Path $PSScriptRoot -ChildPath profile.ps1
+if (-Not (Test-Path $PROFILE)) {
+    $pathToProfile = Join-Path $PSScriptRoot "profile.ps1"
     New-Item -ItemType SymbolicLink -Path $PROFILE -Target $pathToProfile -Force
 }
 
