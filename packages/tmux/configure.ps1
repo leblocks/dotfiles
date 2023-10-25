@@ -1,3 +1,6 @@
+. $PSScriptRoot/../../utils.ps1
+
+Test-Dependencies(@("tmux", "git", "bash"))
 
 # get tmux plugins manager
 if (-Not (Test-Path "$HOME/.tmux/plugins/tpm")) {
@@ -11,8 +14,6 @@ if (-Not (Test-Path $HOME/.tmux.conf)) {
     New-Item -ItemType SymbolicLink -Path $pathToConfig -Target $pathToTarget -Force
 }
 
-$shell = [bool](Get-Command bash -ErrorAction SilentlyContinue) ? "bash" : "sh"
-
 # install plugins
-"$shell $HOME/.tmux/plugins/tpm/bin/install_plugins" | Invoke-Expression
+"bash $HOME/.tmux/plugins/tpm/bin/install_plugins" | Invoke-Expression
 

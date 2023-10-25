@@ -1,3 +1,6 @@
+. $PSScriptRoot/../../utils.ps1
+
+Test-Dependencies(@("unzip"))
 
 if ($IsWindows) {
     winget install JanDeDobbeleer.OhMyPosh -s winget
@@ -13,9 +16,10 @@ if ($IsLinux) {
     }
 }
 
-if (-Not (Test-Path $PROFILE)) {
-    $pathToProfile = Join-Path $PSScriptRoot "profile.ps1"
-    New-Item -ItemType SymbolicLink -Path $PROFILE -Target $pathToProfile -Force
-}
+# recreate profile link
+Remove-Item -Path $PROFILE -Force -ErrorAction SilentlyContinue
+
+$pathToProfile = Join-Path $PSScriptRoot "profile.ps1"
+New-Item -ItemType SymbolicLink -Path $PROFILE -Target $pathToProfile -Force
 
 . $PROFILE
