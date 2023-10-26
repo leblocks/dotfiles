@@ -1,0 +1,27 @@
+{
+    "common" : [
+        "bat",
+        "curl",
+        "fd",
+        "git",
+        "jq",
+        "make",
+        "neovim",
+        "ripgrep",
+        "shellcheck",
+        "tree",
+        "unzip"
+    ],
+
+    "windows" : [
+        "far",
+        "mingw"
+    ],
+
+    "linux" : [
+        "bash",
+        "gcc",
+        "mc",
+        "tmux"
+    ]
+}

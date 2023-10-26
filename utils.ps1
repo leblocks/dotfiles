@@ -13,3 +13,11 @@ function Test-Dependencies ([string[]] $packages) {
     }
 }
 
+function Install-Package ([string] $package) {
+    if ($IsWindows) {
+        Test-Dependencies(@("choco"))
+        "choco upgrade $package --confirm" | Invoke-Expression
+    } else {
+        # TODO linux installation test multiple package managers apk, pacman
+    }
+}

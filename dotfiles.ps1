@@ -20,6 +20,8 @@ param(
   $Rest
 )
 
+. $PSScriptRoot/utils.ps1
+
 function List {
     $osMarker = $IsWindows ? '\.windows' : '\.linux'
     Get-ChildItem -Recurse -File -Path $PSScriptRoot -Force
@@ -51,7 +53,18 @@ function Configure {
 }
 
 function Install {
-    Write-Host "installing from packages.txt" -ForegroundColor Green
+    $pathToPackages = Join-Path $PSScriptRoot "packages" "packages.json"
+    Write-Host "Installing from '$pathToPackages'" -ForegroundColor Green
+    # TODO dry it
+    Get-Content $pathToPackages -Raw
+        | ConvertFrom-Json
+        | ForEach-Object {
+            $packagesToInstall = $_.common + ($IsWindows ? $_.windows : $_.linux)
+            foreach ($package in $packagesToInstall) {
+                Write-Host "Installing '$package'" -foregroundcolor yellow
+                Install-Package $package
+            }
+        }
 }
 
 function Get-PathToConfigure($tool) {

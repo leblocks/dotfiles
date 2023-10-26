@@ -6,6 +6,7 @@ bootstrap and single source of development environment configuration
 * finish help
 * package installation scripts
 * add dotfiles to PATH during bootstrap?
+* some day think of using scoop instead of choco
 
 # Repository structure
 
