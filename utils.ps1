@@ -17,7 +17,9 @@ function Install-Package ([string] $package) {
     if ($IsWindows) {
         Test-Dependencies(@("choco"))
         "choco upgrade $package --confirm" | Invoke-Expression
-    } else {
-        # TODO linux installation test multiple package managers apk, pacman
+    } elseif (Test-Command -Command "apk") {
+        "apk add $package --no-cache" | Invoke-Expression
+    } elseif (Test-Command -Command "pacman") {
+        "pacman -Sy --noconfirm $package" | Invoke-Expression
     }
 }
