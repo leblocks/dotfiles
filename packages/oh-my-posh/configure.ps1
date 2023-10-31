@@ -1,19 +1,15 @@
 . $PSScriptRoot/../../utils.ps1
 
-Test-Dependencies(@("unzip"))
+Test-Dependencies(@("unzip", "curl"))
 
 if ($IsWindows) {
     winget install JanDeDobbeleer.OhMyPosh -s winget
 }
 
 if ($IsLinux) {
-    $encoding = [System.Text.Encoding]::UTF8
-    $script = Invoke-WebRequest https://ohmyposh.dev/install.sh | Select-Object -ExpandProperty Content
-    if (Get-Command bash -ErrorAction SilentlyContinue) {
-        $encoding.GetString($script) | bash -s
-    } else {
-        $encoding.GetString($script) | sh -s
-    }
+    $sudo = ((Test-Command -Command "sudo") ? "sudo" : "")
+    $shell = ((Test-Command -Command "bash") ? "bash" : "sh")
+    "curl -s https://ohmyposh.dev/install.sh | $sudo $shell -s" | Invoke-Expression
 }
 
 # recreate profile link

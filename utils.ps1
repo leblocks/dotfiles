@@ -21,5 +21,9 @@ function Install-Package ([string] $package) {
         "apk add $package --no-cache" | Invoke-Expression
     } elseif (Test-Command -Command "pacman") {
         "pacman -Sy --noconfirm $package" | Invoke-Expression
+    } elseif (Test-Command -Command "brew") {
+        "brew install $package" | Invoke-Expression
+    } else {
+        throw "Could not find supported pacakage manager for installation."
     }
 }
