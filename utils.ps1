@@ -27,3 +27,24 @@ function Install-Package ([string] $package) {
         throw "Could not find supported pacakage manager for installation."
     }
 }
+
+function Set-EnvironmentVariable([string] $name, [string] $value) {
+    $path = Join-Path $HOME ".environment.json"
+
+    if (-Not (Test-Path $path)) {
+        New-Item $path -ItemType "file" -Force
+        # new file must be valid json
+        Set-Content $path "{}"
+    }
+
+    $environment = Get-Content $path | ConvertFrom-Json
+    $exists = [bool](Get-Member -InputObject $environment -MemberType NoteProperty -Name $name)
+
+    if ($exists) {
+        $environment."$name" = $value
+    } else {
+        Add-Member -InputObject $environment -MemberType NoteProperty -Name $name -Value $value
+    }
+
+    $environment | ConvertTo-Json | Set-Content $path
+}

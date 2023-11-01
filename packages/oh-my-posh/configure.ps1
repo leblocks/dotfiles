@@ -18,4 +18,6 @@ Remove-Item -Path $PROFILE -Force -ErrorAction SilentlyContinue
 $pathToProfile = Join-Path $PSScriptRoot "profile.ps1"
 New-Item -ItemType SymbolicLink -Path $PROFILE -Target $pathToProfile -Force
 
+Set-EnvironmentVariable "POWERSHELL_TELEMETRY_OPTOUT" "true"
+
 . $PROFILE
