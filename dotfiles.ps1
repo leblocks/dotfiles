@@ -1,15 +1,17 @@
 <#
 .SYNOPSIS
-Meow meow meow meow toDododo
+Development environent setup helper.
 
 .DESCRIPTION
 USAGE
     ./dotfiles.ps1 <command>
 
 COMMANDS
-    up          run `docker-compose up`
-    down        run `docker-compose down`
-    help, -?    show this help message
+    list                   list packages available for configuraiton
+    confiure [packageName] runs packages/packageName/configure.ps1, passing
+                           "all" will invoke configuration of all available packages
+    install                installs packages listed in packages/packages.json
+    help, -?               show this help message
 #>
 param(
   [Parameter(Position=0, Mandatory=$True)]
@@ -30,7 +32,6 @@ function List {
         | Split-Path -Leaf
 }
 
-# todo tool naming variable
 function Configure {
     param ([Parameter(Position=0, Mandatory=$True)] [string] $tool)
 
@@ -55,7 +56,6 @@ function Configure {
 function Install {
     $pathToPackages = Join-Path $PSScriptRoot "packages" "packages.json"
     Write-Host "Installing from '$pathToPackages'" -ForegroundColor Green
-    # TODO dry it
     Get-Content $pathToPackages -Raw
         | ConvertFrom-Json
         | ForEach-Object {
