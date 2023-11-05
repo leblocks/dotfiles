@@ -1,0 +1,42 @@
+set hlsearch
+set incsearch
+set autoindent
+set expandtab
+
+set shiftwidth=4
+set softtabstop=4
+set scrolloff=10
+set nowrap
+
+set clipboard=unnamed
+
+inoremap jj <Esc>
+
+" make Y work as expected (same as C and D)
+nnoremap Y y$
+
+" center screen after n and N during search and during J, <C-d> and <C-u>
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" set undo breakpoints to make undo command more comfortable to use
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+let mapleader=" "
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader><Leader> :nohl<CR>
+
+xnoremap gc :vsc Edit.CommentSelection<CR>
+xnoremap gu :vsc Edit.UncommentSelection<CR>
+
+nnoremap <Leader>dn :vsc Debug.ShowNextStatement<CR>
+
+nnoremap gi :vsc Edit.GoToImplementation<CR>
+nnoremap gr :vsc Edit.FindAllReferences<CR>
+nnoremap gR :vsc Edit.GoToReference<CR>
+

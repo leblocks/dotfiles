@@ -13,6 +13,13 @@ function Test-Dependencies ([string[]] $packages) {
     }
 }
 
+function LinkToHome([string] $folder, [string] $fileName) {
+    $pathToLink = Join-Path $HOME $fileName
+    $pathToConfig = Join-Path $folder $fileName
+    Remove-Item -Path $pathToLink -Force -ErrorAction SilentlyContinue
+    New-Item -ItemType SymbolicLink -Path $pathToLink -Target $pathToConfig -Force
+}
+
 function Install-Package ([string] $package) {
     if ($IsWindows) {
         Test-Dependencies(@("choco"))
