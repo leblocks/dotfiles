@@ -1,7 +1,9 @@
 . $PSScriptRoot/../../utils.ps1
+. $PSScriptRoot/language-tools-installation-helpers.ps1
 
 Test-Dependencies(@("nvim", "git"))
 
+<#
 Remove-Item -Path $PROFILE -Force -ErrorAction SilentlyContinue
 
 $pathToLink = $IsWindows ? (Join-Path $HOME "AppData" "Local" "nvim")
@@ -25,5 +27,23 @@ if (-Not (Test-Path $pathToPacker)) {
     "git clone --depth 1 https://github.com/wbthomason/packer.nvim $pathToPacker" | Invoke-Expression
 }
 
+# update plugins
 "nvim --headless -c `"autocmd User PackerComplete quitall`" -c `"PackerSync`"" | Invoke-Expression
+
+#>
+
+# install lsp\dap stuff
+$pathToLanguageTools = Join-Path $HOME ".neovim-lsp-dap-tools"
+
+# recreate folder
+Remove-Item -Path $pathToLanguageTools -Force -Recurse
+New-Item -Path $pathToLanguageTools -ItemType "directory" -Force
+
+# TODO test on linux
+Install-BashLanguageServer
+Install-TypeScriptLanguageServer
+
+
+
+
 
