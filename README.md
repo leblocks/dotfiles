@@ -4,6 +4,7 @@ bootstrap and single source of development environment configuration
 ## TODOs
 * finish help
 * add dotfiles to PATH during bootstrap?
+* test neovim install on windows and linux
 * some day think of using scoop instead of choco
 
 ## Repository structure
