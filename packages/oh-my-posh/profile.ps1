@@ -25,7 +25,7 @@ if (Test-Path $path) {
             foreach ($ev in $_.PSObject.Properties) {
                 $name = $ev.Name
                 $value = $ev.Value
-                Write-Host "Setting environment variable '$name' with value '$value'" -ForegroundColor DarkYellow
+                Write-Host "$name=$value" -ForegroundColor DarkYellow
                 [System.Environment]::SetEnvironmentVariable($name, $value)
             }
         }
