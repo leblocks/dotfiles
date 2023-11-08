@@ -55,3 +55,13 @@ function Set-EnvironmentVariable([string] $name, [string] $value) {
 
     $environment | ConvertTo-Json | Set-Content $path
 }
+
+function New-Folder([string] $path) {
+    Remove-Item -Path $path -Recurse -Force -ErrorAction SilentlyContinue
+    New-Item -Path $path -ItemType "directory" -Force
+}
+
+function Write-Message([string] $message) {
+    Write-Host $message -ForegroundColor Yellow
+}
+

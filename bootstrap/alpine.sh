@@ -4,7 +4,7 @@
 set -euox
 
 # script is taken from here https://learn.microsoft.com/en-us/powershell/scripting/install/install-alpine?view=powershell-7.3
-POWERSHELL_VERSION=7.3.8
+POWERSHELL_VERSION=7.3.9
 
 # install the requirements
 apk add --no-cache \

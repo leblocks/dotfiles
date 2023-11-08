@@ -7,8 +7,11 @@
         "jq",
         "make",
         "neovim",
+        "npm",
+        "python3",
         "ripgrep",
         "shellcheck",
+        "tar",
         "tree",
         "unzip"
     ],
