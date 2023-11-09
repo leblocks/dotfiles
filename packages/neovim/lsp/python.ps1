@@ -8,7 +8,7 @@ $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps
 
 Write-Message "installing pyright at $toolPath"
 
-New-Folder($toolPath)
+New-Folder $toolPath 
 
 Push-Location $toolPath
 

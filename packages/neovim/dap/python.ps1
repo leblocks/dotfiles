@@ -8,7 +8,7 @@ $toolPath = Join-Path $rootPath "dap" ($MyInvocation.MyCommand.Name.Replace(".ps
 
 Write-Message "installing debugpy at $toolPath"
 
-New-Folder($toolPath)
+New-Folder $toolPath
 
 Push-Location $toolPath
 

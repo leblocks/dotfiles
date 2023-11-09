@@ -8,14 +8,14 @@ $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps
 
 Write-Message "installing typescript-language-server at $toolPath"
 
-New-Folder($toolPath)
+New-Folder $toolPath
 
 Push-Location $toolPath
 
 "npm init -y" | Invoke-Expression
 "npm install typescript-language-server typescript" | Invoke-Expression
 
-$searchCommand = $IsWindwos ? "fd typescript-language-server.cmd -aH"
+$searchCommand = $IsWindows ? "fd typescript-language-server.cmd -aH"
     : "fd typescript-language-server -aH -t l"
 
 Set-EnvironmentVariable "TYPESCRIPT_LANGUAGE_SERVER" $($searchCommand | Invoke-Expression)
