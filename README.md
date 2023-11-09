@@ -2,10 +2,16 @@
 bootstrap and single source of development environment configuration
 
 ## TODOs
-* finish help
 * add dotfiles to PATH during bootstrap?
 * test neovim install on windows and linux
 * some day think of using scoop instead of choco
+* sort env variables on write
+* how to use test command in profile ? (considering links)
+* how to log commands from scripts?
+* languages:
+    * dap c#
+    * lsp c#
+* automate testing in linux envs via docker
 
 ## Repository structure
 
