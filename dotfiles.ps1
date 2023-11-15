@@ -11,11 +11,12 @@ COMMANDS
     confiure [packageName] runs packages/packageName/configure.ps1, passing
                            "all" will invoke configuration of all available packages
     install                installs packages listed in packages/packages.json
+    test                   run self checks
     help, -?               show this help message
 #>
 param(
   [Parameter(Position=0, Mandatory=$True)]
-  [ValidateSet("list", "configure", "install",  "help")]
+  [ValidateSet("list", "configure", "install",  "test", "help")]
   [string]
   $Command,
   [Parameter(Position=1, ValueFromRemainingArguments=$true)]
@@ -76,4 +77,5 @@ switch ($Command) {
     "configure" { Configure $Rest }
     "install" { Install }
     "help" { Get-Help $PSCommandPath }
+    "test" { . $PSScriptRoot/test/run-tests.ps1 }
 }
