@@ -4,4 +4,5 @@ if (-Not (Get-InstalledModule -Name "Pester")) {
 
 Import-Module Pester -PassThru
 
-Invoke-Pester -Path $PSScriptRoot/*.Tests.ps1 -Output Detailed
+Invoke-Pester -Path $PSScriptRoot/*.tests.ps1 -Output Detailed
+

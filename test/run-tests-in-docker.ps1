@@ -15,7 +15,8 @@ switch ($ImageName) {
                 "/dotfiles/bootstrap/archlinux.sh",
                 "pwsh -f /dotfiles/dotfiles.ps1 install",
                 "pwsh -f /dotfiles/dotfiles.ps1 configure all",
-                "pwsh -f /dotfiles/dotfiles.ps1 test"
+                "pwsh -f /dotfiles/dotfiles.ps1 test",
+                "pwsh"
             ) + "`""
         )
     }
