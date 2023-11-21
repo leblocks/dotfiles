@@ -25,9 +25,26 @@ if (Test-Path $path) {
             foreach ($ev in $_.PSObject.Properties) {
                 $name = $ev.Name
                 $value = $ev.Value
-                Write-Host "$name=$value" -ForegroundColor DarkYellow
                 [System.Environment]::SetEnvironmentVariable($name, $value)
             }
         }
+}
+
+<#
+    PATH ENTRIES LOAD
+#>
+$path = Join-Path $HOME ".path.json"
+if (Test-Path $path) {
+    $separator = [IO.Path]::PathSeparator
+
+    $pathEntries = [System.Collections.Generic.HashSet[string]]($env:PATH.Split($separator, 
+        [System.StringSplitOptions]::RemoveEmptyEntries))
+
+    foreach ($entry in (Get-Content -Path $path | ConvertFrom-Json)) {
+        $pathEntries.Add($entry) | Out-Null
+    }
+
+    $newPath = $pathEntries | Join-String -Separator $separator -OutputSuffix $separator
+    [System.Environment]::SetEnvironmentVariable("PATH", $newPath)
 }
 
