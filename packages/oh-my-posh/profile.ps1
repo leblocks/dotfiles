@@ -1,4 +1,15 @@
-oh-my-posh init pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_lean.omp.json" | Invoke-Expression
+# import utils.ps1, this file is being symlinked so
+# I have to do some magic to get actual file location
+$actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path $PSScriptRoot $MyInvocation.MyCommand.Name)).Target)
+
+. $actualProfileLocation/../../utils.ps1
+
+oh-my-posh init pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_lean.omp.json"
+    | Invoke-Expression
+
+# add dotfiles to path
+
+Add-PathEntry (Join-Path $actualProfileLocation .. ..)
 
 <#
     ALIASES
@@ -9,9 +20,12 @@ function Get-TopTenProcesses {
 
 Set-Alias top10 Get-TopTenProcesses
 
-if ($IsWindows) {
-    Set-Alias ll Get-ChildItem
+if (-Not (Test-Command which)) {
     Set-Alias which Get-Command
+}
+
+if (-Not (Test-Command ll)) {
+    Set-Alias ll Get-ChildItem
 }
 
 <#

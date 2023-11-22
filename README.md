@@ -2,7 +2,6 @@
 bootstrap and single source of development environment configuration
 
 ## TODOs
-* add dotfiles to PATH during bootstrap?
 * test neovim install on windows and linux
 * some day think of using scoop instead of choco
 * sort env variables on write
@@ -13,9 +12,9 @@ bootstrap and single source of development environment configuration
 * set correct term value
 * write correct top10 command
 * powershell editor service isnt unattended
+* replace all curls with Invoke-WebRequest
 * languages:
     * dap c#
-    * lsp c#
 
 ## Repository structure
 
