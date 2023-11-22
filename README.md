@@ -8,10 +8,14 @@ bootstrap and single source of development environment configuration
 * sort env variables on write
 * how to use test command in profile ? (considering links)
 * how to log commands from scripts?
+* write tests for util
+* set default shell in tmux
+* set correct term value
+* write correct top10 command
+* powershell editor service isnt unattended
 * languages:
     * dap c#
     * lsp c#
-* automate testing in linux envs via docker
 
 ## Repository structure
 
@@ -23,6 +27,7 @@ bootstrap and single source of development environment configuration
 
 ## Notes
 
-* Scripts here create file _$HOME/.environment.json_ with various environment variables definitions,
-those are being read by _$PROFILE_ on powershell startup
+Those are created by configuration scripts:
+    * _$HOME/.environment.json_ contains environment variables loaded by _$PROFILE_ on a new session
+    * _$HOME/.path.json_ contains path additions loaded by _$PROFILE_ on a new session
 

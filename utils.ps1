@@ -13,7 +13,7 @@ function Test-Dependencies ([string[]] $packages) {
     }
 }
 
-function LinkToHome([string] $folder, [string] $fileName) {
+function LinkToHome ([string] $folder, [string] $fileName) {
     $pathToLink = Join-Path $HOME $fileName
     $pathToConfig = Join-Path $folder $fileName
     Remove-Item -Path $pathToLink -Force -ErrorAction SilentlyContinue
@@ -35,7 +35,7 @@ function Install-Package ([string] $package) {
     }
 }
 
-function Set-EnvironmentVariable([string] $name, [string] $value) {
+function Set-EnvironmentVariable ([string] $name, [string] $value) {
     $path = Join-Path $HOME ".environment.json"
 
     if (-Not (Test-Path $path)) {
@@ -56,12 +56,26 @@ function Set-EnvironmentVariable([string] $name, [string] $value) {
     $environment | ConvertTo-Json | Set-Content $path
 }
 
-function New-Folder([string] $path) {
+function Add-PathEntry ([string] $pathEntry) {
+    $path = Join-Path $HOME ".path.json"
+    # .path.json is an array of additional path entries, that
+    # must be unique, we don't want duplicates
+    if (-Not (Test-Path $path)) {
+        $pathEntries = New-Object System.Collections.Generic.HashSet[string]
+    } else {
+        $pathEntries = [System.Collections.Generic.HashSet[string]](Get-Content $path | ConvertFrom-Json)
+    }
+
+    $pathEntries.Add($pathEntry) | Out-Null
+    $pathEntries | ConvertTo-Json | Set-Content $path
+}
+
+function New-Folder ([string] $path) {
     Remove-Item -Path $path -Recurse -Force -ErrorAction SilentlyContinue
     New-Item -Path $path -ItemType "directory" -Force
 }
 
-function Write-Message([string] $message) {
+function Write-Message ([string] $message) {
     Write-Host $message -ForegroundColor Yellow
 }
 
