@@ -1,12 +1,12 @@
 -- lsp config
 local os = require('os')
 
-local omnisharp_server_location = os.getenv('OMNISHARP_LANGUAGE_SERVER')
-local pyright_server_location = os.getenv('PYRIGHT_LANGUAGE_SERVER')
-local typescript_server_location = os.getenv('TYPESCRIPT_LANGUAGE_SERVER')
-local bash_server_location = os.getenv('BASH_LANGUAGE_SERVER')
-local lua_server_location = os.getenv('LUA_LANGUAGE_SERVER')
-local powershell_server_location = os.getenv('POWERSHELL_LANGUAGE_SERVER')
+local omnisharp_server_location = os.getenv('OMNISHARP_LANGUAGE_SERVER') or '~'
+local pyright_server_location = os.getenv('PYRIGHT_LANGUAGE_SERVER') or '~'
+local typescript_server_location = os.getenv('TYPESCRIPT_LANGUAGE_SERVER') or '~'
+local bash_server_location = os.getenv('BASH_LANGUAGE_SERVER') or '~'
+local lua_server_location = os.getenv('LUA_LANGUAGE_SERVER') or '~'
+local powershell_server_location = os.getenv('POWERSHELL_LANGUAGE_SERVER') or '~'
 
 local capabilities = require('cmp_nvim_lsp')
     .default_capabilities(vim.lsp.protocol.make_client_capabilities())

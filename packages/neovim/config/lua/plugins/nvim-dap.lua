@@ -1,8 +1,8 @@
 local os = require('os')
 local dap = require('dap')
 
-local debugpy_location = os.getenv('DEBUGPY_PATH')
-local netcoredbg_location = os.getenv('NETCOREDBG_PATH')
+local debugpy_location = os.getenv('DEBUGPY_PATH') or '~'
+local netcoredbg_location = os.getenv('NETCOREDBG_PATH') or '~'
 
 local is_windows = function()
     return vim.loop.os_uname().sysname:find("Windows", 1, true) and true
