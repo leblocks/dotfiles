@@ -2,19 +2,15 @@
 bootstrap and single source of development environment configuration
 
 ## TODOs
-* test neovim install on windows and linux
+* test neovim install on windows and linux - write tests
 * some day think of using scoop instead of choco
 * sort env variables on write
 * how to use test command in profile ? (considering links)
 * how to log commands from scripts?
-* write tests for util
 * set default shell in tmux
 * set correct term value
 * write correct top10 command
-* powershell editor service isnt unattended
 * replace all curls with Invoke-WebRequest
-* languages:
-    * dap c#
 
 ## Repository structure
 
