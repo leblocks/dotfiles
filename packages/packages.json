@@ -1,6 +1,7 @@
 {
     "common" : [
         "bat",
+        "bottom",
         "curl",
         "fd",
         "git",
