@@ -12,11 +12,12 @@ COMMANDS
                            "all" will invoke configuration of all available packages
     install                installs packages listed in packages/packages.json
     test                   run self checks
+    docker [imageName]     run installation scrits in a docker container
     help, -?               show this help message
 #>
 param(
   [Parameter(Position=0, Mandatory=$True)]
-  [ValidateSet("list", "configure", "install",  "test", "help")]
+  [ValidateSet("list", "configure", "install",  "test", "docker", "help")]
   [string]
   $Command,
   [Parameter(Position=1, ValueFromRemainingArguments=$true)]
@@ -87,5 +88,6 @@ switch ($Command) {
     "configure" { Configure $Rest }
     "install" { Install }
     "test" { Run-Tests }
+    "docker" { . (Join-Path $PSScriptRoot "docker" "docker.ps1") $Rest }
     "help" { Get-Help $PSCommandPath }
 }

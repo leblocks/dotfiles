@@ -22,7 +22,7 @@ switch ($ImageName) {
     }
 }
 
-$command = [string]::Join(" ",
+$commandToInvoke = [string]::Join(" ",
     "docker run",
     "--rm",
     "--name $contaienerName",
@@ -32,7 +32,7 @@ $command = [string]::Join(" ",
     "--env TERM=xterm-256color",
     $containerCommand)
 
-Write-Host "invoking $command" -ForegroundColor Green
+Write-Host "invoking $commandToInvoke" -ForegroundColor Green
 
-$command | Invoke-Expression
+$commandToInvoke | Invoke-Expression
 
