@@ -1,4 +1,4 @@
-. $PSScriptRoot/../utils.ps1
+. $PSScriptRoot/../../utils.ps1
 
 Describe 'vsvim' -Skip:$IsLinux {
     It 'link to .vsvrimrc exists' {

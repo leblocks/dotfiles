@@ -1,4 +1,4 @@
-. $PSScriptRoot/../utils.ps1
+. $PSScriptRoot/../../utils.ps1
 
 Describe 'tmux' -Skip:$IsWindows {
     It 'tmux dependencies installed' {

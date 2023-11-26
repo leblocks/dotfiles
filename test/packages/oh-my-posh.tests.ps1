@@ -1,4 +1,4 @@
-. $PSScriptRoot/../utils.ps1
+. $PSScriptRoot/../../utils.ps1
 
 Describe 'oh-my-posh' {
     It 'Powershell $PROFILE exists' {

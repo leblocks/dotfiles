@@ -1,4 +1,4 @@
-. $PSScriptRoot/../utils.ps1
+. $PSScriptRoot/../../utils.ps1
 
 Describe 'dotnet' {
     It 'dotnet command is on $PATH' {

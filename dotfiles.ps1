@@ -54,6 +54,16 @@ function Configure {
     }
 }
 
+function Run-Tests {
+    if (-Not (Get-InstalledModule -Name "Pester")) {
+        Install-Module "Pester" -Force
+    }
+
+    Import-Module Pester -PassThru
+
+    Invoke-Pester -Path $PSScriptRoot/test/*.tests.ps1 -Output Detailed
+}
+
 function Install {
     $pathToPackages = Join-Path $PSScriptRoot "packages" "packages.json"
     Write-Host "Installing from '$pathToPackages'" -ForegroundColor Green
@@ -76,6 +86,6 @@ switch ($Command) {
     "list" { List }
     "configure" { Configure $Rest }
     "install" { Install }
+    "test" { Run-Tests }
     "help" { Get-Help $PSCommandPath }
-    "test" { . $PSScriptRoot/test/run-tests.ps1 }
 }
