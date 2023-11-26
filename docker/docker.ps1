@@ -29,6 +29,7 @@ $commandToInvoke = [string]::Join(" ",
     "--interactive",
     "--tty",
     "--volume $repoRootFolder`:/dotfiles",
+    "--volume $((Get-Location).Path)`:/host-system",
     "--env TERM=xterm-256color",
     $containerCommand)
 
