@@ -8,18 +8,11 @@ oh-my-posh init pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/
     | Invoke-Expression
 
 # add dotfiles to path
-
 Add-PathEntry (Join-Path $actualProfileLocation .. ..)
 
 <#
     ALIASES
 #>
-function Get-TopTenProcesses {
-    Get-Process | Sort-Object WS, CPU -Descending | Select-Object -First 10
-}
-
-Set-Alias top10 Get-TopTenProcesses
-
 if (-Not (Test-Command which)) {
     Set-Alias which Get-Command
 }
