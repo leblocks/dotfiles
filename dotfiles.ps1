@@ -62,7 +62,7 @@ function Run-Tests {
 
     Import-Module Pester -PassThru
 
-    Invoke-Pester -Path $PSScriptRoot/test/*.tests.ps1 -Output Detailed
+    Invoke-Pester -Path $PSScriptRoot/test/**/*.tests.ps1, $PSScriptRoot/test/*.tests.ps1 -Output Detailed
 }
 
 function Install {

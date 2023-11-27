@@ -7,7 +7,7 @@ Describe 'git' {
 
     It 'link to .gitconfig has correct content' {
         $link = "$HOME/.gitconfig"
-        $conf = "$PSScriptRoot/../packages/git/.gitconfig"
+        $conf = "$PSScriptRoot/../../packages/git/.gitconfig"
         Get-Content $link | Should -Be (Get-Content $conf)
     }
 }

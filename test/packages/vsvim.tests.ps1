@@ -7,7 +7,7 @@ Describe 'vsvim' -Skip:$IsLinux {
 
     It 'link to .vsvimrc has correct content' {
         $link = "$HOME/.vsvimrc"
-        $conf = "$PSScriptRoot/../packages/vsvim/.vsvimrc"
+        $conf = "$PSScriptRoot/../../packages/vsvim/.vsvimrc"
         Get-Content $link | Should -Be (Get-Content $conf)
     }
 }
