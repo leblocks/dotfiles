@@ -31,7 +31,7 @@ $luaServerLink = "https://github.com/LuaLS/lua-language-server/releases/download
 
 "curl -L $luaServerLink -o luaserver" | Invoke-Expression
 
-($IsWindows ? "tar -xvf luaserver" : "unzip luaserver") | Invoke-Expression
+($IsWindows ? "unzip luaserver" : "tar -xvf luaserver" ) | Invoke-Expression
 
 Remove-Item luaserver -Force
 
