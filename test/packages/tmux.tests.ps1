@@ -17,7 +17,7 @@ Describe 'tmux' -Skip:$IsWindows {
 
     It 'link to .tmux.conf has correct content' {
         $link = "$HOME/.tmux.conf"
-        $conf = "$PSScriptRoot/../packages/tmux/.tmux.conf"
+        $conf = "$PSScriptRoot/../../packages/tmux/.tmux.conf"
         Get-Content $link | Should -Be (Get-Content $conf)
     }
 
