@@ -15,7 +15,7 @@ Push-Location $toolPath
 "npm init -y" | Invoke-Expression
 "npm install bash-language-server" | Invoke-Expression
 
-$searchCommand = $IsWindwos ? "fd bash-language-server.cmd -aH"
+$searchCommand = $IsWindows ? "fd bash-language-server.cmd -i -aHI"
     : "fd bash-language-server -aH -t l"
 
 Set-EnvironmentVariable "BASH_LANGUAGE_SERVER" $($searchCommand | Invoke-Expression)
