@@ -39,7 +39,7 @@ function CommonActions()
     local refactorings = {
         ['Remove trailing white spaces'] = function() vim.cmd([[:%s/\s\+$//e]]) end,
         ['Set unix fileformat'] = function() vim.cmd([[:set fileformat=unix]]) end,
-        ['toggle; spell check'] = function() vim.cmd([[:set spell!]]) end,
+        ['toggle: spell check'] = function() vim.cmd([[:set spell!]]) end,
         ['toggle: status line'] = ToggleStatusLine,
         ['toggle: background color'] = ToggleBackgroundColor,
     }
