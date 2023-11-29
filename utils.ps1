@@ -8,7 +8,7 @@ function Test-Dependencies ([string[]] $packages) {
         | Where-Object { (-Not (Test-Command -Command $_)) }
         | ForEach-Object { "Package '$_' could not be found." }
 
-    if ($errors.Length -gt 0) {
+    if (($errors | Measure-Object).Count -gt 0) {
         throw [string]::Concat([Environment]::NewLine, $errors)
     }
 }

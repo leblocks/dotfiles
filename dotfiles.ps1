@@ -13,16 +13,20 @@ COMMANDS
     install                installs packages listed in packages/packages.json
     test                   run self checks
     docker [imageName]     run installation scrits in a docker container
+    kaboom                 run install, configure all and test
     help, -?               show this help message
 #>
 param(
   [Parameter(Position=0, Mandatory=$True)]
-  [ValidateSet("list", "configure", "install",  "test", "docker", "help")]
+  [ValidateSet("list", "configure", "install",  "test", "docker", "kaboom", "help")]
   [string]
   $Command,
   [Parameter(Position=1, ValueFromRemainingArguments=$true)]
   $Rest
 )
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
 
 . $PSScriptRoot/utils.ps1
 
@@ -56,12 +60,10 @@ function Configure {
 }
 
 function Run-Tests {
-    if (-Not (Get-InstalledModule -Name "Pester")) {
+    if (-Not ([bool](Get-InstalledModule -Name "Pester" -ErrorAction SilentlyContinue))) {
         Install-Module "Pester" -Force
     }
-
     Import-Module Pester -PassThru
-
     Invoke-Pester -Path $PSScriptRoot/test/**/*.tests.ps1, $PSScriptRoot/test/*.tests.ps1 -Output Detailed
 }
 
@@ -89,5 +91,10 @@ switch ($Command) {
     "install" { Install }
     "test" { Run-Tests }
     "docker" { . (Join-Path $PSScriptRoot "docker" "docker.ps1") $Rest }
+    "kaboom" {
+        Install
+        Configure "all"
+        Run-Tests
+    }
     "help" { Get-Help $PSCommandPath }
 }

@@ -2,13 +2,10 @@
 bootstrap and single source of development environment configuration
 
 ## TODOs
-* make powershell installation getting latest pwsh version
-* test neovim install on windows and linux - write tests
-* some day think of using scoop instead of choco
-* sort env variables on write
-* how to log commands from scripts?
-* set correct term value
+* test using alpine, write correct alpine bootstrap
+* set correct term value? (test setting if not from docker command)
 * replace all curls with Invoke-WebRequest
+* neovim: project select doesn't work on linux
 
 ## Repository structure
 

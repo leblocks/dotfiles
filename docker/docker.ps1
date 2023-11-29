@@ -8,9 +8,7 @@ $repoRootFolder = Join-Path $PSScriptRoot ".."
 $entrypointArgument = "`"" +
             [string]::Join(" && ",
                 "/dotfiles/bootstrap/$ImageName.sh",
-                "pwsh -f /dotfiles/dotfiles.ps1 install",
-                "pwsh -f /dotfiles/dotfiles.ps1 configure all",
-                "pwsh -f /dotfiles/dotfiles.ps1 test",
+                "pwsh -f /dotfiles/dotfiles.ps1 kaboom",
                 "pwsh"
             ) + "`""
 

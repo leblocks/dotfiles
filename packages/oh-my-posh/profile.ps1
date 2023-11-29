@@ -1,3 +1,6 @@
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+
 # import utils.ps1, this file is being symlinked so
 # I have to do some magic to get actual file location
 $actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path $PSScriptRoot $MyInvocation.MyCommand.Name)).Target)
@@ -18,7 +21,7 @@ if (-Not (Test-Command which)) {
 }
 
 if (-Not (Test-Command ll)) {
-    Set-Alias ll Get-ChildItem
+    Set-Alias ll Get-ChildItem -Force
 }
 
 <#
