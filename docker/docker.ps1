@@ -1,24 +1,25 @@
-param([Parameter(Position=0, Mandatory=$True)] [ValidateSet("archlinux")] [string] $ImageName)
+param([Parameter(Position=0, Mandatory=$True)] [ValidateSet("archlinux", "alpine")] [string] $ImageName)
 
 . $PSScriptRoot/../utils.ps1
 
 $contaienerName = $ImageName + "-" + [Guid]::NewGuid().ToString()
 $repoRootFolder = Join-Path $PSScriptRoot ".."
 
-switch ($ImageName) {
-    "archlinux" {
-        $containerCommand = [string]::Join(" ",
-            "--entrypoint", "/bin/bash",
-            "archlinux",
-            "-c", "`"" +
+$entrypointArgument = "`"" +
             [string]::Join(" && ",
-                "/dotfiles/bootstrap/archlinux.sh",
+                "/dotfiles/bootstrap/$ImageName.sh",
                 "pwsh -f /dotfiles/dotfiles.ps1 install",
                 "pwsh -f /dotfiles/dotfiles.ps1 configure all",
                 "pwsh -f /dotfiles/dotfiles.ps1 test",
                 "pwsh"
             ) + "`""
-        )
+
+switch ($ImageName) {
+    "alpine" {
+        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/sh", "alpine", "-c",  $entrypointArgument) 
+    }
+    "archlinux" {
+        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "archlinux", "-c", $entrypointArgument)
     }
 }
 
