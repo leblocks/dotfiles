@@ -17,6 +17,10 @@ if ($IsWindows) {
     $ARCH = "win32-x64.zip"
 } elseif (Test-Command("pacman")) {
     $ARCH = "linux-x64.tar.gz"
+} elseif (Test-Command("apk")) {
+    $ARCH = "linux-x64-musl.tar.gz"
+} elseif (Test-Command("brew")) {
+    $ARCH = "linux-x64.tar.gz"
 } else {
     throw "unsupported OS"
 }
