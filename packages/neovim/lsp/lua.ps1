@@ -2,7 +2,7 @@ param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
 . $PSScriptRoot/../../../utils.ps1
 
-Test-Dependencies(@("curl", "tar", "fd"))
+Test-Dependencies(@("tar"))
 
 $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
 
@@ -33,14 +33,18 @@ $VERSION = ($tags -Replace "^.*tags/", "") -Replace "\^\{\}", ""
 
 $luaServerLink = "https://github.com/LuaLS/lua-language-server/releases/download/$VERSION/lua-language-server-$VERSION-$ARCH"
 
-"curl -L $luaServerLink -o luaserver" | Invoke-Expression
+Invoke-WebRequest -Uri $luaServerLink -OutFile "luaserver" -MaximumRetryCount 5 -RetryIntervalSec 3
 
-($IsWindows ? "unzip luaserver" : "tar -xvf luaserver" ) | Invoke-Expression
+if ($IsWindows) {
+    Expand-Archive -LiteralPath "luaserver" -DestinationPath . -Force
+} else {
+    "tar -xvf luaserver" | Invoke-Expression
+}
 
 Remove-Item luaserver -Force
 
-$searchCommand = $IsWindows ? "fd lua-language-server -aH" : "fd lua-language-server -aH -t x"
+$path = Get-ChildItem . -Include *lua-language-server* -Recurse -Force | ForEach-Object { $_.FullName }
 
-Set-EnvironmentVariable "LUA_LANGUAGE_SERVER" $($searchCommand | Invoke-Expression)
+Set-EnvironmentVariable "LUA_LANGUAGE_SERVER" $path
 
 Pop-Location
