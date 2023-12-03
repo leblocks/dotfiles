@@ -2,7 +2,7 @@ param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
 . $PSScriptRoot/../../../utils.ps1
 
-Test-Dependencies(@("npm", "fd"))
+Test-Dependencies(@("npm"))
 
 $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
 
@@ -15,10 +15,11 @@ Push-Location $toolPath
 "npm init -y" | Invoke-Expression
 "npm install typescript-language-server typescript" | Invoke-Expression
 
-$searchCommand = $IsWindows ? "fd typescript-language-server.cmd -aH"
-    : "fd typescript-language-server -aH -t l"
+$fileName = "typescript-language-server" + ($IsWindows ? ".cmd" : "")
 
-Set-EnvironmentVariable "TYPESCRIPT_LANGUAGE_SERVER" $($searchCommand | Invoke-Expression)
+$path = Get-ChildItem . -Include $fileName -Recurse -Force -File | ForEach-Object { $_.FullName }
+
+Set-EnvironmentVariable "TYPESCRIPT_LANGUAGE_SERVER" $path
 
 Pop-Location
 

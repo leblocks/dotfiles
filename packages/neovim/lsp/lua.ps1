@@ -43,7 +43,7 @@ if ($IsWindows) {
 
 Remove-Item luaserver -Force
 
-$path = Get-ChildItem . -Include *lua-language-server* -Recurse -Force | ForEach-Object { $_.FullName }
+$path = Get-ChildItem . -Include *lua-language-server* -Recurse -Force -File | ForEach-Object { $_.FullName }
 
 Set-EnvironmentVariable "LUA_LANGUAGE_SERVER" $path
 
