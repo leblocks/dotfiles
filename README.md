@@ -1,11 +1,22 @@
 # dotfiles
-bootstrap and single source of development environment configuration
+
+This repository contains configuration files and setup scripts for configuring my development environment.
+
+## Why powershell?
+
+I've experimented with a few methods in the past to maintain a consistent setup, including shell/batch scripts
+and Python. However, keeping two sets of scripts—one for Windows and one for Linux—proved challenging to stay up to date.
+Bootstrapping Python of correct versions wasn't an straightforward task as well.
+
+After trying various scripting languages like Python, shell, and batch scripts, I found a decent solution
+in powershell. Using powershell, I can now easily set up configurations and install
+tools on both Windows and Linux with a unified approach. This not only simplifies the whole process but also saves me
+from the headache of managing different sets of scripts, making development more efficient and straightforward.
 
 ## TODOs
 * test using alpine, write correct alpine bootstrap
 * set correct term value? (test setting if not from docker command)
-* replace all curls with Invoke-WebRequest
-* neovim: project select doesn't work on linux
+* neovim: dotnet project select doesn't work on linux as expected
 
 ## Repository structure
 
