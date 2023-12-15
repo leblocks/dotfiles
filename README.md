@@ -14,7 +14,6 @@ tools on both Windows and Linux with a unified approach. This not only simplifie
 from the headache of managing different sets of scripts, making development more efficient and straightforward.
 
 ## TODOs
-* test using alpine, write correct alpine bootstrap
 * set correct term value? (test setting if not from docker command)
 * neovim: dotnet project select doesn't work on linux as expected
 
