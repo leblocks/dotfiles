@@ -22,9 +22,11 @@ $pathToActivate | Invoke-Expression
 
 "deactivate" | Invoke-Expression
 
-$searchCommand  = $IsWindows ? "fd python.exe -aH" : "fd python$ -aH -t l"
+$fileName = "python" + ($IsWindows ? ".exe" : "")
 
-Set-EnvironmentVariable "DEBUGPY_PATH" $($searchCommand | Invoke-Expression)
+$path = Get-ChildItem . -Include $fileName -Recurse -Force -File | ForEach-Object { $_.FullName }
+
+Set-EnvironmentVariable "DEBUGPY_PATH" $path
 
 Pop-Location
 

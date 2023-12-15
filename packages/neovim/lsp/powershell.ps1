@@ -12,7 +12,7 @@ Push-Location $toolPath
 
 $fileName = "PowerShellEditorServices.zip"
 
-Invoke-WebRequest -Uri "https://github.com/PowerShell/PowerShellEditorServices/releases/latest/download/$fileName" -OutFile $fileName
+Invoke-WebRequest -Uri "https://github.com/PowerShell/PowerShellEditorServices/releases/latest/download/$fileName" -OutFile $fileName -MaximumRetryCount 5 -RetryIntervalSec 3
 
 Expand-Archive -LiteralPath $fileName -DestinationPath . -Force
 

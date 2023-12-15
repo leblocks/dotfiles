@@ -1,6 +1,7 @@
 . $PSScriptRoot/../../utils.ps1
 
-Test-Dependencies(@("unzip", "curl"))
+# unzip is required by oh-my-posh installation script
+Test-Dependencies(@("unzip"))
 
 if ($IsWindows) {
     winget install JanDeDobbeleer.OhMyPosh -s winget
@@ -9,11 +10,8 @@ if ($IsWindows) {
 if ($IsLinux) {
     $sudo = ((Test-Command -Command "sudo") ? "sudo" : "")
     $shell = ((Test-Command -Command "bash") ? "bash" : "sh")
-
     $script = Join-Path ([System.IO.Path]::GetTempPath()) "install.sh"
-    Write-Host "$sudo $shell $script"
-    Invoke-WebRequest -Uri "https://ohmyposh.dev/install.sh" -OutFile $script
-    write-host "$sudo $shell $script"
+    Invoke-WebRequest -Uri "https://ohmyposh.dev/install.sh" -OutFile $script -MaximumRetryCount 5 -RetryIntervalSec 3
     "$sudo $shell $script" | Invoke-Expression
     Remove-Item $script -Force
 }

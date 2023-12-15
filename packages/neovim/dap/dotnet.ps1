@@ -2,9 +2,7 @@ param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
 . $PSScriptRoot/../../../utils.ps1
 
-if ($IsWindows) {
-    Test-Dependencies(@("unzip"))
-} else {
+if ($IsLinux) {
     Test-Dependencies(@("tar"))
 }
 
@@ -19,10 +17,13 @@ Push-Location $toolPath
 $netcoredbg = ($IsWindows ? "netcoredbg-win64.zip" : "netcoredbg-linux-amd64.tar.gz")
 $downloadLink = "https://github.com/Samsung/netcoredbg/releases/latest/download/$netcoredbg"
 
-Invoke-WebRequest $downloadLink -OutFile $netcoredbg
+Invoke-WebRequest $downloadLink -OutFile $netcoredbg -MaximumRetryCount 5 -RetryIntervalSec 3
 
-$command = ($IsWindows ? "unzip" : "tar -xvf") + " $netcoredbg"
-$command | Invoke-Expression
+if ($IsWindows) {
+    Expand-Archive -LiteralPath $netcoredbg -DestinationPath . -Force
+} else {
+    "tar -xvf $netcoredbg" | Invoke-Expression
+}
 
 $pathToNetcoredbg = Join-Path $toolpath "netcoredbg" ($IsWindows ? "netcoredbg.exe" : "netcoredbg")
 

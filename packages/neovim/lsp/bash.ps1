@@ -2,7 +2,7 @@ param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
 . $PSScriptRoot/../../../utils.ps1
 
-Test-Dependencies(@("npm", "fd"))
+Test-Dependencies(@("npm"))
 
 $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
 
@@ -15,10 +15,11 @@ Push-Location $toolPath
 "npm init -y" | Invoke-Expression
 "npm install bash-language-server" | Invoke-Expression
 
-$searchCommand = $IsWindows ? "fd bash-language-server.cmd -i -aHI"
-    : "fd bash-language-server -aH -t l"
+$fileName = "bash-language-server" + ($IsWindows ? ".cmd" : "")
 
-Set-EnvironmentVariable "BASH_LANGUAGE_SERVER" $($searchCommand | Invoke-Expression)
+$path = Get-ChildItem . -Include $fileName -Recurse -Force -File | ForEach-Object { $_.FullName }
+
+Set-EnvironmentVariable "BASH_LANGUAGE_SERVER" $path
 
 Pop-Location
 
