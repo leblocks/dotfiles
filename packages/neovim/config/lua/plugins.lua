@@ -31,6 +31,8 @@ return packer.startup(function(use)
 
     use('morhetz/gruvbox')
     use('Mofiqul/vscode.nvim')
+    use('ntk148v/komau.vim')
+
     use('kyazdani42/nvim-web-devicons')
     use('nathom/filetype.nvim')
 
