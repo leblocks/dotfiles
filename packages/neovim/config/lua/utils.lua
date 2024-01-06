@@ -51,6 +51,9 @@ function CommonActions()
 
     vim.ui.select(keys, { prompt = "Select refactoring to apply" },
         function(refactoring)
-            refactorings[refactoring]()
+            if (refactoring ~= nil and refactoring ~= '')
+            then
+                refactorings[refactoring]()
+            end
         end)
 end

@@ -64,6 +64,10 @@ function SelectOmnisharpProjectFile()
 
     vim.ui.select(paths, { prompt = 'Select solution\\project file for omnisharp server' },
         function(path_to_project_file)
+            if path_to_project_file == nil or path_to_project_file == '' then
+                return
+            end
+
             -- if we have csproj selection, provide path to its parent folder
             if path_to_project_file:match('.csproj$') then
                 path_to_project_file = vim.fn.fnamemodify(path_to_project_file, ':p:h')
