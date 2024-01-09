@@ -6,6 +6,7 @@ $ErrorActionPreference = "Stop"
 $actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path $PSScriptRoot $MyInvocation.MyCommand.Name)).Target)
 
 . $actualProfileLocation/../../utils.ps1
+. $actualProfileLocation/playground.ps1
 
 oh-my-posh init pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_lean.omp.json"
     | Invoke-Expression
