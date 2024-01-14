@@ -12,13 +12,15 @@ New-Folder $toolPath
 
 Push-Location $toolPath
 
-"python -m venv venv" | Invoke-Expression
+$python = ((Test-Command -Command "python3") ? "python3" : "python")
+
+"$python -m venv venv" | Invoke-Expression
 
 $pathToActivate = $IsWindows ? (Join-Path $toolPath "venv" "Scripts" "Activate.ps1")
     : (Join-Path $toolPath "venv" "bin" "Activate.ps1")
 
 $pathToActivate | Invoke-Expression
-"python -m pip install pyright" | Invoke-Expression
+"$python -m pip install pyright" | Invoke-Expression
 "deactivate" | Invoke-Expression
 
 $fileName = "pyright-python-langserver" + ($IsWindows ? ".exe" : "")

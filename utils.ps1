@@ -21,13 +21,16 @@ function LinkToHome ([string] $folder, [string] $fileName) {
 }
 
 function Install-Package ([string] $package) {
+    # TODO rework logic here
+    $sudo = ((Test-Command -Command "sudo") ? "sudo" : "")
+
     if ($IsWindows) {
         Test-Dependencies(@("choco"))
         "choco upgrade $package --confirm" | Invoke-Expression
     } elseif (Test-Command -Command "apk") {
-        "apk add $package --no-cache" | Invoke-Expression
+        "$sudo apk add $package --no-cache" | Invoke-Expression
     } elseif (Test-Command -Command "pacman") {
-        "pacman -Sy --noconfirm $package" | Invoke-Expression
+        "$sudo pacman -Sy --noconfirm $package" | Invoke-Expression
     } elseif (Test-Command -Command "brew") {
         "brew install $package" | Invoke-Expression
     } else {

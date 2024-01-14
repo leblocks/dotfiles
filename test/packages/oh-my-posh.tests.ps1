@@ -9,7 +9,7 @@ Describe 'oh-my-posh' {
         # clean stuff created in playgorund folder
         Get-ChildItem (Join-Path $HOME "playground")
             | Where-Object { $_.LastWriteTime -gt $testStart }
-            | Remove-Item -Recurse
+            | Remove-Item -Recurse -Force
     }
 
     It 'Powershell $PROFILE exists' {
