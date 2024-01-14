@@ -16,6 +16,8 @@ from the headache of managing different sets of scripts, making development more
 ## TODOs
 * set correct term value? (test setting if not from docker command)
 * create New-XXXPlayground, where XXX can be Dotnet, JavaScript, Python... helpers
+* make sure that none of commands requires admin (except package installations)
+* make ll work properly
 
 ## Repository structure
 
