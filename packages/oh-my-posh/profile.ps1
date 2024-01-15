@@ -8,8 +8,14 @@ $actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path
 . $actualProfileLocation/../../utils.ps1
 . $actualProfileLocation/playground.ps1
 
-oh-my-posh init pwsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_lean.omp.json"
-    | Invoke-Expression
+# load powershell theme once
+$themeLink = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_lean.omp.json" 
+$themePath = Join-Path $HOME oh-my-posh.theme.json
+if (-Not (Test-Path $themePath)) {
+    Invoke-WebRequest $themeLink -OutFile $themePath
+}
+
+oh-my-posh init pwsh --config $themePath | Invoke-Expression
 
 # add dotfiles to path
 Add-PathEntry (Join-Path $actualProfileLocation .. ..)
