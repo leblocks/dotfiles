@@ -4,7 +4,7 @@ function Test-Command ([string] $Command) {
 }
 
 function Test-Dependencies ([string[]] $packages) {
-    $errors = $packages 
+    $errors = $packages
         | Where-Object { (-Not (Test-Command -Command $_)) }
         | ForEach-Object { "Package '$_' could not be found." }
 
@@ -34,7 +34,7 @@ function Install-Package ([string] $package) {
     } elseif (Test-Command -Command "brew") {
         "brew install $package" | Invoke-Expression
     } else {
-        throw "Could not find supported pacakage manager for installation."
+        throw "Could not find supported package manager for installation."
     }
 }
 
