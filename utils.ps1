@@ -82,3 +82,7 @@ function Write-Message ([string] $message) {
     Write-Host $message -ForegroundColor Yellow
 }
 
+function Get-Files {
+    Get-ChildItem . -Force
+}
+

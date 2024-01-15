@@ -17,13 +17,8 @@ Add-PathEntry (Join-Path $actualProfileLocation .. ..)
 <#
     ALIASES
 #>
-if (-Not (Test-Command which)) {
-    Set-Alias which Get-Command
-}
-
-if (-Not (Test-Command ll)) {
-    Set-Alias ll Get-ChildItem -Force
-}
+Set-Alias which Get-Command
+Set-Alias ll Get-Files
 
 <#
     ENVIRONMENT VARIABLES LOAD
