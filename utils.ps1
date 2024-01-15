@@ -86,3 +86,6 @@ function Get-Files {
     Get-ChildItem . -Force
 }
 
+function Invoke-Btm {
+    "btm -b" | Invoke-Expression
+}

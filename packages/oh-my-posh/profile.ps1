@@ -25,6 +25,7 @@ Add-PathEntry (Join-Path $actualProfileLocation .. ..)
 #>
 Set-Alias which Get-Command
 Set-Alias ll Get-Files
+Set-Alias top Invoke-Btm
 
 <#
     ENVIRONMENT VARIABLES LOAD
