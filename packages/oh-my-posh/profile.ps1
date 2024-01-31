@@ -7,6 +7,7 @@ $actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path
 
 . $actualProfileLocation/../../utils.ps1
 . $actualProfileLocation/playground.ps1
+. $actualProfileLocation/watchFiles.ps1
 
 # load powershell theme once
 $themeLink = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_lean.omp.json" 
@@ -26,6 +27,7 @@ Add-PathEntry (Join-Path $actualProfileLocation .. ..)
 Set-Alias which Get-Command
 Set-Alias ll Get-Files
 Set-Alias top Invoke-Btm
+Set-Alias mtail Watch-Files
 
 <#
     ENVIRONMENT VARIABLES LOAD
