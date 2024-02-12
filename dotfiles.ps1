@@ -59,7 +59,7 @@ function Configure {
     }
 }
 
-function Run-Tests {
+function Invoke-Tests {
     if (-Not ([bool](Get-InstalledModule -Name "Pester" -ErrorAction SilentlyContinue))) {
         Install-Module "Pester" -Force
     }
@@ -94,7 +94,8 @@ switch ($Command) {
     "kaboom" {
         Install
         Configure "all"
-        Run-Tests
+        . $PROFILE
+        Invoke-Tests
     }
     "help" { Get-Help $PSCommandPath }
 }
