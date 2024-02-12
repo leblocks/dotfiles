@@ -12,7 +12,7 @@ New-Folder $toolPath
 
 Push-Location $toolPath
 
-$python = ((Test-Command -Command "python3") ? "python3" : "python")
+$python = $IsWindows ? "python" : (((Test-Command -Command "python3") ? "python3" : "python"))
 
 "$python -m venv venv" | Invoke-Expression
 
