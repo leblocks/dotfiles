@@ -17,7 +17,7 @@ switch ($ImageName) {
         $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/sh", "alpine", "-c",  $entrypointArgument) 
     }
     "archlinux" {
-        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "archlinux", "-c", $entrypointArgument)
+        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "archlinux:base", "-c", $entrypointArgument)
     }
 }
 
