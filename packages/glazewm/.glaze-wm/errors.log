@@ -1,0 +1,11 @@
+15/02/2024 10:37:59
+System.InvalidOperationException: Process has exited, so the requested information is not available.
+   at System.Diagnostics.Process.EnsureState(State state)
+   at System.Diagnostics.Process.get_ProcessName()
+   at GlazeWM.Domain.Windows.WindowService.IsHandleManageable(IntPtr handle) in D:\a\glazewm\glazewm\GlazeWM.Domain\Windows\WindowService.cs:line 203
+   at GlazeWM.Domain.Windows.EventHandlers.WindowShownHandler.Handle(WindowShownEvent event) in D:\a\glazewm\glazewm\GlazeWM.Domain\Windows\EventHandlers\WindowShownHandler.cs:line 58
+   at GlazeWM.Infrastructure.Bussing.Bus.Emit[T](T event) in D:\a\glazewm\glazewm\GlazeWM.Infrastructure\Bussing\Bus.cs:line 87
+   at GlazeWM.Infrastructure.Bussing.Bus.<>c__DisplayClass8_0`1.<EmitAsync>b__0() in D:\a\glazewm\glazewm\GlazeWM.Infrastructure\Bussing\Bus.cs:line 101
+Command history: HandleFatalExceptionCommand, SyncNativeFocusCommand, RedrawContainersCommand, RunWithSubjectContainerCommand, SetFocusedDescendantCommand, AttachContainerCommand, ManageWindowCommand, SyncNativeFocusCommand, RedrawContainersCommand, SetFocusedDescendantCommand, AttachContainerCommand, ActivateWorkspaceCommand, AttachContainerCommand, AddMonitorCommand, RegisterKeybindingsCommand 
+State dump: {"id":"7aef4e1f-a081-483f-bc91-4137ac93b6d0","x":0,"y":0,"width":0,"height":0,"type":"root","focus_index":0,"children":[{"device_name":"\\\\.\\DISPLAY1","id":"fa8e3b8b-8ad6-4602-99d9-032d13bac432","x":0,"y":0,"width":1920,"height":1080,"type":"monitor","focus_index":0,"children":[{"tiling_direction":"horizontal","size_percentage":1,"name":"1","id":"641bd5a4-2fe3-4cb6-95f2-bc2d4b637559","x":5,"y":35,"width":1910,"height":1040,"type":"workspace","focus_index":0,"children":[{"floating_placement":{"left":581,"top":132,"right":1340,"bottom":978,"x":581,"y":132,"width":759,"height":846},"border_delta":{"left":7,"top":0,"right":7,"bottom":7},"handle":66878,"size_percentage":1,"id":"a7b40e0f-55cc-4896-8745-d918c0c69944","x":5,"y":35,"width":1910,"height":1040,"type":"window","focus_index":0,"children":[]}]}]}]}
+
