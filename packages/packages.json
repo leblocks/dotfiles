@@ -19,8 +19,7 @@
 
     "windows" : [
         "far",
-        "mingw",
-        "powertoys"
+        "mingw"
     ],
 
     "linux" : [
