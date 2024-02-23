@@ -6,7 +6,6 @@ $ErrorActionPreference = "Stop"
 $actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path $PSScriptRoot $MyInvocation.MyCommand.Name)).Target)
 
 . $actualProfileLocation/../../utils.ps1
-. $actualProfileLocation/playground.ps1
 . $actualProfileLocation/watchFiles.ps1
 
 # load powershell theme once

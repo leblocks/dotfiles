@@ -28,19 +28,4 @@ Describe 'oh-my-posh' {
     It 'oh-my-posh is installed' {
         Test-Command "oh-my-posh" | Should -Be $true
     }
-
-    It 'New-DotnetPlayground command is defined' {
-       Test-Command "New-DotnetPlayground" | Should -Be $true
-    }
-
-    It 'New-DotnetPlayground creates runnable project' {
-        "New-DotnetPlayground" | Invoke-Expression
-        "dotnet run" | Invoke-Expression | Should -Be "Hello, World!"
-        # TODO find out how to clean stack of locations
-        Pop-Location
-    }
-
-    It 'New-DotnetPlayground creates editorconfig and omnisharp.json files' {
-        # TODO
-    }
 }
