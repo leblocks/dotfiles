@@ -89,7 +89,7 @@ switch ($Command) {
     "list" { List }
     "configure" { Configure $Rest }
     "install" { Install }
-    "test" { Run-Tests }
+    "test" { Invoke-Tests }
     "docker" { . (Join-Path $PSScriptRoot "docker" "docker.ps1") $Rest }
     "kaboom" {
         Install
