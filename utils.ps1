@@ -89,3 +89,10 @@ function Get-Files {
 function Invoke-Btm {
     "btm -b" | Invoke-Expression
 }
+
+function Get-Ports {
+    Get-NetTCPConnection
+        | ForEach-Object { Add-Member -InputObject $_ -MemberType NoteProperty -Name "Cmd" -Value (Get-Process -Id $_.OwningProcess).Path -PassThru }
+        | Select-Object LocalAddress, LocalPort, RemoteAddress, Remote-Port, State, OwningProcess, Cmd
+}
+

@@ -27,6 +27,7 @@ Set-Alias which Get-Command
 Set-Alias ll Get-Files
 Set-Alias top Invoke-Btm
 Set-Alias mtail Watch-Files
+Set-Alias gp Get-Ports
 
 <#
     ENVIRONMENT VARIABLES LOAD
