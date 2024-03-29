@@ -41,7 +41,7 @@ return packer.startup(function(use)
     -- nvim-dap
     use('mfussenegger/nvim-dap')
     use('theHamsta/nvim-dap-virtual-text')
-    use('rcarriga/nvim-dap-ui')
+    use({'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'} })
 
     -- nvim-lint for cases when there is no lsp server
     use('mfussenegger/nvim-lint')
