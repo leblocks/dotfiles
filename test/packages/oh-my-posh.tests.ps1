@@ -1,17 +1,6 @@
 . $PSScriptRoot/../../utils.ps1
 
 Describe 'oh-my-posh' {
-    BeforeAll {
-        $testStart = Get-Date
-    }
-
-    AfterAll {
-        # clean stuff created in playgorund folder
-        Get-ChildItem (Join-Path $HOME "playground")
-            | Where-Object { $_.LastWriteTime -gt $testStart }
-            | Remove-Item -Recurse -Force
-    }
-
     It 'Powershell $PROFILE exists' {
         Test-Path $PROFILE | Should -Be $True
     }

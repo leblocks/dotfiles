@@ -1,6 +1,6 @@
 . $PSScriptRoot/../../utils.ps1
 
-Describe 'glazewm' {
+Describe 'glazewm' -Skip:$IsLinux {
     It 'link to .glazewm configuration exists' {
         Test-Path "$HOME/.glaze-wm/config.yaml" | Should -Be $true
     }
