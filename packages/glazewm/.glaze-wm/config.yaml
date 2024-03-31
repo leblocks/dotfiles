@@ -170,11 +170,6 @@ keybindings:
   - command: "reload config"
     binding: "Alt+Shift+R"
 
-  # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
-  # to start Windows Terminal and Git Bash respectively.
-  - command: "exec wt"
-    binding: "Alt+Enter"
-
   # Focus the workspace that last had focus.
   - command: "focus workspace recent"
     binding: "Alt+Y"
