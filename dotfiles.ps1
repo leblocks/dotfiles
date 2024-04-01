@@ -53,9 +53,12 @@ function Configure {
         $scriptsToInvoke.Add($configurationPath)
     }
 
+    $i = 1
+    $total = $scriptsToInvoke.Count
     foreach ($path in $scriptsToInvoke) {
-        Write-Host "Running '$path'" -ForegroundColor Green
+        Write-Message "Running '$path' ($i/$total)"
         & $path
+        $i = $i + 1
     }
 }
 
@@ -69,14 +72,17 @@ function Invoke-Tests {
 
 function Install {
     $pathToPackages = Join-Path $PSScriptRoot "packages" "packages.json"
-    Write-Host "Installing from '$pathToPackages'" -ForegroundColor Green
+    Write-Message "Installing from '$pathToPackages'"
     Get-Content $pathToPackages -Raw
         | ConvertFrom-Json
         | ForEach-Object {
             $packagesToInstall = $_.common + ($IsWindows ? $_.windows : $_.linux)
+            $i = 1
+            $total = $packagesToInstall.Count
             foreach ($package in $packagesToInstall) {
-                Write-Host "Installing '$package'" -foregroundcolor yellow
+                Write-Message "Installing '$package' ($i/$total)"
                 Install-Package $package
+                $i = $i + 1
             }
         }
 }

@@ -32,7 +32,7 @@ $commandToInvoke = [string]::Join(" ",
     "--env TERM=xterm-256color",
     $containerCommand)
 
-Write-Host "invoking $commandToInvoke" -ForegroundColor Green
+Write-Message "invoking $commandToInvoke" -ForegroundColor Green
 
 $commandToInvoke | Invoke-Expression
 

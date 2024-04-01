@@ -26,13 +26,13 @@ function Install-Package ([string] $package) {
 
     if ($IsWindows) {
         Test-Dependencies(@("choco"))
-        "choco upgrade $package --confirm" | Invoke-Expression
+        "choco upgrade $package --confirm" | Invoke-FailFastExpression
     } elseif (Test-Command -Command "apk") {
-        "$sudo apk add $package --no-cache" | Invoke-Expression
+        "$sudo apk add $package --no-cache" | Invoke-FailFastExpression
     } elseif (Test-Command -Command "pacman") {
-        "$sudo pacman -Sy --noconfirm $package" | Invoke-Expression
+        "$sudo pacman -Sy --noconfirm $package" | Invoke-FailFastExpression
     } elseif (Test-Command -Command "brew") {
-        "brew install $package" | Invoke-Expression
+        "brew install $package" | Invoke-FailFastExpression
     } else {
         throw "Could not find supported package manager for installation."
     }
@@ -79,7 +79,7 @@ function New-Folder ([string] $path) {
 }
 
 function Write-Message ([string] $message) {
-    Write-Host $message -ForegroundColor Yellow
+    Write-Host $message -ForegroundColor Green
 }
 
 function Get-Files {
@@ -94,5 +94,20 @@ function Get-Ports {
     Get-NetTCPConnection
         | ForEach-Object { Add-Member -InputObject $_ -MemberType NoteProperty -Name "Cmd" -Value (Get-Process -Id $_.OwningProcess).Path -PassThru }
         | Select-Object LocalAddress, LocalPort, RemoteAddress, Remote-Port, State, OwningProcess, Cmd
+}
+
+# TODO test it
+function Invoke-FailFastExpression {
+    param (
+        [parameter(ValueFromPipeline)]
+        [string]$command
+    )
+
+    try {
+        Invoke-Expression $command | Out-Null
+    } catch {
+        Write-Error "Failed to execute $command, error details: $_"
+        throw "Invoke-FailFastExpression failed"
+    }
 }
 
