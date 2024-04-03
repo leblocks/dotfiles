@@ -16,7 +16,6 @@ local get_python_path = function()
     end
     return venv_path .. '/bin/python'
   end
-  -- TODO show message to a user
   return nil
 end
 
