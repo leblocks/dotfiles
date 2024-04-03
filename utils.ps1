@@ -96,15 +96,20 @@ function Get-Ports {
         | Select-Object LocalAddress, LocalPort, RemoteAddress, Remote-Port, State, OwningProcess, Cmd
 }
 
-# TODO test it
 function Invoke-FailFastExpression {
     param (
         [parameter(ValueFromPipeline)]
         [string]$command
     )
 
+    $debug = [System.Environment]::GetEnvironmentVariable("DOTFILES_DEBUG")
+
     try {
-        Invoke-Expression $command | Out-Null
+        if ($debug -eq $Null) {
+            Invoke-Expression $command | Out-Null
+        } else {
+            Invoke-Expression $command
+        }
     } catch {
         Write-Error "Failed to execute $command, error details: $_"
         throw "Invoke-FailFastExpression failed"

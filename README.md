@@ -37,4 +37,5 @@ from the headache of managing different sets of scripts, making development more
 Those are created by configuration scripts:
 * _$HOME/.environment.json_ contains environment variables loaded by _$PROFILE_ on a new session
 * _$HOME/.path.json_ contains path additions loaded by _$PROFILE_ on a new session
+* Setting _DOTFILES_DEBUG_ environment variable will enabled additional logging.
 

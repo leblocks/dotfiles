@@ -86,5 +86,19 @@ Describe 'utils' {
         Test-Path $pathToFolder | Should -Be $true
         Test-Path $pathToFile | Should -Be $false
     }
+
+    It "calling Invoke-FailFastExpression throws on failed commands" {
+        { Invoke-FailFastExpression "non-existing-command" } | Should -Throw
+    }
+
+    It "calling Invoke-FailFastExpression on success does not produce output" {
+        Invoke-FailFastExpression "echo 1" | Should -Be $Null
+    }
+
+    It "calling Invoke-FailFastExpression on success provides output with debug flag" {
+        [System.Environment]::SetEnvironmentVariable("DOTFILES_DEBUG", "1")
+        Invoke-FailFastExpression "echo 1" | Should -Be "1"
+        [System.Environment]::SetEnvironmentVariable("DOTFILES_DEBUG", "")
+    }
 }
 
