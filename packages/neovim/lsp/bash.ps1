@@ -12,8 +12,8 @@ New-Folder $toolPath
 
 Push-Location $toolPath
 
-"npm init -y" | Invoke-Expression
-"npm install bash-language-server" | Invoke-Expression
+"npm init -y" | Invoke-FailFastExpression
+"npm install bash-language-server" | Invoke-FailFastExpression
 
 $fileName = "bash-language-server" + ($IsWindows ? ".cmd" : "")
 

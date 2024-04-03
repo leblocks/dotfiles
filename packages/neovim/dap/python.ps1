@@ -14,15 +14,15 @@ Push-Location $toolPath
 
 $python = $IsWindows ? "python" : (((Test-Command -Command "python3") ? "python3" : "python"))
 
-"$python -m venv venv" | Invoke-Expression
+"$python -m venv venv" | Invoke-FailFastExpression
 
 $pathToActivate = $IsWindows ? (Join-Path $toolPath "venv" "Scripts" "Activate.ps1")
     : (Join-Path $toolPath "venv" "bin" "Activate.ps1")
 
-$pathToActivate | Invoke-Expression
-"$python -m pip install debugpy" | Invoke-Expression
+$pathToActivate | Invoke-FailFastExpression
+"$python -m pip install debugpy" | Invoke-FailFastExpression
 
-"deactivate" | Invoke-Expression
+"deactivate" | Invoke-FailFastExpression
 
 $fileName = "python" + ($IsWindows ? ".exe" : "")
 

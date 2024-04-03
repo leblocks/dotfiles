@@ -12,8 +12,8 @@ New-Folder $toolPath
 
 Push-Location $toolPath
 
-"npm init -y" | Invoke-Expression
-"npm install typescript-language-server typescript" | Invoke-Expression
+"npm init -y" | Invoke-FailFastExpression
+"npm install typescript-language-server typescript" | Invoke-FailFastExpression
 
 $fileName = "typescript-language-server" + ($IsWindows ? ".cmd" : "")
 

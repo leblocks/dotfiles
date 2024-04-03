@@ -14,7 +14,10 @@ tools on both Windows and Linux with a unified approach. This not only simplifie
 from the headache of managing different sets of scripts, making development more efficient and straightforward.
 
 ## TODOs
-* set correct term value? (test setting if not from docker command)
+* more understandable output
+* run stuff once a week
+* faster tests
+* add gif with example usage
 * make sure that none of commands requires admin (except package installations)
 
 ## Repository structure

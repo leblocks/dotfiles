@@ -23,11 +23,11 @@ $pathToPacker = $IsWindows ? (Join-Path $HOME "\AppData\Local\nvim-data\site\pac
 
 # ensure packer is bootstrapped
 if (-Not (Test-Path $pathToPacker)) {
-    "git clone --depth 1 https://github.com/wbthomason/packer.nvim $pathToPacker" | Invoke-Expression
+    "git clone --depth 1 https://github.com/wbthomason/packer.nvim $pathToPacker" | Invoke-FailFastExpression
 }
 
 # update plugins
-"nvim --headless -c `"autocmd User PackerComplete quitall`" -c `"PackerSync`"" | Invoke-Expression
+"nvim --headless -c `"autocmd User PackerComplete quitall`" -c `"PackerSync`"" | Invoke-FailFastExpression
 
 $pathToLanguageTools = Join-Path $HOME ".neovim-language-support"
 New-Folder $pathToLanguageTools

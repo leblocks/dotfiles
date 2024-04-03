@@ -38,7 +38,7 @@ Invoke-WebRequest -Uri $luaServerLink -OutFile "luaserver" -MaximumRetryCount 5 
 if ($IsWindows) {
     Expand-Archive -LiteralPath "luaserver" -DestinationPath . -Force
 } else {
-    "tar -xvf luaserver" | Invoke-Expression
+    "tar -xvf luaserver" | Invoke-FailFastExpression
 }
 
 Remove-Item luaserver -Force

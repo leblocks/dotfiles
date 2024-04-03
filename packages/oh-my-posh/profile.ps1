@@ -15,7 +15,7 @@ if (-Not (Test-Path $themePath)) {
     Invoke-WebRequest $themeLink -OutFile $themePath
 }
 
-oh-my-posh init pwsh --config $themePath | Invoke-Expression
+oh-my-posh init pwsh --config $themePath | Invoke-FailFastExpression
 
 # add dotfiles to path
 Add-PathEntry (Join-Path $actualProfileLocation .. ..)

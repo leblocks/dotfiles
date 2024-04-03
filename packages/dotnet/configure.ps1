@@ -26,7 +26,7 @@ $command = @(
     ($IsWindows ? "-Version" : "--version"), $Version
 ) -Join " "
 
-$command | Invoke-Expression
+$command | Invoke-FailFastExpression
 
 Add-PathEntry $DOTNET_ROOT
 Add-PathEntry (Join-Path $DOTNET_ROOT "tools")

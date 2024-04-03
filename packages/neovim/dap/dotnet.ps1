@@ -22,7 +22,7 @@ Invoke-WebRequest $downloadLink -OutFile $netcoredbg -MaximumRetryCount 5 -Retry
 if ($IsWindows) {
     Expand-Archive -LiteralPath $netcoredbg -DestinationPath . -Force
 } else {
-    "tar -xvf $netcoredbg" | Invoke-Expression
+    "tar -xvf $netcoredbg" | Invoke-FailFastExpression
 }
 
 $pathToNetcoredbg = Join-Path $toolpath "netcoredbg" ($IsWindows ? "netcoredbg.exe" : "netcoredbg")

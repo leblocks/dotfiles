@@ -22,7 +22,7 @@ Invoke-WebRequest $downloadLink -OutFile $omnisharp -MaximumRetryCount 5 -RetryI
 if ($IsWindows) {
     Expand-Archive -LiteralPath $omnisharp -DestinationPath . -Force
 } else {
-    "tar -xvf $omnisharp" | Invoke-Expression
+    "tar -xvf $omnisharp" | Invoke-FailFastExpression
 }
 
 $pathToOmnisharp = Join-Path $toolPath ($IsWindows ? "OmniSharp.exe" : "OmniSharp")

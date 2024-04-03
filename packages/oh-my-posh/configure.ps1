@@ -12,7 +12,7 @@ if ($IsLinux) {
     $shell = ((Test-Command -Command "bash") ? "bash" : "sh")
     $script = Join-Path ([System.IO.Path]::GetTempPath()) "install.sh"
     Invoke-WebRequest -Uri "https://ohmyposh.dev/install.sh" -OutFile $script -MaximumRetryCount 5 -RetryIntervalSec 3
-    "$sudo $shell $script" | Invoke-Expression
+    "$sudo $shell $script" | Invoke-FailFastExpression
     Remove-Item $script -Force
 }
 
