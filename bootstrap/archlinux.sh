@@ -6,6 +6,8 @@ FULL_PATH_TO_SCRIPT="$(realpath "${BASH_SOURCE[-1]}")"
 SCRIPT_DIRECTORY="$(dirname "$FULL_PATH_TO_SCRIPT")"
 POWERSHELL_VERSION="$(cat "${SCRIPT_DIRECTORY}"/.version)"
 
+pacman -Syu --noconfirm
+
 curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v"${POWERSHELL_VERSION}"/powershell-"${POWERSHELL_VERSION}"-linux-x64.tar.gz
 rm /opt/microsoft/powershell/7 -rf
 mkdir -p /opt/microsoft/powershell/7
