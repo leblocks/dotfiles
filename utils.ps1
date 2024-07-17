@@ -21,11 +21,11 @@ function LinkToHome ([string] $folder, [string] $fileName) {
 }
 
 function Install-Package ([string] $package) {
-    # TODO rework logic here
     $sudo = ((Test-Command -Command "sudo") ? "sudo" : "")
 
-    if ($IsWindows) {
-        Test-Dependencies(@("choco"))
+    if (Test-Command -Command "scoop") {
+        "scoop install $package" | Invoke-FailFastExpression
+    } elseif (Test-Command -Command "choco") {
         "choco upgrade $package --confirm" | Invoke-FailFastExpression
     } elseif (Test-Command -Command "apk") {
         "$sudo apk add $package --no-cache" | Invoke-FailFastExpression
