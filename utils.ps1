@@ -24,18 +24,20 @@ function Install-Package ([string] $package) {
     $sudo = ((Test-Command -Command "sudo") ? "sudo" : "")
 
     if (Test-Command -Command "scoop") {
-        "scoop install $package" | Invoke-FailFastExpression
+        $command = "scoop install $package"
     } elseif (Test-Command -Command "choco") {
-        "choco upgrade $package --confirm" | Invoke-FailFastExpression
+        $command = "choco upgrade $package --confirm"
     } elseif (Test-Command -Command "apk") {
-        "$sudo apk add $package --no-cache" | Invoke-FailFastExpression
+        $command = "$sudo apk add $package --no-cache"
     } elseif (Test-Command -Command "pacman") {
-        "$sudo pacman -Sy --noconfirm $package" | Invoke-FailFastExpression
+        $command = "$sudo pacman -Sy --noconfirm $package"
     } elseif (Test-Command -Command "brew") {
-        "brew install $package" | Invoke-FailFastExpression
+        $command = "brew install $package"
     } else {
         throw "Could not find supported package manager for installation."
     }
+
+    $command | Invoke-FailFastExpression
 }
 
 function Set-EnvironmentVariable ([string] $name, [string] $value) {

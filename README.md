@@ -19,6 +19,7 @@ from the headache of managing different sets of scripts, making development more
 * faster tests
 * add gif with example usage
 * make sure that none of commands requires admin (except package installations)
+* configure lstext-ls
 
 ## Repository structure
 
