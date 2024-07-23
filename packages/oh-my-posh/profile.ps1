@@ -15,8 +15,6 @@ if (-Not (Test-Path $themePath)) {
     Invoke-WebRequest $themeLink -OutFile $themePath
 }
 
-oh-my-posh init pwsh --config $themePath | Invoke-FailFastExpression
-
 # add dotfiles to path
 Add-PathEntry (Join-Path $actualProfileLocation .. ..)
 
@@ -62,4 +60,6 @@ if (Test-Path $path) {
     $newPath = $pathEntries | Join-String -Separator $separator -OutputSuffix $separator
     [System.Environment]::SetEnvironmentVariable("PATH", $newPath)
 }
+
+oh-my-posh init pwsh --config $themePath | Invoke-FailFastExpression
 

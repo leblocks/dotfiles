@@ -12,8 +12,11 @@ if ($IsLinux) {
     $shell = ((Test-Command -Command "bash") ? "bash" : "sh")
     $script = Join-Path ([System.IO.Path]::GetTempPath()) "install.sh"
     Invoke-WebRequest -Uri "https://ohmyposh.dev/install.sh" -OutFile $script -MaximumRetryCount 5 -RetryIntervalSec 3
-    "$sudo $shell $script" | Invoke-FailFastExpression
+    $installationPath = Join-Path $HOME "oh-my-posh"
+    New-Folder($installationPath)
+    "$sudo $shell $script -d $installationPath" | Invoke-FailFastExpression
     Remove-Item $script -Force
+    Add-PathEntry $installationPath
 }
 
 # recreate profile link
