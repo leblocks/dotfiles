@@ -20,7 +20,7 @@ switch ($ImageName) {
         $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "archlinux:base", "-c", $entrypointArgument)
     }
     "ubuntu" {
-        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "ubuntu:22.04", "-c", $entrypointArgument)
+        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "homebrew/brew", "-c", $entrypointArgument)
     }
 }
 
