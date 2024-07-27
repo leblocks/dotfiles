@@ -118,3 +118,25 @@ function Invoke-FailFastExpression {
     }
 }
 
+# on different distributions
+# python can be symlinked to python3
+# we have to check always that we are working
+# with python 3
+function Get-PythonExecutable {
+    if (Test-Command("python")) {
+        $isPython3 = "python -V" 
+            | Invoke-Expression
+            | Select-String -Pattern " 3." -Quiet
+
+        if ($isPython3) {
+            return (Get-Command "python").Source
+        }
+    }
+
+    if (Test-Command("python3")) {
+        return (Get-Command "python3").Source
+    }
+
+    throw "Could not find python 3 executable"
+}
+

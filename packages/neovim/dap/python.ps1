@@ -2,7 +2,9 @@ param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
 . $PSScriptRoot/../../../utils.ps1
 
-Test-Dependencies(@("python", "fd"))
+Test-Dependencies(@("fd"))
+# check available python v3 distribution
+$python = Get-PythonExecutable
 
 $toolPath = Join-Path $rootPath "dap" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
 
@@ -12,7 +14,6 @@ New-Folder $toolPath
 
 Push-Location $toolPath
 
-$python = $IsWindows ? "python" : (((Test-Command -Command "python3") ? "python3" : "python"))
 
 "$python -m venv venv" | Invoke-FailFastExpression
 
