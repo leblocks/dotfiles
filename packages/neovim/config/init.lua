@@ -14,7 +14,11 @@
 --
 
 -- faster startup time
-vim.loader.enable()
+-- if possible
+if vim.loader ~= nil
+then
+    vim.loader.enable()
+end
 
 require('plugins')
 require('keymaps')
