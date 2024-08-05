@@ -10,6 +10,7 @@ BeforeAll {
         neovim = 'nvim'
         ripgrep = 'rg'
         bottom = 'btm'
+        mingw = 'bash'
     }
 }
 
@@ -26,8 +27,12 @@ Describe 'packages from packages.json were installed' {
         Test-Command $_ | Should -Be $true
     }
 
-    It "windows package <_> is installed" -Skip:$IsLinux -ForEach (Get-PackagesList).linux {
-        Test-Command $_ | Should -Be $true
+    It "windows package <_> is installed" -Skip:$IsLinux -ForEach (Get-PackagesList).windows {
+        if ($exceptions.ContainsKey($_)) {
+            Test-Command $exceptions[$_] | Should -Be $true
+        } else {
+            Test-Command $_ | Should -Be $true
+        }
     }
 }
 
