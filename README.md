@@ -15,11 +15,13 @@ from the headache of managing different sets of scripts, making development more
 
 ## TODOs
 * more understandable output
+    * make failures show some sort of stack trace?
+* tests for empty windows installation, vm?
 * run stuff once a week
-* faster tests
 * add gif with example usage
 * make sure that none of commands requires admin (except package installations)
-* configure lstext-ls
+* fix problems with order of installation of python\npm\nodejs
+* oh-my-posh must be installed and configured first!
 
 ## Repository structure
 
