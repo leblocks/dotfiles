@@ -21,7 +21,7 @@ from the headache of managing different sets of scripts, making development more
 * add gif with example usage
 * make sure that none of commands requires admin (except package installations)
 * fix problems with order of installation of python\npm\nodejs
-* oh-my-posh must be installed and configured first!
+* support different package names for different installers
 
 ## Repository structure
 
@@ -34,6 +34,9 @@ from the headache of managing different sets of scripts, making development more
 * _docker/_ - script for testing\working with this setup in a container
 
 * _test/_ - configuration tests, ensure that everything is installed correctly.
+
+* _custom/_ - custom configuration scripts for environments where setup cannot be
+done automatically.
 
 ## Notes
 
