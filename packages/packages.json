@@ -5,11 +5,9 @@
         "curl",
         "fd",
         "jq",
-        "make",
         "neovim",
         "ripgrep",
         "shellcheck",
-        "tar",
         "tree",
         "unzip"
     ],
@@ -23,6 +21,7 @@
         "bash",
         "gcc",
         "mc",
+        "tar",
         "tmux"
     ]
 }
