@@ -7,6 +7,8 @@ local typescript_server_location = os.getenv('TYPESCRIPT_LANGUAGE_SERVER') or '~
 local bash_server_location = os.getenv('BASH_LANGUAGE_SERVER') or '~'
 local lua_server_location = os.getenv('LUA_LANGUAGE_SERVER') or '~'
 local powershell_server_location = os.getenv('POWERSHELL_LANGUAGE_SERVER') or '~'
+local vscode_html_server_location = os.getenv('VSCODE_HTML_LANGUAGE_SERVER') or '~'
+
 
 local capabilities = require('cmp_nvim_lsp')
     .default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -153,5 +155,13 @@ lsp_config.powershell_es.setup({
     capabilities = capabilities,
     handlers = handlers,
     bundle_path = powershell_server_location,
+})
+
+lsp_config.html.setup({
+    autostart = false,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    handlers = handlers,
+    cmd = { vscode_html_server_location, "--stdio" },
 })
 

@@ -31,6 +31,10 @@ Describe 'neovim' {
         Test-Path $env:OMNISHARP_LANGUAGE_SERVER | Should -Be $true
     }
 
+    It 'VSCODE_HTML_LANGUAGE_SERVER env variable is set and points to an existing path' {
+        Test-Path $env:VSCODE_HTML_LANGUAGE_SERVER | Should -Be $true
+    }
+
     It 'DEBUGPY_PATH env variable is set and points to an existing path' {
         Test-Path $env:DEBUGPY_PATH | Should -Be $true
     }

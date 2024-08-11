@@ -7,6 +7,7 @@ require("filetype").setup({
             props = "xml",
             Targets = "xml",
             xml = "xml",
+            html = "html",
         },
     },
 })

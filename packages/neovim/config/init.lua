@@ -35,4 +35,5 @@ require('plugins.treesitter')
 require('plugins.nvim-dap-ui')
 require('plugins.nvim-lspconfig')
 require('plugins.nvim-dap-virtual-text')
+require('plugins.nvim-ts-autotag')
 

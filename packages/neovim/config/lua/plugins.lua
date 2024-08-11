@@ -38,6 +38,8 @@ return packer.startup(function(use)
 
     use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } })
 
+    use('windwp/nvim-ts-autotag')
+
     -- nvim-dap
     use('mfussenegger/nvim-dap')
     use('theHamsta/nvim-dap-virtual-text')

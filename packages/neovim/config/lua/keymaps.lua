@@ -90,6 +90,7 @@ register_lsp_keybindings('pyright', 'python')
 register_lsp_keybindings('lua_ls', { 'lua' })
 register_lsp_keybindings('powershell_es', { 'ps1' })
 register_lsp_keybindings('tsserver', { 'javascript', 'typescript' })
+register_lsp_keybindings('html', { 'html' })
 
 -- some utility mappings
 map('n', '<Leader>1', ':NvimTreeToggle<CR>', default_opts)
