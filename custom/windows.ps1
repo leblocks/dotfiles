@@ -10,9 +10,13 @@ if (-Not (Test-Command -Command "scoop")) {
     Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 }
 
-"scoop install python" | Invoke-FailFastExpression
-"scoop bucket add nerd-fonts" | Invoke-FailFastExpression
-"scoop install nerd-fonts/CascadiaMono-NF" | Invoke-FailFastExpression
+Write-Output @(
+        "scoop bucket add extras",
+        "scoop bucket add nerd-fonts",
+        "scoop install python",
+        "scoop install nerd-fonts/CascadiaMono-NF",
+        "scoop install extras/flow-launcher"
+    ) -NoEnumerate | Invoke-Expressions
 
 . (Join-Path $PSScriptRoot ".." "dotfiles.ps1") install
 
