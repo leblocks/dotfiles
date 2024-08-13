@@ -118,13 +118,25 @@ function Invoke-FailFastExpression {
     }
 }
 
+function Invoke-Expressions {
+    param (
+        [parameter(ValueFromPipeline)]
+        [string[]]$commands
+    )
+
+    foreach ($command in $commands) {
+        Write-Message "executing: '$command'"
+        $command | Invoke-FailFastExpression
+    }
+}
+
 # on different distributions
 # python can be symlinked to python3
 # we have to check always that we are working
 # with python 3
 function Get-PythonExecutable {
     if (Test-Command("python")) {
-        $isPython3 = "python -V" 
+        $isPython3 = "python -V"
             | Invoke-Expression
             | Select-String -Pattern " 3." -Quiet
 
