@@ -40,3 +40,6 @@ nnoremap gi :vsc Edit.GoToImplementation<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
 nnoremap gR :vsc Edit.GoToReference<CR>
 
+nnoremap <Leader>fa :vsc Edit.GoToAll<CR>
+nnoremap <Leader>fq :vsc Window.QuickLaunch<CR>
+
