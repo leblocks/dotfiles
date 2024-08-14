@@ -42,4 +42,8 @@ nnoremap gR :vsc Edit.GoToReference<CR>
 
 nnoremap <Leader>fa :vsc Edit.GoToAll<CR>
 nnoremap <Leader>fq :vsc Window.QuickLaunch<CR>
+nnoremap <Leader>ff :vsc Edit.GoToFile<CR>
+nnoremap <Leader>ft :vsc Edit.GoToType<CR>
+nnoremap <Leader>fm :vsc Edit.GoToMember<CR>
+nnoremap <Leader>fe :vsc Edit.GoToText<CR>
 
