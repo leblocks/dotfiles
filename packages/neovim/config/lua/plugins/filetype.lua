@@ -7,7 +7,10 @@ require("filetype").setup({
             props = "xml",
             Targets = "xml",
             xml = "xml",
+            resx = "xml",
+            sqlproj = "xml",
             html = "html",
+            sql = "sql",
         },
     },
 })
