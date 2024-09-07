@@ -105,7 +105,7 @@ lsp_config.pyright.setup({
     cmd = { pyright_server_location, "--stdio" },
 })
 
-lsp_config.tsserver.setup({
+lsp_config.ts_ls.setup({
     autostart = false,
     on_attach = on_attach,
     capabilities = capabilities,
