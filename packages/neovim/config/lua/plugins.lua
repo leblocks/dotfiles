@@ -37,6 +37,7 @@ return packer.startup(function(use)
     use('nathom/filetype.nvim')
 
     use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } })
+    use({ 'alvarosevilla95/luatab.nvim', requires='nvim-tree/nvim-web-devicons' })
 
     use('windwp/nvim-ts-autotag')
 
