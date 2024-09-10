@@ -1,7 +1,12 @@
 [core]
     editor = nvim
-[user]
-    name = sashag
-    email = a.f.gurevich@gmail.com
-[credential]
-    helper = cache --timeout=604800
+[merge]
+    tool = "nvim"
+
+[mergetool]
+    keepBackup = false
+    prompt = false
+
+[mergetool "nvim"]
+    cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+

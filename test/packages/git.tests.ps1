@@ -5,10 +5,10 @@ Describe 'git' {
         Test-Path "$HOME/.gitconfig" | Should -Be $true
     }
 
-    It 'link to .gitconfig has correct content' {
+    It 'include.path has correct value' {
         $link = "$HOME/.gitconfig"
-        $conf = "$PSScriptRoot/../../packages/git/.gitconfig"
-        Get-Content $link | Should -Be (Get-Content $conf)
+        $pathToConf = Resolve-Path "$PSScriptRoot/../../packages/git/.gitconfig"
+        $pathToConf | Should -Be ("git config --local --get include.path" | Invoke-Expression)
     }
 }
 

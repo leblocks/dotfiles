@@ -15,8 +15,9 @@ Write-Output @(
         "scoop bucket add nerd-fonts",
         "scoop install python",
         "scoop install nerd-fonts/CascadiaMono-NF",
-        "scoop install extras/flow-launcher"
-    ) -NoEnumerate | Invoke-Expressions
+        "scoop install extras/flow-launcher",
+        "git config include.path `"$(Resolve-Path ..\packages\git\.gitconfig)`""
+        ) -NoEnumerate | Invoke-Expressions
 
 . (Join-Path $PSScriptRoot ".." "dotfiles.ps1") install
 
