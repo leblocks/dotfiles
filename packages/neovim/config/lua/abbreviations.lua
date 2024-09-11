@@ -10,3 +10,5 @@ vim.api.nvim_create_autocmd({ 'FileType' },
 
 -- general abbreviations
 vim.cmd('iabbrev td TODO')
+vim.cmd("iab ts <ESC>:lua vim.api.nvim_put({ require('os').date('%d%m%Y') .. ' ' }, 'b', true, true)<CR>i")
+
