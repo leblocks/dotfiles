@@ -40,10 +40,15 @@ nnoremap gi :vsc Edit.GoToImplementation<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
 nnoremap gR :vsc Edit.GoToReference<CR>
 
+" (f)ind bindings
 nnoremap <Leader>fa :vsc Edit.GoToAll<CR>
 nnoremap <Leader>fq :vsc Window.QuickLaunch<CR>
 nnoremap <Leader>ff :vsc Edit.GoToFile<CR>
 nnoremap <Leader>ft :vsc Edit.GoToType<CR>
 nnoremap <Leader>fm :vsc Edit.GoToMember<CR>
 nnoremap <Leader>fe :vsc Edit.GoToText<CR>
+
+" (e)rror bindings
+nnoremap <Leader>en :vsc View.NextError<CR>
+nnoremap <Leader>eN :vsc View.PreviousError<CR>
 
