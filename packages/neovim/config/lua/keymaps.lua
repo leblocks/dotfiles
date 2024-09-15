@@ -113,3 +113,10 @@ map('n', '<Leader>tbc', ":lua require('dap').toggle_breakpoint(vim.fn.input('Bre
 map('n', '<Leader>tbl', ":lua require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", default_opts)
 map('n', '<Leader>tu', ":lua require('dapui').toggle()<CR>", default_opts)
 
+-- whip bindings
+map('n', '<Leader>wo', ':WhipOpen<CR>', default_opts)
+map('n', '<Leader>wm', ':WhipMake<CR>', default_opts)
+map('n', '<Leader>wd', ':WhipDrop<CR>', default_opts)
+map('n', '<Leader>wf', ':WhipFindFile<CR>', default_opts)
+map('n', '<Leader>wg', ':WhipFindGrep<CR>', default_opts)
+
