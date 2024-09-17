@@ -38,7 +38,11 @@ return packer.startup(function(use)
 
     use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } })
     use({ 'alvarosevilla95/luatab.nvim', requires = 'nvim-tree/nvim-web-devicons' })
+    -- note taking
     use({ 'slugbyte/whip.nvim'})
+
+    -- center buffer
+    use({"shortcuts/no-neck-pain.nvim", tag = "*" })
 
     use('windwp/nvim-ts-autotag')
 
@@ -51,6 +55,8 @@ return packer.startup(function(use)
     use('mfussenegger/nvim-lint')
     -- keep track of configuration performance
     use('dstein64/vim-startuptime')
+
+
 
     if packer_bootstrap then
         packer.sync()

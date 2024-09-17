@@ -96,6 +96,7 @@ register_lsp_keybindings('html', { 'html' })
 map('n', '<Leader>1', ':NvimTreeToggle<CR>', default_opts)
 map('n', '<Leader>!', ':NvimTreeFindFileToggle<CR>', default_opts)
 map('n', '<Leader>2', ':lua require("lint").try_lint()<CR>', default_opts)
+map('n', '<Leader>3', ':NoNeckPain<CR>', default_opts)
 map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
 
 -- debugger mappings
