@@ -1,7 +1,7 @@
 . $PSScriptRoot/../../utils.ps1
 
 # unzip is required by oh-my-posh installation script
-Test-Dependencies(@("unzip"))
+Test-Dependencies(@("winget", "unzip"))
 
 if ($IsWindows -And (-Not (Test-Command -Command "oh-my-posh"))) {
     # on windows oh-my-posh can be installed in multiple
