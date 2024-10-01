@@ -14,10 +14,18 @@ Invoke-WebRequest `
     -MaximumRetryCount 5 `
     -RetryIntervalSec 3
 
-Write-Output @(
-    "azuredatastudio.cmd --install-extension $pathToExtension"
-) -NoEnumerate | Invoke-Expressions
+$pathToExecutable = Get-ChildItem `
+    (Join-Path $HOME AppData Local Programs) `
+    -Include "azuredatastudio.cmd" `
+    -Recurse `
+    -Force `
+    -File `
+    | ForEach-Object { $_.FullName }
 
+
+Write-Output @(
+    ". `"$pathToExecutable`" --install-extension $pathToExtension"
+) -NoEnumerate | Invoke-Expressions
 
 $pathToLink = Join-Path $env:AppData "azuredatastudio" "User" "settings.json"
 
