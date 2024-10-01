@@ -1,0 +1,43 @@
+{  
+    "workbench.colorTheme": "Visual Studio Dark",
+    "editor.fontSize": 16,
+
+    "vim.easymotion": false,
+    "vim.surround": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ],
+
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "<leader>"],
+            "commands": [":nohl"]
+        },
+        {
+            "before": ["<leader>", "w"],
+            "commands": [":w"]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "commands": [":q"]
+        }
+    ],
+
+    "vim.leader": "<space>",
+
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+
+    "workbench.editorAssociations": {
+        "*.{sqlplan}": "workbench.editor.executionplan"
+    }
+}
