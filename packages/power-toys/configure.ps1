@@ -4,5 +4,5 @@ Test-Dependencies(@("winget"))
 
 $path = Join-Path $PSScriptRoot "configuration.yaml"
 
-"winget configure $path --accept-configuration-agreements" | Invoke-Expression
+"winget configure $path --accept-configuration-agreements" | Invoke-FailFastExpression
 
