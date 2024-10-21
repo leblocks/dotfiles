@@ -23,6 +23,8 @@ properties:
           Enabled: true
           KeepDisplayOn: true
           Mode: INDEFINITE
+        FindMyMouse:
+          Enabled: false
         PowerLauncher:
           Enabled: true
           ClearInputOnLaunch: true
