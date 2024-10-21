@@ -28,27 +28,16 @@ inoremap ? ?<c-g>u
 
 let mapleader=" "
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>W :w!<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader><Leader> :nohl<CR>
 
-xnoremap gc :vsc Edit.CommentSelection<CR>
-xnoremap gu :vsc Edit.UncommentSelection<CR>
-
-nnoremap <Leader>dn :vsc Debug.ShowNextStatement<CR>
+xnoremap gcc :vsc Edit.CommentSelection<CR>
+xnoremap gcu :vsc Edit.UncommentSelection<CR>
 
 nnoremap gi :vsc Edit.GoToImplementation<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
 nnoremap gR :vsc Edit.GoToReference<CR>
-
-" (f)ind bindings
-nnoremap <Leader>fa :vsc Edit.GoToAll<CR>
-nnoremap <Leader>fq :vsc Window.QuickLaunch<CR>
-nnoremap <Leader>ff :vsc Edit.GoToFile<CR>
-nnoremap <Leader>ft :vsc Edit.GoToType<CR>
-nnoremap <Leader>fm :vsc Edit.GoToMember<CR>
-nnoremap <Leader>fe :vsc Edit.GoToText<CR>
-
-" (e)rror bindings
-nnoremap <Leader>en :vsc View.NextError<CR>
-nnoremap <Leader>eN :vsc View.PreviousError<CR>
+nnoremap pd :vsc Edit.PeekDefinition<CR>
 
