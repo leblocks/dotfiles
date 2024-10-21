@@ -33,10 +33,16 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :q!<CR>
 nnoremap <Leader><Leader> :nohl<CR>
 
+" idea behind remaps is to remap commands which are far away
+" by default on a keyboard or ones that are only in Edit scope
+" there is no sense to remap Global context commands (those won't work good)
+" or the ones that are rarely used
 xnoremap gcc :vsc Edit.CommentSelection<CR>
 xnoremap gcu :vsc Edit.UncommentSelection<CR>
 
 nnoremap gi :vsc Edit.GoToImplementation<CR>
+nnoremap gd :vsc Edit.GoToDefinition<CR>
+nnoremap gt :vsc Edit.GoToTypeDefinition<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
 nnoremap gR :vsc Edit.GoToReference<CR>
 nnoremap pd :vsc Edit.PeekDefinition<CR>
