@@ -1,9 +1,10 @@
 . $PSScriptRoot/../../utils.ps1
 
 # unzip is required by oh-my-posh installation script
-Test-Dependencies(@("winget", "unzip"))
+Test-Dependencies(@("unzip"))
 
 if ($IsWindows -And (-Not (Test-Command -Command "oh-my-posh"))) {
+    Test-Dependencies(@("winget"))
     # on windows oh-my-posh can be installed in multiple
     # ways, so we don't want to have duplicate installation
     winget install JanDeDobbeleer.OhMyPosh -s winget

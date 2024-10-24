@@ -17,7 +17,9 @@ Push-Location $toolPath
 
 $fileName = "vscode-html-language-server" + ($IsWindows ? ".cmd" : "")
 
-$path = Get-ChildItem . -Include $fileName -Recurse -Force -File | ForEach-Object { $_.FullName }
+$path = Get-ChildItem . -Include $fileName -Recurse -Force -File 
+    | ForEach-Object { $_.FullName } 
+    | Select-Object -First 1
 
 Set-EnvironmentVariable "VSCODE_HTML_LANGUAGE_SERVER" $path
 
