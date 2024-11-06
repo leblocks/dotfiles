@@ -92,13 +92,13 @@ Describe 'utils' {
     }
 
     It "calling Invoke-FailFastExpression on success does not produce output" {
+        [System.Environment]::SetEnvironmentVariable("DOTFILES_DEBUG", "")
         Invoke-FailFastExpression "echo 1" | Should -Be $Null
     }
 
     It "calling Invoke-FailFastExpression on success provides output with debug flag" {
         [System.Environment]::SetEnvironmentVariable("DOTFILES_DEBUG", "1")
         Invoke-FailFastExpression "echo 1" | Should -Be "1"
-        [System.Environment]::SetEnvironmentVariable("DOTFILES_DEBUG", "")
     }
 }
 

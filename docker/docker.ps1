@@ -33,6 +33,8 @@ $commandToInvoke = [string]::Join(" ",
     "--volume $repoRootFolder`:/dotfiles",
     "--volume $((Get-Location).Path)`:/host-system",
     "--env TERM=xterm-256color",
+    "--env DOTFILES_DEBUG=true",
+    "--network=host",
     $containerCommand)
 
 Write-Message "invoking $commandToInvoke" -ForegroundColor Green
