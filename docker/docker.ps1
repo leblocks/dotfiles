@@ -14,7 +14,7 @@ $entrypointArgument = "`"" +
 
 switch ($ImageName) {
     "alpine" {
-        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/sh", "alpine", "-c",  $entrypointArgument) 
+        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/sh", "alpine:3.18", "-c",  $entrypointArgument) 
     }
     "archlinux" {
         $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "archlinux:base", "-c", $entrypointArgument)

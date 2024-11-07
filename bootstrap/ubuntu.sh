@@ -5,6 +5,10 @@ set -euox
 
 sudo apt-get update
 sudo apt-get install -y \
+        git \
+        nodejs \
+        npm \
+        python3 \
         wget \
         apt-transport-https \
         software-properties-common \
