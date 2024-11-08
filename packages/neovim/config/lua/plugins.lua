@@ -56,7 +56,9 @@ return packer.startup(function(use)
     -- keep track of configuration performance
     use('dstein64/vim-startuptime')
 
-
+    -- copilot integration
+    use('github/copilot.vim')
+    use({'CopilotC-Nvim/CopilotChat.nvim', requires = { 'nvim-lua/plenary.nvim', 'github/copilot.vim' } })
 
     if packer_bootstrap then
         packer.sync()

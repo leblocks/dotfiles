@@ -97,6 +97,7 @@ map('n', '<Leader>1', ':NvimTreeToggle<CR>', default_opts)
 map('n', '<Leader>!', ':NvimTreeFindFileToggle<CR>', default_opts)
 map('n', '<Leader>2', ':lua require("lint").try_lint()<CR>', default_opts)
 map('n', '<Leader>3', ':NoNeckPain<CR>', default_opts)
+map('n', '<Leader>4', ':CopilotChatToggle<CR>', default_opts)
 map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
 
 -- debugger mappings
@@ -120,4 +121,7 @@ map('n', '<Leader>wm', ':WhipMake<CR>', default_opts)
 map('n', '<Leader>wd', ':WhipDrop<CR>', default_opts)
 map('n', '<Leader>wf', ':WhipFindFile<CR>', default_opts)
 map('n', '<Leader>wg', ':WhipFindGrep<CR>', default_opts)
+
+-- copilot bindings
+map('i', '<C-j>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
 

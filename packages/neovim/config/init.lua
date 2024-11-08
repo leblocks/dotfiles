@@ -1,18 +1,3 @@
--- this configuration of neovim requires following programs on PATH
--- fd (file finder), rg (ripgrep), clang (the one that comes with llvm - for windows machine)
---
--- paths to language servers should be set as env variables:
--- OMNISHARP_LANGUAGE_SERVER
--- PYTHON_LANGUAGE_SERVER
--- TYPESCRIPT_LANGUAGE_SERVER
--- BASH_LANGUAGE_SERVER
--- LUA_LANGUAGE_SERVER
---
--- paths to debuggers:
--- DEBUGPY_PATH
--- NETCOREDBG_PATH
---
-
 -- faster startup time
 -- if possible
 if vim.loader ~= nil
@@ -39,4 +24,5 @@ require('plugins.nvim-dap-ui')
 require('plugins.nvim-lspconfig')
 require('plugins.nvim-dap-virtual-text')
 require('plugins.nvim-ts-autotag')
+require('plugins.copilot')
 
