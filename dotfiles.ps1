@@ -1,18 +1,18 @@
 <#
 .SYNOPSIS
-Development environent setup helper.
+Development environment setup helper.
 
 .DESCRIPTION
 USAGE
     ./dotfiles.ps1 <command>
 
 COMMANDS
-    list                   list packages available for configuraiton
-    confiure [packageName] runs packages/packageName/configure.ps1, passing
+    list                   list packages available for configuration
+    configure [packageName] runs packages/packageName/configure.ps1, passing
                            "all" will invoke configuration of all available packages
     install                installs packages listed in packages/packages.json
     test                   run self checks
-    docker [imageName]     run installation scrits in a docker container
+    docker [imageName]     run installation scripts in a docker container
     kaboom                 run install, configure all and test
     help, -?               show this help message
 #>
