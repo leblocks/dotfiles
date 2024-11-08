@@ -30,6 +30,8 @@ $ErrorActionPreference = "Stop"
 
 . $PSScriptRoot/utils.ps1
 
+Test-Dependencies(@("git", "node", "npm", "python3"))
+
 function List {
     $osMarker = $IsWindows ? '\.windows' : '\.linux'
     Get-ChildItem -Recurse -File -Path $PSScriptRoot -Force
