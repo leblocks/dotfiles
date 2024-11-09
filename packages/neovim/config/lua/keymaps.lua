@@ -123,5 +123,5 @@ map('n', '<Leader>wf', ':WhipFindFile<CR>', default_opts)
 map('n', '<Leader>wg', ':WhipFindGrep<CR>', default_opts)
 
 -- copilot bindings
-map('i', '<C-j>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+map('i', '<M-a>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
 
