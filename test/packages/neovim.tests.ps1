@@ -42,5 +42,9 @@ Describe 'neovim' {
     It 'NETCOREDBG_PATH env variable is set and points to an existing path' {
         Test-Path $env:NETCOREDBG_PATH | Should -Be $true
     }
+
+    It 'CSHARP_LS_LANGUAGE_SERVER env variable is set and points to an existing path' {
+        Test-Path $env:CSHARP_LS_LANGUAGE_SERVER | Should -Be $true
+    }
 }
 

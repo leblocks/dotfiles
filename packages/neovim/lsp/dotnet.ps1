@@ -6,6 +6,7 @@ if ($IsLinux) {
     Test-Dependencies(@("tar"))
 }
 
+# TODO install omnisharp under its own folder
 $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
 
 Write-Message "installing omnisharp at $toolPath"
