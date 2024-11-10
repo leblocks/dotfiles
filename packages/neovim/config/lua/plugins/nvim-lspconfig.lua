@@ -52,7 +52,7 @@ end
 
 function SelectCSharpLSProjectFile()
     -- get list of paths to the projects and solution files
-    local result = vim.fn.system('fd ".(sln)" -a')
+    local result = vim.fn.system('fd ".(sln)" -aI')
 
     -- normalize new lines
     result = result
