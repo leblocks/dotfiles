@@ -152,3 +152,7 @@ function Get-PythonExecutable {
     throw "Could not find python 3 executable"
 }
 
+function Get-EnvironmentVariables {
+    Get-ChildItem env:
+}
+
