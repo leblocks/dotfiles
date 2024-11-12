@@ -42,7 +42,7 @@ xnoremap gcu :vsc Edit.UncommentSelection<CR>
 
 nnoremap gi :vsc Edit.GoToImplementation<CR>
 nnoremap gd :vsc Edit.GoToDefinition<CR>
-nnoremap gt :vsc Edit.GoToTypeDefinition<CR>
+nnoremap gD :vsc Edit.GoToTypeDefinition<CR>
 nnoremap gr :vsc Edit.FindAllReferences<CR>
 nnoremap gR :vsc Edit.GoToReference<CR>
 nnoremap pd :vsc Edit.PeekDefinition<CR>
