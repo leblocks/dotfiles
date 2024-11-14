@@ -25,4 +25,4 @@ require('plugins.nvim-lspconfig')
 require('plugins.nvim-dap-virtual-text')
 require('plugins.nvim-ts-autotag')
 require('plugins.copilot')
-
+require('plugins.roslyn')

@@ -38,5 +38,9 @@ Describe 'neovim' {
     It 'NETCOREDBG_PATH env variable is set and points to an existing path' {
         Test-Path $env:NETCOREDBG_PATH | Should -Be $true
     }
+
+    It 'ROSLYN_SERVER_DLL_LOCATION env variable is set and points to an existing path' {
+        Test-Path $env:ROSLYN_SERVER_DLL_LOCATION | Should -Be $true
+    }
 }
 
