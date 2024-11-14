@@ -10,6 +10,7 @@ apk add --no-cache \
     ca-certificates \
     less \
     ncurses-terminfo-base \
+    musl-dev \
     krb5-libs \
     libgcc \
     libintl \
