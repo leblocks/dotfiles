@@ -37,8 +37,6 @@ New-Folder $pathToLanguageTools
 . $PSScriptRoot/lsp/python.ps1 $pathToLanguageTools
 . $PSScriptRoot/lsp/lua.ps1 $pathToLanguageTools
 . $PSScriptRoot/lsp/powershell.ps1 $pathToLanguageTools
-. $PSScriptRoot/lsp/dotnet.ps1 $pathToLanguageTools
-. "$PSScriptRoot/lsp/dotnet-csharp-ls.ps1" $pathToLanguageTools
 . "$PSScriptRoot/lsp/vscode-langservers-extracted.ps1" $pathToLanguageTools
 
 . $PSScriptRoot/dap/python.ps1 $pathToLanguageTools

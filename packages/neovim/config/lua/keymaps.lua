@@ -84,8 +84,6 @@ local function register_lsp_keybindings(ls_server_name, pattern)
 end
 
 map('n', '<Leader>si', ':LspInfo<CR>', default_opts)
-register_lsp_keybindings('omnisharp', 'cs')
-register_lsp_keybindings('csharp_ls', 'cs')
 register_lsp_keybindings('bashls', 'sh')
 register_lsp_keybindings('pyright', 'python')
 register_lsp_keybindings('lua_ls', { 'lua' })

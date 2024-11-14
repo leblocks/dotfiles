@@ -1,8 +1,6 @@
 -- lsp config
 local os = require('os')
 
-local omnisharp_server_location = os.getenv('OMNISHARP_LANGUAGE_SERVER') or '~'
-local csharp_ls_server_location = os.getenv('CSHARP_LS_LANGUAGE_SERVER') or '~'
 local pyright_server_location = os.getenv('PYRIGHT_LANGUAGE_SERVER') or '~'
 local typescript_server_location = os.getenv('TYPESCRIPT_LANGUAGE_SERVER') or '~'
 local bash_server_location = os.getenv('BASH_LANGUAGE_SERVER') or '~'
@@ -49,81 +47,6 @@ local on_attach = function(client, bufnr)
         ,
     }, bufnr)
 end
-
-function SelectCSharpLSProjectFile()
-    -- get list of paths to the projects and solution files
-    local result = vim.fn.system('fd ".(sln)" -aI')
-
-    -- normalize new lines
-    result = result
-        :gsub('\r\n', '\n')
-        :gsub('\r', '\n')
-
-    local paths = {}
-    for line in result:gmatch('[^\n]+') do
-        table.insert(paths, line)
-    end
-
-    vim.ui.select(paths, { prompt = 'Select solution\\project file for csharp_ls server' },
-        function(path_to_project_file)
-            if path_to_project_file == nil or path_to_project_file == '' then
-                return
-            end
-
-            lsp_config.csharp_ls.setup({
-                autostart = false,
-                on_attach = on_attach,
-                capabilities = capabilities,
-                handlers = handlers,
-                cmd = { csharp_ls_server_location, "--solution", path_to_project_file },
-            })
-        end)
-end
-
--- omnisharp helper to select custom project
-function SelectOmnisharpProjectFile()
-    -- get list of paths to the projects and solution files
-    local result = vim.fn.system('fd ".(sln|csproj)" -a')
-
-    -- normalize new lines
-    result = result
-        :gsub('\r\n', '\n')
-        :gsub('\r', '\n')
-
-    local paths = {}
-    for line in result:gmatch('[^\n]+') do
-        table.insert(paths, line)
-    end
-
-    vim.ui.select(paths, { prompt = 'Select solution\\project file for omnisharp server' },
-        function(path_to_project_file)
-            if path_to_project_file == nil or path_to_project_file == '' then
-                return
-            end
-
-            -- if we have csproj selection, provide path to its parent folder
-            if path_to_project_file:match('.csproj$') then
-                path_to_project_file = vim.fn.fnamemodify(path_to_project_file, ':p:h')
-            end
-
-            lsp_config.omnisharp.setup({
-                autostart = false,
-                on_attach = on_attach,
-                capabilities = capabilities,
-                handlers = handlers,
-                cmd = { omnisharp_server_location, "--languageserver", "--hostPID", tostring(pid) },
-                on_new_config = function(new_config, _)
-                    table.insert(new_config.cmd, '-z') -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
-                    vim.list_extend(new_config.cmd, { '--source', path_to_project_file })
-                    vim.list_extend(new_config.cmd, { '--encoding', 'utf-8' })
-                    table.insert(new_config.cmd, 'DotNet:enablePackageRestore=false')
-                end,
-            })
-        end)
-end
-
-vim.api.nvim_set_keymap('n', '<Leader>sp', ":lua SelectOmnisharpProjectFile()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>sP', ":lua SelectCSharpLSProjectFile()<CR>", { noremap = true, silent = true })
 
 lsp_config.pyright.setup({
     autostart = false,

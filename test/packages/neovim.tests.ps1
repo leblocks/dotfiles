@@ -27,10 +27,6 @@ Describe 'neovim' {
         Test-Path $env:POWERSHELL_LANGUAGE_SERVER | Should -Be $true
     }
 
-    It 'OMNISHARP_LANGUAGE_SERVER env variable is set and points to an existing path' {
-        Test-Path $env:OMNISHARP_LANGUAGE_SERVER | Should -Be $true
-    }
-
     It 'VSCODE_HTML_LANGUAGE_SERVER env variable is set and points to an existing path' {
         Test-Path $env:VSCODE_HTML_LANGUAGE_SERVER | Should -Be $true
     }
@@ -41,10 +37,6 @@ Describe 'neovim' {
 
     It 'NETCOREDBG_PATH env variable is set and points to an existing path' {
         Test-Path $env:NETCOREDBG_PATH | Should -Be $true
-    }
-
-    It 'CSHARP_LS_LANGUAGE_SERVER env variable is set and points to an existing path' {
-        Test-Path $env:CSHARP_LS_LANGUAGE_SERVER | Should -Be $true
     }
 }
 
