@@ -2,6 +2,7 @@ set hlsearch
 set incsearch
 set autoindent
 set expandtab
+set relativenumber
 
 set shiftwidth=4
 set softtabstop=4
@@ -43,7 +44,7 @@ xnoremap gcu :vsc Edit.UncommentSelection<CR>
 nnoremap gi :vsc Edit.GoToImplementation<CR>
 nnoremap gd :vsc Edit.GoToDefinition<CR>
 nnoremap gD :vsc Edit.GoToTypeDefinition<CR>
-nnoremap gr :vsc Edit.FindAllReferences<CR>
-nnoremap gR :vsc Edit.GoToReference<CR>
+nnoremap gR :vsc Edit.FindAllReferences<CR>
+nnoremap gr :vsc Edit.GoToReference<CR>
 nnoremap pd :vsc Edit.PeekDefinition<CR>
 
