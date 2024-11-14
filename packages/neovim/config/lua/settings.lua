@@ -59,5 +59,6 @@ cmd [[
     " highlight trailing spaces
     set list
     set listchars=trail:·
+    set relativenumber
 ]]
 
