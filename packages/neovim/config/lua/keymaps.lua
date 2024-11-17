@@ -89,6 +89,7 @@ register_lsp_keybindings('pyright', 'python')
 register_lsp_keybindings('lua_ls', { 'lua' })
 register_lsp_keybindings('powershell_es', { 'ps1' })
 register_lsp_keybindings('ts_ls', { 'javascript', 'typescript' })
+register_lsp_keybindings('angularls', { 'typescript' })
 register_lsp_keybindings('html', { 'html' })
 
 -- some utility mappings

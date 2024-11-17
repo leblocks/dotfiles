@@ -56,13 +56,6 @@ lsp_config.pyright.setup({
     cmd = { pyright_server_location, "--stdio" },
 })
 
-lsp_config.ts_ls.setup({
-    autostart = false,
-    on_attach = on_attach,
-    capabilities = capabilities,
-    handlers = handlers,
-    cmd = { typescript_server_location, "--stdio" },
-})
 
 lsp_config.bashls.setup({
     autostart = false,
@@ -116,7 +109,7 @@ lsp_config.html.setup({
     cmd = { vscode_html_server_location, "--stdio" },
 })
 
-function LaunchAngularLSP()
+local function setup_angularls()
     lsp_config.angularls.setup({
         autostart = false,
         on_attach = on_attach,
@@ -131,4 +124,27 @@ function LaunchAngularLSP()
         }
     })
 end
+
+local function setup_tsls()
+    lsp_config.ts_ls.setup({
+        autostart = false,
+        on_attach = on_attach,
+        capabilities = capabilities,
+        handlers = handlers,
+        cmd = { typescript_server_location, "--stdio" },
+    })
+end
+
+function SelectLanguageServerSetup()
+    vim.ui.select({"typescript", "angular"}, { prompt = "Select language server" },
+        function(server_name)
+            if server_name == "typescript" then
+                    setup_tsls()
+            elseif server_name == "angular" then
+                    setup_angularls()
+            end
+        end)
+end
+
+vim.api.nvim_set_keymap('n', '<Leader>sS', ':lua SelectLanguageServerSetup()<CR>', { noremap = true, silent = true })
 
