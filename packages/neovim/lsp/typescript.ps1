@@ -13,13 +13,16 @@ New-Folder $toolPath
 Push-Location $toolPath
 
 "npm init -y" | Invoke-FailFastExpression
-"npm install typescript-language-server typescript" | Invoke-FailFastExpression
+"npm install typescript-language-server typescript @angular/language-server" | Invoke-FailFastExpression
 
 $fileName = "typescript-language-server" + ($IsWindows ? ".cmd" : "")
 
-$path = Get-ChildItem . -Include $fileName -Recurse -Force -File | ForEach-Object { $_.FullName }
+$path = Get-ChildItem . -Include $fileName -Recurse -Force -File
+    | ForEach-Object { $_.FullName } 
+    | Select-Object -First 1
 
 Set-EnvironmentVariable "TYPESCRIPT_LANGUAGE_SERVER" $path
+Set-EnvironmentVariable "ANGULAR_LANGUAGE_SERVER" (Join-Path $toolPath "node_modules" "@angular" "language-server")
 
 Pop-Location
 
