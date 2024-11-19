@@ -6,5 +6,7 @@ if vim.fn.isdirectory(whip_path) ~= 0 then
     require('whip').setup({
         dir = whip_path
     })
+else
+    print('could not find "' .. whip_path .. '" disabling whip')
 end
 
