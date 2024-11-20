@@ -5,7 +5,7 @@ require("filetype").setup({
             sh = "sh",
             csproj = "xml",
             props = "xml",
-            Targets = "xml",
+            targets = "xml",
             xml = "xml",
             resx = "xml",
             sqlproj = "xml",
