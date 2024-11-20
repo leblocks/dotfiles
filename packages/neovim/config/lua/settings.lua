@@ -17,6 +17,7 @@ opt.expandtab = true
 opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.number = true
+opt.relativenumber = true
 opt.scrolloff = 10 
 opt.colorcolumn = '120'
 opt.wrap = false
@@ -59,6 +60,5 @@ cmd [[
     " highlight trailing spaces
     set list
     set listchars=trail:·
-    set relativenumber
 ]]
 
