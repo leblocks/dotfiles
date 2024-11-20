@@ -1,16 +1,17 @@
 require('nvim-treesitter.configs').setup({
     highlight = { enable = false },
-    ensure_installed = { 
-        "c_sharp", 
-        "lua", 
-        "bash", 
-        "python", 
-        "dockerfile", 
-        "yaml", 
-        "javascript", 
-        "typescript", 
-        "sql", 
-        "html" 
+    ensure_installed = {
+        "c_sharp",
+        "lua",
+        "bash",
+        "python",
+        "dockerfile",
+        "yaml",
+        "javascript",
+        "typescript",
+        "sql",
+        "html",
+        "powershell"
     },
     additional_vim_regex_highlighting = false,
 })
