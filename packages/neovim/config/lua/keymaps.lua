@@ -118,3 +118,9 @@ map('n', '<Leader>tu', ":lua require('dapui').toggle()<CR>", default_opts)
 -- copilot bindings
 map('i', '<M-a>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
 
+-- terminal
+map('n', '<Leader>0v', ':vnew term://pwsh -NoLogo<CR>', default_opts)
+map('n', '<Leader>0t', ':tabnew term://pwsh -NoLogo<CR>', default_opts)
+map('n', '<Leader>0x', ':split term://pwsh -NoLogo<CR>', default_opts)
+map('n', '<Leader>00', ':terminal pwsh -NoLogo<CR>', default_opts)
+
