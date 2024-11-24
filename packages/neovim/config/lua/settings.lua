@@ -56,9 +56,10 @@ vim.o.showcmd = false
 vim.o.laststatus = 0
 
 cmd [[
-    colorscheme vscode
     " highlight trailing spaces
     set list
     set listchars=trail:·
 ]]
+
+vim.cmd('colorscheme ' .. (os.getenv('NEOVIM_COLORSCHEME') or 'vscode'))
 
