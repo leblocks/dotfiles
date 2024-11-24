@@ -40,6 +40,8 @@ Set-Alias pop Pop-Location
 Set-Alias push Push-Location
 Set-Alias env Get-EnvironmentVariables
 
+function gto { Push-Location $env:OneDrive/devbox-config }
+
 <#
     ENVIRONMENT VARIABLES LOAD
 #>
