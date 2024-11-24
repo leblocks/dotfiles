@@ -88,10 +88,6 @@ function Get-Files {
     Get-ChildItem . -Force
 }
 
-function Invoke-Btm {
-    "btm -b" | Invoke-Expression
-}
-
 function Get-Ports {
     Get-NetTCPConnection
         | ForEach-Object { Add-Member -InputObject $_ -MemberType NoteProperty -Name "Cmd" -Value (Get-Process -Id $_.OwningProcess).Path -PassThru }
@@ -150,9 +146,5 @@ function Get-PythonExecutable {
     }
 
     throw "Could not find python 3 executable"
-}
-
-function Get-EnvironmentVariables {
-    Get-ChildItem env:
 }
 
