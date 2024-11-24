@@ -124,3 +124,8 @@ map('n', '<Leader>0t', ':tabnew term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>0x', ':split term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>00', ':terminal pwsh -NoLogo<CR>', default_opts)
 
+-- buffer
+map('n', '<Leader>br', ':lua RenameBuffer()<CR>', default_opts)
+map('n', '<Leader>bd', ':bdelete<CR>', default_opts)
+map('n', '<Leader>bD', ':bdelete!<CR>', default_opts)
+

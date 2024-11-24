@@ -57,3 +57,8 @@ function CommonActions()
             end
         end)
 end
+
+function RenameBuffer()
+    vim.ui.input({ prompt = "new buffer name: " }, function(input) vim.cmd(":silent keepalt noautocmd file " .. input) end)
+end
+
