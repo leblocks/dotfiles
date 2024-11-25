@@ -8,25 +8,16 @@ $actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path
 . $actualProfileLocation/../../utils.ps1
 . $actualProfileLocation/watchFiles.ps1
 
-<#
-    somtimes oh-my-posh is still not on path after kaboom
-    installation, or sometimes it isn't installed at all
-    don't fail profile load in such cases
-#>
-if (Test-Command "oh-my-posh") {
-    # load powershell theme once
-    $themeLink = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_lean.omp.json" 
-    $themePath = Join-Path $HOME oh-my-posh.theme.json
-    if (-Not (Test-Path $themePath)) {
-        Invoke-WebRequest $themeLink -OutFile $themePath
-    }
-
-    oh-my-posh init pwsh --config $themePath | Invoke-FailFastExpression
-}
-
-
 # add dotfiles to path
 Add-PathEntry (Join-Path $actualProfileLocation .. ..)
+
+<#
+    prompt setup
+#>
+function prompt {
+    $folder = Get-Location | Split-Path -Leaf
+    return " $folder > "
+}
 
 <#
     ALIASES
