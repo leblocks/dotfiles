@@ -11,9 +11,11 @@ cmp.setup({
             if entry.source.name == 'nvim_lsp' then
                 vim_item.kind = vim_item.kind .. ' [LSP]'
             elseif entry.source.name == 'treesitter' then
-                vim_item.kind = vim_item.kind .. ' [TS]'
+                vim_item.kind = vim_item.kind .. ' [TRS]'
             elseif entry.source.name == 'buffer' then
                 vim_item.kind = vim_item.kind .. ' [BUF]'
+            elseif entry.source.name == 'tags' then
+                vim_item.kind = vim_item.kind .. ' [TAG]'
             end
 
             return vim_item
@@ -38,6 +40,7 @@ cmp.setup({
         { name = 'nvim_lsp', priority = 30 },
         { name = 'treesitter', priority = 20 },
         { name = 'buffer', priority = 10 },
+        { name = 'tags', priority = 40 },
     })
 })
 

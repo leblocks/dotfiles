@@ -35,6 +35,10 @@ return packer.startup(function(use)
     use('hrsh7th/cmp-buffer')
     use('hrsh7th/cmp-nvim-lsp')
 
+    -- ctags
+    use('ludovicchabant/vim-gutentags')
+    use('quangnguyen30192/cmp-nvim-tags')
+
     -- colors
     use('morhetz/gruvbox')
     use('Mofiqul/vscode.nvim')

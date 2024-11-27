@@ -2,7 +2,6 @@
     "common" : [
         "bat",
         "bottom",
-        "ctags",
         "curl",
         "fd",
         "jq",
@@ -15,7 +14,8 @@
 
     "windows" : [
         "far",
-        "mingw"
+        "mingw",
+        "universal-ctags"
     ],
 
     "linux" : [
