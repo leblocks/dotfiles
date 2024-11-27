@@ -148,3 +148,17 @@ function Get-PythonExecutable {
     throw "Could not find python 3 executable"
 }
 
+function Get-CurrentGitBranch {
+    if (-Not [bool](Get-Command git)) {
+        return ""
+    }
+
+    $gitBranchName = (git branch --show-current 2>&1).ToString()
+
+    if ($gitBranchName.Contains('fata')) {
+        return ""
+    }
+
+    return $gitBranchName
+}
+

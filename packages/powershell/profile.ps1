@@ -15,8 +15,15 @@ Add-PathEntry (Join-Path $actualProfileLocation .. ..)
     prompt setup
 #>
 function prompt {
+    $esc = [char]27
     $folder = Get-Location | Split-Path -Leaf
-    return " $folder > "
+
+    $gitBranchName = Get-CurrentGitBranch
+    if ($gitBranchName -ne "") {
+        $gitBranchName = "$esc[32m($esc[31m$gitBranchName$esc[32m)$esc[0m"
+    }
+
+    return " $folder $gitBranchName $esc[32m>$esc[0m "
 }
 
 <#
