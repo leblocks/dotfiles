@@ -2,6 +2,7 @@
     "common" : [
         "bat",
         "bottom",
+        "ctags",
         "curl",
         "fd",
         "jq",
