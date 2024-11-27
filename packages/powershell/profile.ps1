@@ -20,10 +20,10 @@ function prompt {
 
     $gitBranchName = Get-CurrentGitBranch
     if ($gitBranchName -ne "") {
-        $gitBranchName = "$esc[32m($esc[31m$gitBranchName$esc[32m)$esc[0m"
+        $gitBranchName = " $esc[32m($esc[31m$gitBranchName$esc[32m)$esc[0m"
     }
 
-    return " $folder $gitBranchName $esc[32m>$esc[0m "
+    return " $folder$gitBranchName$esc[32m >$esc[0m "
 }
 
 <#
