@@ -90,13 +90,11 @@ register_lsp_keybindings('pyright', 'python')
 register_lsp_keybindings('lua_ls', { 'lua' })
 register_lsp_keybindings('powershell_es', { 'ps1' })
 register_lsp_keybindings('ts_ls', { 'javascript', 'typescript' })
-register_lsp_keybindings('angularls', { 'typescript' })
 register_lsp_keybindings('html', { 'html' })
 
 -- some utility mappings
 map('n', '<Leader>1', ':NvimTreeToggle<CR>', default_opts)
 map('n', '<Leader>!', ':NvimTreeFindFileToggle<CR>', default_opts)
-map('n', '<Leader>2', ':lua require("lint").try_lint()<CR>', default_opts)
 map('n', '<Leader>3', ':NoNeckPain<CR>', default_opts)
 map('n', '<Leader>4', ':CopilotChatToggle<CR>', default_opts)
 map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
