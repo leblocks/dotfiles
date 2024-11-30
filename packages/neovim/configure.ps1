@@ -40,6 +40,3 @@ New-Folder $pathToLanguageTools
 . $PSScriptRoot/lsp/dotnet.ps1 $pathToLanguageTools
 . "$PSScriptRoot/lsp/vscode-langservers-extracted.ps1" $pathToLanguageTools
 
-. $PSScriptRoot/dap/python.ps1 $pathToLanguageTools
-. $PSScriptRoot/dap/dotnet.ps1 $pathToLanguageTools
-

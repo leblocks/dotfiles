@@ -99,21 +99,6 @@ map('n', '<Leader>3', ':NoNeckPain<CR>', default_opts)
 map('n', '<Leader>4', ':CopilotChatToggle<CR>', default_opts)
 map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
 
--- debugger mappings
-map('n', '<F4>', ":lua require('dap').run_last()<CR>", default_opts)
-map('n', '<F5>', ":lua require('dap').continue()<CR>", default_opts)
-map('n', '<F6>', ":lua require('dap').disconnect()<CR>", default_opts)
-map('n', '<F7>', ":lua require('dap').terminate()<CR>", default_opts)
-map('n', '<F10>', ":lua require('dap').step_over()<CR>", default_opts)
-map('n', '<F11>', ":lua require('dap').step_into()<CR>", default_opts)
-map('n', '<F12>', ":lua require('dap').step_out()<CR>", default_opts)
-
--- debugger (t)oggles
-map('n', '<Leader>tb', ":lua require('dap').toggle_breakpoint()<CR>", default_opts)
-map('n', '<Leader>tbc', ":lua require('dap').toggle_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", default_opts)
-map('n', '<Leader>tbl', ":lua require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", default_opts)
-map('n', '<Leader>tu', ":lua require('dapui').toggle()<CR>", default_opts)
-
 -- copilot bindings
 map('i', '<M-a>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
 

@@ -57,11 +57,6 @@ return packer.startup(function(use)
     -- center buffer
     use({"shortcuts/no-neck-pain.nvim", tag = "*" })
 
-    -- nvim-dap
-    use('mfussenegger/nvim-dap')
-    use('theHamsta/nvim-dap-virtual-text')
-    use({'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'} })
-
     -- keep track of configuration performance
     use('dstein64/vim-startuptime')
 
