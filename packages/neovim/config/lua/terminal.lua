@@ -10,11 +10,3 @@ vim.api.nvim_create_autocmd({ 'TermOpen' },
         group = vim.api.nvim_create_augroup('terminal_config', { clear = true })
     })
 
-function OpenTerminal(vertical)
-    -- name of the buffer can be changed by keepalt file new_name
-    vim.ui.input({ prompt = 'Provide terminal name' }, function(input)
-        local command = (vertical == true and 'vnew' or 'split') .. ' term://pwsh -NoLogo'
-        vim.cmd [[ command ]]
-    end)
-end
-

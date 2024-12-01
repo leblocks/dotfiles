@@ -36,7 +36,6 @@ return packer.startup(function(use)
 
     -- ctags
     use('ludovicchabant/vim-gutentags')
-    use('quangnguyen30192/cmp-nvim-tags')
 
     -- colors
     use('morhetz/gruvbox')
