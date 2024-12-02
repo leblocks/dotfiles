@@ -1,7 +1,8 @@
 local os = require('os')
 local roslyn_server_dll_location = os.getenv('ROSLYN_SERVER_DLL_LOCATION') or '~'
+local enable_roslyn = os.getenv('NEOVIM_ENABLE_ROSLYN') or false
 
-function LoadRoslyn()
+if enable_roslyn ~= false then
     require('roslyn').setup({
         config = {
             settings = {
