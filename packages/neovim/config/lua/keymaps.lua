@@ -53,7 +53,8 @@ map('n', '<Leader>le', ':Telescope diagnostics bufnr=0<CR>', default_opts)
 map('n', '<Leader>lE', ':Telescope diagnostics<CR>', default_opts)
 map('n', '<Leader>la', ':lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('n', '<Leader>lm', ':Telescope marks<CR>', default_opts)
-map('n', '<Leader>lc', ':lua CommonActions()<CR>', default_opts)
+map('n', '<Leader>lc', ':Telescope commands<CR>', default_opts)
+
 
 -- (g)oto commands
 map('n', 'gr', ':Telescope lsp_references<CR>', default_opts)
@@ -107,8 +108,4 @@ map('n', '<Leader>0v', ':vnew term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>0t', ':tabnew term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>0x', ':split term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>00', ':terminal pwsh -NoLogo<CR>', default_opts)
-
--- buffer
-map('n', '<Leader>br', ':lua RenameBuffer()<CR>', default_opts)
-map('n', '<Leader>bd', ':bdelete<CR>', default_opts)
 
