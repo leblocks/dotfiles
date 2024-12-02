@@ -17,8 +17,6 @@ return packer.startup(function(use)
     use('nvim-treesitter/nvim-treesitter')
     use('windwp/nvim-ts-autotag')
 
-    use('nvim-tree/nvim-tree.lua')
-
     -- hail to the tpope
     use('tpope/vim-surround')
     use('tpope/vim-fugitive')
