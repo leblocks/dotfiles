@@ -54,7 +54,9 @@ map('n', '<Leader>lE', ':Telescope diagnostics<CR>', default_opts)
 map('n', '<Leader>la', ':lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('n', '<Leader>lm', ':Telescope marks<CR>', default_opts)
 map('n', '<Leader>lc', ':Telescope commands<CR>', default_opts)
-
+map('n', '<Leader>lC', ':Telescope colorscheme<CR>', default_opts)
+map('n', '<Leader>l/', ':Telescope builtin<CR>', default_opts)
+map('n', '<Leader>lk', ':Telescope keymaps<CR>', default_opts)
 
 -- (g)oto commands
 map('n', 'gr', ':Telescope lsp_references<CR>', default_opts)
@@ -94,8 +96,7 @@ register_lsp_keybindings('ts_ls', { 'javascript', 'typescript' })
 register_lsp_keybindings('html', { 'html' })
 
 -- some utility mappings
-map('n', '<Leader>1', ':NvimTreeToggle<CR>', default_opts)
-map('n', '<Leader>!', ':NvimTreeFindFileToggle<CR>', default_opts)
+map('n', '<Leader>1', ':BufFileExplorer<CR>', default_opts)
 map('n', '<Leader>3', ':NoNeckPain<CR>', default_opts)
 map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
 
@@ -104,4 +105,8 @@ map('n', '<Leader>0v', ':vnew term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>0t', ':tabnew term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>0x', ':split term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>00', ':terminal pwsh -NoLogo<CR>', default_opts)
+map('t', '<Esc>', [[<C-\><C-n>]], default_opts)
+
+-- (b)uffer
+map('n', '<Leader>bd', ':bdelete!<CR>', default_opts)
 
