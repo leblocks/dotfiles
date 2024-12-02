@@ -97,11 +97,7 @@ register_lsp_keybindings('html', { 'html' })
 map('n', '<Leader>1', ':NvimTreeToggle<CR>', default_opts)
 map('n', '<Leader>!', ':NvimTreeFindFileToggle<CR>', default_opts)
 map('n', '<Leader>3', ':NoNeckPain<CR>', default_opts)
-map('n', '<Leader>4', ':CopilotChatToggle<CR>', default_opts)
 map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
-
--- copilot bindings
-map('i', '<M-a>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
 
 -- terminal
 map('n', '<Leader>0v', ':vnew term://pwsh -NoLogo<CR>', default_opts)
