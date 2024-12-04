@@ -14,11 +14,7 @@ tools on both Windows and Linux with a unified approach. This not only simplifie
 from the headache of managing different sets of scripts, making development more efficient and straightforward.
 
 ## TODOs
-* more understandable output
-    * make failures show some sort of stack trace?
 * tests for empty windows installation, vm?
-* run stuff once a week
-* add gif with example usage
 * make sure that none of commands requires admin (except package installations)
 * support different package names for different installers
 
@@ -39,5 +35,5 @@ from the headache of managing different sets of scripts, making development more
 Those are created by configuration scripts:
 * _$HOME/.environment.json_ contains environment variables loaded by _$PROFILE_ on a new session
 * _$HOME/.path.json_ contains path additions loaded by _$PROFILE_ on a new session
-* Setting _DOTFILES_DEBUG_ environment variable will enabled additional logging.
+* Setting _DOTFILES_DEBUG_ environment variable will enable additional logging.
 
