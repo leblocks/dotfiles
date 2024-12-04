@@ -19,7 +19,7 @@ $fileName = "bash-language-server" + ($IsWindows ? ".cmd" : "")
 
 $path = Get-ChildItem . -Include $fileName -Recurse -Force -File | ForEach-Object { $_.FullName }
 
-Set-EnvironmentVariable "BASH_LANGUAGE_SERVER" $path
+Set-EnvironmentVariable "NEOVIM_BASH_LANGUAGE_SERVER" $path
 
 Pop-Location
 

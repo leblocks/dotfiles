@@ -18,7 +18,7 @@ Expand-Archive -LiteralPath $fileName -DestinationPath . -Force
 
 Remove-Item $fileName -Force
 
-Set-EnvironmentVariable "POWERSHELL_LANGUAGE_SERVER" $toolPath
+Set-EnvironmentVariable "NEOVIM_POWERSHELL_LANGUAGE_SERVER" $toolPath
 
 Pop-Location
 

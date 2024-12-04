@@ -7,40 +7,32 @@ Describe 'neovim' {
         Test-Path $pathToLink | Should -Be $true
     }
 
-    It 'TYPESCRIPT_LANGUAGE_SERVER env variable is set and points to an existing path' {
-        Test-Path $env:TYPESCRIPT_LANGUAGE_SERVER | Should -Be $true
+    It 'NEOVIM_TYPESCRIPT_LANGUAGE_SERVER env variable is set and points to an existing path' {
+        Test-Path $env:NEOVIM_TYPESCRIPT_LANGUAGE_SERVER | Should -Be $true
     }
 
-    It 'BASH_LANGUAGE_SERVER env variable is set and points to an existing path' {
-        Test-Path $env:BASH_LANGUAGE_SERVER | Should -Be $true
+    It 'NEOVIM_BASH_LANGUAGE_SERVER env variable is set and points to an existing path' {
+        Test-Path $env:NEOVIM_BASH_LANGUAGE_SERVER | Should -Be $true
     }
 
-    It 'PYRIGHT_LANGUAGE_SERVER env variable is set and points to an existing path' {
-        Test-Path $env:PYRIGHT_LANGUAGE_SERVER | Should -Be $true
+    It 'NEOVIM_PYRIGHT_LANGUAGE_SERVER env variable is set and points to an existing path' {
+        Test-Path $env:NEOVIM_PYRIGHT_LANGUAGE_SERVER | Should -Be $true
     }
 
-    It 'LUA_LANGUAGE_SERVER env variable is set and points to an existing path' {
-        Test-Path $env:LUA_LANGUAGE_SERVER | Should -Be $true
+    It 'NEOVIM_LUA_LANGUAGE_SERVER env variable is set and points to an existing path' {
+        Test-Path $env:NEOVIM_LUA_LANGUAGE_SERVER | Should -Be $true
     }
 
-    It 'POWERSHELL_LANGUAGE_SERVER env variable is set and points to an existing path' {
-        Test-Path $env:POWERSHELL_LANGUAGE_SERVER | Should -Be $true
+    It 'NEOVIM_POWERSHELL_LANGUAGE_SERVER env variable is set and points to an existing path' {
+        Test-Path $env:NEOVIM_POWERSHELL_LANGUAGE_SERVER | Should -Be $true
     }
 
-    It 'VSCODE_HTML_LANGUAGE_SERVER env variable is set and points to an existing path' {
-        Test-Path $env:VSCODE_HTML_LANGUAGE_SERVER | Should -Be $true
+    It 'NEOVIM_VSCODE_HTML_LANGUAGE_SERVER env variable is set and points to an existing path' {
+        Test-Path $env:NEOVIM_VSCODE_HTML_LANGUAGE_SERVER | Should -Be $true
     }
 
-    It 'DEBUGPY_PATH env variable is set and points to an existing path' {
-        Test-Path $env:DEBUGPY_PATH | Should -Be $true
-    }
-
-    It 'NETCOREDBG_PATH env variable is set and points to an existing path' {
-        Test-Path $env:NETCOREDBG_PATH | Should -Be $true
-    }
-
-    It 'ROSLYN_SERVER_DLL_LOCATION env variable is set and points to an existing path' {
-        Test-Path $env:ROSLYN_SERVER_DLL_LOCATION | Should -Be $true
+    It 'NEOVIM_ROSLYN_SERVER_DLL_LOCATION env variable is set and points to an existing path' {
+        Test-Path $env:NEOVIM_ROSLYN_SERVER_DLL_LOCATION | Should -Be $true
     }
 }
 

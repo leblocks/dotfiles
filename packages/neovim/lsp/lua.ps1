@@ -45,6 +45,6 @@ Remove-Item luaserver -Force
 
 $path = Get-ChildItem . -Include *lua-language-server* -Recurse -Force -File | ForEach-Object { $_.FullName }
 
-Set-EnvironmentVariable "LUA_LANGUAGE_SERVER" $path
+Set-EnvironmentVariable "NEOVIM_LUA_LANGUAGE_SERVER" $path
 
 Pop-Location

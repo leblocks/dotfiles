@@ -48,7 +48,7 @@ $path = Get-ChildItem `
     | ForEach-Object { $_.FullName }
     | Select-Object -First 1
 
-Set-EnvironmentVariable "ROSLYN_SERVER_DLL_LOCATION" $path
+Set-EnvironmentVariable "NEOVIM_ROSLYN_SERVER_DLL_LOCATION" $path
 
 Pop-Location
 

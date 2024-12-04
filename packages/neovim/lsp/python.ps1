@@ -25,7 +25,7 @@ $fileName = "pyright-python-langserver" + ($IsWindows ? ".exe" : "")
 
 $path = Get-ChildItem . -Include $fileName -Recurse -Force -File | ForEach-Object { $_.FullName }
 
-Set-EnvironmentVariable "PYRIGHT_LANGUAGE_SERVER" $path
+Set-EnvironmentVariable "NEOVIM_PYRIGHT_LANGUAGE_SERVER" $path
 
 Pop-Location
 

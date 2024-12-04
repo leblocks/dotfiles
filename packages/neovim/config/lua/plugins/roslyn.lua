@@ -1,5 +1,5 @@
 local os = require('os')
-local roslyn_server_dll_location = os.getenv('ROSLYN_SERVER_DLL_LOCATION') or '~'
+local roslyn_server_dll_location = os.getenv('NEOVIM_ROSLYN_SERVER_DLL_LOCATION') or '~'
 local enable_roslyn = os.getenv('NEOVIM_ENABLE_ROSLYN') or false
 
 if enable_roslyn ~= false then

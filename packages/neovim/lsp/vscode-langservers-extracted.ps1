@@ -21,7 +21,7 @@ $path = Get-ChildItem . -Include $fileName -Recurse -Force -File
     | ForEach-Object { $_.FullName } 
     | Select-Object -First 1
 
-Set-EnvironmentVariable "VSCODE_HTML_LANGUAGE_SERVER" $path
+Set-EnvironmentVariable "NEOVIM_VSCODE_HTML_LANGUAGE_SERVER" $path
 
 Pop-Location
 
