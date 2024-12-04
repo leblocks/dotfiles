@@ -5,23 +5,22 @@
         "curl",
         "fd",
         "jq",
+        "mc",
         "neovim",
         "ripgrep",
         "shellcheck",
         "tree",
+        "universal-ctags",
         "unzip"
     ],
 
     "windows" : [
-        "far",
-        "mingw",
-        "universal-ctags"
+        "mingw"
     ],
 
     "linux" : [
         "bash",
         "gcc",
-        "mc",
         "tar",
         "tmux"
     ]
