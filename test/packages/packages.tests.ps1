@@ -11,6 +11,7 @@ BeforeAll {
         ripgrep = 'rg'
         bottom = 'btm'
         mingw = 'bash'
+        'universal-ctags' = 'ctags'
     }
 }
 
