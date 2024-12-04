@@ -29,7 +29,7 @@ if (-Not (Test-Path $pathToPacker)) {
 # update plugins
 "nvim --headless -c `"autocmd User PackerComplete quitall`" -c `"PackerSync`"" | Invoke-FailFastExpression
 
-$pathToLanguageTools = Join-Path $HOME ".neovim-language-support"
+$pathToLanguageTools = Join-Path $HOME ".neovim"
 New-Folder $pathToLanguageTools
 
 . $PSScriptRoot/lsp/typescript.ps1 $pathToLanguageTools
