@@ -37,6 +37,7 @@ map('n', '<C-j>', ':lnext<CR>', default_opts)
 
 -- (f)ind commnands
 map('n', '<Leader>ff', ':Telescope find_files find_command=fd<CR>', default_opts)
+map('n', '<Leader>fd', ':Telescope fd<CR>', default_opts)
 map('n', '<Leader>fF', ':Telescope current_buffer_fuzzy_find<CR>', default_opts)
 map('n', '<Leader>fg', ':Telescope live_grep<CR>', default_opts)
 map('n', '<Leader>fG', ':Telescope grep_string<CR>', default_opts)
