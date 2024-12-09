@@ -40,6 +40,14 @@ function gto { Push-Location $env:OneDrive/devbox-config }
 function env { Get-ChildItem env: }
 function top { "btm -b" | Invoke-Expression }
 
+function touch([string] $Path) {
+    if (Test-Path -Path $Path) {
+        (Get-Item $Path).LastWriteTime = Get-Date
+    } else {
+        New-Item -ItemType File -Path $Path
+    }
+}
+
 <#
     ENVIRONMENT VARIABLES LOAD
 #>
