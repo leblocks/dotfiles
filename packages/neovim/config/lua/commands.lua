@@ -36,8 +36,3 @@ vim.api.nvim_create_user_command('BufCopyPath', function()
     vim.notify('copied to clipboard ' .. path)
 end, {})
 
-vim.api.nvim_create_user_command('BufFileExplorer', function()
-    local path = vim.fn.expand('%:p:h')
-    vim.cmd(':terminal pwsh -NoLogo -Command mc . ' .. path .. ' --nocolor')
-end, {})
-
