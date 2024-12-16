@@ -39,6 +39,7 @@ Set-Alias push Push-Location
 function gto { Push-Location $env:OneDrive/devbox-config }
 function env { Get-ChildItem env: }
 function top { "btm -b" | Invoke-Expression }
+function guid { (New-Guid).ToString() }
 
 function touch([string] $Path) {
     if (Test-Path -Path $Path) {
