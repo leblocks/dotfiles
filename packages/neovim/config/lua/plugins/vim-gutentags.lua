@@ -2,7 +2,7 @@
 -- TODO convert to lua
 vim.cmd [[
     let g:gutentags_add_default_project_roots = 0
-    let g:gutentags_project_root = ['package.json', '.git', '*.csproj', '*.sln', '*.proj']
+    let g:gutentags_project_root = ['package.json', '.git', '.gutentags']
 
     let g:gutentags_cache_dir = expand('~/.neovim/ctags/')
 
