@@ -105,6 +105,7 @@ map('n', '<Leader>0v', ':vnew term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>0t', ':tabnew term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>0x', ':split term://pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>00', ':terminal pwsh -NoLogo<CR>', default_opts)
+map('n', '<Leader>0r', ':TerminalRename<CR>', default_opts)
 map('t', '<Esc>', [[<C-\><C-n>]], default_opts)
 
 -- (b)uffer
