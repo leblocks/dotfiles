@@ -108,6 +108,12 @@ map('n', '<Leader>00', ':terminal pwsh -NoLogo<CR>', default_opts)
 map('n', '<Leader>0r', ':TerminalRename<CR>', default_opts)
 map('t', '<Esc>', [[<C-\><C-n>]], default_opts)
 
+-- netrw
+map('n', '<Leader>11', ':Explore<CR>', default_opts)
+map('n', '<Leader>1v', ':Vexplore<CR>', default_opts)
+map('n', '<Leader>1x', ':Sexplore<CR>', default_opts)
+map('n', '<Leader>1x', ':Texplore<CR>', default_opts)
+
 -- (b)uffer
 map('n', '<Leader>bd', ':bdelete!<CR>', default_opts)
 
