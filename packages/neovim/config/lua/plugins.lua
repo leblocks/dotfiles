@@ -36,12 +36,6 @@ return packer.startup(function(use)
     -- ctags
     use('ludovicchabant/vim-gutentags')
 
-    -- colors
-    use('morhetz/gruvbox')
-    use('Mofiqul/vscode.nvim')
-    use('ntk148v/komau.vim')
-    use('tyrannicaltoucan/vim-deep-space')
-
     use('kyazdani42/nvim-web-devicons')
     use('nathom/filetype.nvim')
 

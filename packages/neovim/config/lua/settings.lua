@@ -55,7 +55,6 @@ cmd [[
     " highlight trailing spaces
     set list
     set listchars=trail:·
+    colorscheme retrobox
 ]]
-
-vim.cmd('colorscheme ' .. (os.getenv('NEOVIM_COLORSCHEME') or 'vscode'))
 
