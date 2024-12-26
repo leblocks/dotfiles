@@ -12,6 +12,7 @@ return packer.startup(function(use)
     use({ 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' } } })
     use('nvim-telescope/telescope-fzy-native.nvim')
     use('nvim-telescope/telescope-ui-select.nvim')
+    use('nvim-telescope/telescope-live-grep-args.nvim')
 
     -- treesitter
     use('nvim-treesitter/nvim-treesitter')
@@ -36,12 +37,11 @@ return packer.startup(function(use)
     -- ctags
     use('ludovicchabant/vim-gutentags')
 
-    use('kyazdani42/nvim-web-devicons')
     use('nathom/filetype.nvim')
 
     -- ui
-    use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } })
-    use({ 'alvarosevilla95/luatab.nvim', requires = 'nvim-tree/nvim-web-devicons' })
+    use({ 'nvim-lualine/lualine.nvim' })
+    use({ 'alvarosevilla95/luatab.nvim' })
 
     -- note taking
     use('slugbyte/whip.nvim')
