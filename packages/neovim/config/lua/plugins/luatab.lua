@@ -1,1 +1,5 @@
-require('luatab').setup({})
+-- require('luatab').setup({
+--     devicon = function ()
+--         return ''
+--     end
+-- })
