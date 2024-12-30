@@ -1,4 +1,3 @@
-local os = require('os')
 
 local cmd = vim.cmd
 local opt = vim.opt
@@ -18,7 +17,7 @@ opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.number = true
 opt.relativenumber = true
-opt.scrolloff = 10 
+opt.scrolloff = 10
 opt.colorcolumn = '120'
 opt.wrap = false
 opt.showmode = false
@@ -41,10 +40,6 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_node_provider = 0
 
--- those should be defined before call to 'colorscheme gruvbox'
-vim.g.gruvbox_contrast_light = 'hard'
-vim.g.gruvbox_contrast_dark = 'hard'
-
 -- hide status line
 vim.o.showmode = false
 vim.o.ruler = false
@@ -55,6 +50,7 @@ cmd [[
     " highlight trailing spaces
     set list
     set listchars=trail:·
-    colorscheme retrobox
 ]]
+
+vim.cmd('colorscheme ' .. (os.getenv('NEOVIM_COLORSCHEME') or 'retrobox'))
 

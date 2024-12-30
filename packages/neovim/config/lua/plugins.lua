@@ -52,6 +52,10 @@ return packer.startup(function(use)
     -- keep track of configuration performance
     use('dstein64/vim-startuptime')
 
+    -- colorschemes
+    use({ "catppuccin/nvim", as = "catppuccin" })
+    use({ 'sainnhe/everforest' })
+
     if packer_bootstrap then
         packer.sync()
     end
