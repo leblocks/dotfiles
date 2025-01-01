@@ -23,4 +23,5 @@ require('plugins.nvim-lspconfig')
 require('plugins.nvim-ts-autotag')
 require('plugins.roslyn')
 require('plugins.vim-gutentags')
+require('plugins.auto-session')
 
