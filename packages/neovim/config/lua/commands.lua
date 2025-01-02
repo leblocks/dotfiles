@@ -22,12 +22,6 @@ vim.api.nvim_create_user_command('BufRemoveTrailingSpaces',function()
     vim.cmd([[:%s/\s\+$//e]])
 end, {})
 
-vim.api.nvim_create_user_command('TerminalRename', function()
-    vim.ui.input({ prompt = 'Enter new terminal buffer name: ' }, function(input)
-        vim.cmd(":silent keepalt noautocmd file " .. input)
-    end)
-end, {})
-
 vim.api.nvim_create_user_command('BufSetUnixFileFormat',function()
     vim.cmd([[:set fileformat=unix]])
 end, {})

@@ -102,11 +102,10 @@ map('n', '<Leader>3', ':NoNeckPain<CR>', default_opts)
 map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
 
 -- terminal
-map('n', '<Leader>0v', ':vnew term://pwsh -NoLogo<CR>', default_opts)
-map('n', '<Leader>0t', ':tabnew term://pwsh -NoLogo<CR>', default_opts)
-map('n', '<Leader>0x', ':split term://pwsh -NoLogo<CR>', default_opts)
-map('n', '<Leader>00', ':terminal pwsh -NoLogo<CR>', default_opts)
-map('n', '<Leader>0r', ':TerminalRename<CR>', default_opts)
+map('n', '<Leader>00', ':Terminal<CR>', default_opts)
+map('n', '<Leader>0v', ':VTerminal<CR>', default_opts)
+map('n', '<Leader>0x', ':STerminal<CR>', default_opts)
+map('n', '<Leader>0t', ':TTerminal<CR>', default_opts)
 map('t', '<Esc>', [[<C-\><C-n>]], default_opts)
 
 -- netrw
