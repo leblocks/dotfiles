@@ -55,10 +55,8 @@ map('n', '<Leader>le', ':Telescope diagnostics bufnr=0<CR>', default_opts)
 map('n', '<Leader>lE', ':Telescope diagnostics<CR>', default_opts)
 map('n', '<Leader>la', ':lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('n', '<Leader>lm', ':Telescope marks<CR>', default_opts)
-map('n', '<Leader>lc', ':Telescope commands<CR>', default_opts)
-map('n', '<Leader>lC', ':Telescope colorscheme<CR>', default_opts)
 map('n', '<Leader>l/', ':Telescope builtin<CR>', default_opts)
-map('n', '<Leader>lk', ':Telescope keymaps<CR>', default_opts)
+map('n', '<Leader>l5', ':Telescope session-lens<CR>', default_opts) -- 5 looks like s :D
 
 -- (g)oto commands
 map('n', 'gr', ':Telescope lsp_references<CR>', default_opts)
