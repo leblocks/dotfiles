@@ -23,6 +23,7 @@ return packer.startup(function(use)
     use('tpope/vim-fugitive')
     use('tpope/vim-commentary')
     use('tpope/vim-vinegar')
+    use('tpope/vim-unimpaired')
 
     -- lsp
     use('neovim/nvim-lspconfig')

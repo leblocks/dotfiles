@@ -29,12 +29,6 @@ map('n', '<Leader>q', ':q<CR>', default_opts)
 map('n', '<Leader>Q', ':q!<CR>', default_opts)
 map('n', '<Leader><Leader>', ':nohl<CR>', default_opts)
 
--- localist and quickfix list navigation
-map('n', '<C-n>', ':cnext<CR>', default_opts)
-map('n', '<C-p>', ':cprev<CR>', default_opts)
-map('n', '<C-k>', ':lprev<CR>', default_opts)
-map('n', '<C-j>', ':lnext<CR>', default_opts)
-
 -- (f)ind commnands
 map('n', '<Leader>ff', ':Telescope find_files find_command=fd disable_devicons=true<CR>', default_opts)
 map('n', '<Leader>fd', ':Telescope fd<CR>', default_opts)
