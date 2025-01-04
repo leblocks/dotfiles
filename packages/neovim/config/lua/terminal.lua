@@ -5,6 +5,7 @@ end
 
 local function get_launch_terminal_command()
     local current_directory = vim.fn.expand('%:p:h')
+    current_directory = '\\"' .. current_directory:gsub(" ", "\\ ") .. '\\"'
     return "pwsh" .. " -NoLogo" .. " -NoProfileLoadTime" .. " -WorkingDirectory " .. current_directory
 end
 
@@ -15,7 +16,7 @@ vim.api.nvim_create_autocmd({ 'TermOpen' },
         group = vim.api.nvim_create_augroup('terminal_config', { clear = true })
     })
 
-vim.api.nvim_create_user_command('PTerminal', function()
+vim.api.nvim_create_user_command('Terminal', function()
     vim.cmd(":terminal " .. get_launch_terminal_command())
 end, {})
 
