@@ -59,6 +59,7 @@ return packer.startup(function(use)
     -- colorschemes
     use({ "catppuccin/nvim", as = "catppuccin" })
     use({ 'sainnhe/everforest' })
+    use({ 'rebelot/kanagawa.nvim' })
 
     if packer_bootstrap then
         packer.sync()
