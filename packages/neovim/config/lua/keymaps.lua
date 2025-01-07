@@ -35,7 +35,6 @@ map('n', '<Leader>fd', ':Telescope fd<CR>', default_opts)
 map('n', '<Leader>fF', ':Telescope current_buffer_fuzzy_find<CR>', default_opts)
 map('n', '<Leader>fg', ':Telescope live_grep disable_devicons=true<CR>', default_opts)
 map('n', '<Leader>fG', ':Telescope grep_string disable_devicons=true<CR>', default_opts)
-map('n', '<Leader>fl', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>', default_opts)
 
 -- (l)ist commands
 map('n', '<Leader>lb', ':Telescope buffers<CR>', default_opts)
