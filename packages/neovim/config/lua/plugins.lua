@@ -59,6 +59,7 @@ return packer.startup(function(use)
     use({ "catppuccin/nvim", as = "catppuccin" })
     use({ 'sainnhe/everforest' })
     use({ 'rebelot/kanagawa.nvim' })
+    use({ 'jackplus-xyz/binary.nvim' })
 
     if packer_bootstrap then
         packer.sync()
