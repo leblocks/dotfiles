@@ -97,6 +97,7 @@ map('n', '<Leader>00', ':Terminal<CR>', default_opts)
 map('n', '<Leader>0v', ':VTerminal<CR>', default_opts)
 map('n', '<Leader>0x', ':STerminal<CR>', default_opts)
 map('n', '<Leader>0t', ':TTerminal<CR>', default_opts)
+map('n', '<Leader>0D', ':CloseTerminals<CR>', default_opts)
 map('t', '<Esc>', [[<C-\><C-n>]], default_opts)
 
 -- netrw

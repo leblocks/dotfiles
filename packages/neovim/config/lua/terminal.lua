@@ -16,6 +16,15 @@ local function get_launch_terminal_command()
     return command
 end
 
+local function close_terminal_buffers()
+    for _, b in pairs(vim.api.nvim_list_bufs()) do
+        local buf_name = vim.api.nvim_buf_get_name(b)
+        if (vim.api.nvim_buf_is_loaded(b) and buf_name:find("term://")) then
+            vim.api.nvim_buf_delete(b, { force = true })
+        end
+    end
+end
+
 vim.api.nvim_create_autocmd({ 'TermOpen' },
     {
         pattern = '*',
@@ -37,5 +46,9 @@ end, {})
 
 vim.api.nvim_create_user_command('STerminal', function()
     vim.cmd(":split term://" .. get_launch_terminal_command())
+end, {})
+
+vim.api.nvim_create_user_command('CloseTerminals', function()
+    close_terminal_buffers()
 end, {})
 
