@@ -162,3 +162,13 @@ function Get-CurrentGitBranch {
     return $gitBranchName
 }
 
+function ConvertTo-Base64([string] $Content) {
+    $bytes = [System.Text.Encoding]::UTF8.GetBytes($Content)
+    return [System.Convert]::ToBase64String($bytes)
+}
+
+function ConvertFrom-Base64([string] $Content) {
+    $bytes = [System.Convert]::FromBase64String($Content)
+    return [System.Text.Encoding]::UTF8.GetString($bytes)
+}
+
