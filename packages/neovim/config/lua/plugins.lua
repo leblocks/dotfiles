@@ -55,6 +55,9 @@ return packer.startup(function(use)
     -- sessions
     use('rmagatti/auto-session')
 
+    -- marks
+    use('chentoast/marks.nvim')
+
     -- colorschemes
     use({ "catppuccin/nvim", as = "catppuccin" })
     use({ 'sainnhe/everforest' })
