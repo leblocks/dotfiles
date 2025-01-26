@@ -90,7 +90,7 @@ register_lsp_keybindings('html', { 'html' })
 
 -- some utility mappings
 map('n', '<Leader>3', ':NoNeckPain<CR>', default_opts)
-map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
+-- map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
 
 -- terminal
 map('n', '<Leader>00', ':Terminal<CR>', default_opts)

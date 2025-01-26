@@ -1,5 +1,4 @@
 require('nvim-treesitter.configs').setup({
-    highlight = { enable = false },
     ensure_installed = {
         "bash",
         "c_sharp",
@@ -14,7 +13,26 @@ require('nvim-treesitter.configs').setup({
         "typescript",
         "yaml"
     },
+
     additional_vim_regex_highlighting = false,
+
+    highlight = {
+        enable = true,
+    },
+
+    indent = {
+        enable = true,
+    },
+
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "<Leader>5",
+            node_incremental = "<Leader>5",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+        },
+    },
 })
 
 -- had to do it on windows machine
