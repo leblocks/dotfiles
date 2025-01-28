@@ -89,8 +89,7 @@ register_lsp_keybindings('ts_ls', { 'javascript', 'typescript' })
 register_lsp_keybindings('html', { 'html' })
 
 -- some utility mappings
-map('n', '<Leader>3', ':NoNeckPain<CR>', default_opts)
--- map('n', '<Leader>5', ':TSToggle highlight<CR> :e<CR>', default_opts)
+map('n', 'yop', ':NoNeckPain<CR>', default_opts)
 
 -- terminal
 map('n', '<Leader>00', ':Terminal<CR>', default_opts)
@@ -108,4 +107,9 @@ map('n', '<Leader>1t', ':Texplore<CR>', default_opts)
 
 -- (b)uffer
 map('n', '<Leader>bd', ':bdelete!<CR>', default_opts)
+
+-- (3)hip
+map('n', '<Leader>33', ':WhipOpen<CR>', default_opts)
+map('n', '<Leader>3l', ':WhipFindFile<CR>', default_opts)
+map('n', '<Leader>3n', ':WhipMake<CR>', default_opts)
 
