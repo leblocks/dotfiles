@@ -39,8 +39,7 @@ config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
 local act = wezterm.action
 
 config.keys = {
-    -- tmux like bindings
-    -- TODO activate tabs binding
+    -- tmux like keybindings
     { key = 'r', mods = 'LEADER', action = act.ReloadConfiguration, },
     { key = '%', mods = 'LEADER|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
     { key = '"', mods = 'LEADER|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
@@ -70,6 +69,12 @@ config.keys = {
         },
     },
 }
+
+-- activate tab bindings
+for i = 1, 9 do
+  -- LEADER + number to activate that tab
+  table.insert(config.keys, { key = tostring(i), mods = 'LEADER', action = act.ActivateTab(i - 1), })
+end
 
 return config
 
