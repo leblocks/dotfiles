@@ -1,8 +1,15 @@
 -- Pull in the wezterm API
 local wezterm = require('wezterm')
+local os = require('os')
+
+local is_devbox = string.lower(os.getenv('IsDevBox') or '') == 'true'
 
 -- This will hold the configuration.
 local config = wezterm.config_builder();
+
+if is_devbox ~= false then
+    config.prefer_egl = true
+end
 
 -- general
 config.default_prog = { 'pwsh', '-NoLogo', '-NoProfileLoadTime' }
