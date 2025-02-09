@@ -79,7 +79,7 @@ if is_devbox ~= false then
     if not status then
         print('failed to load external configuration from "' .. devbox_config_path .. '" error: ' .. err)
     else
-        set_configuraiton_overrides(config)
+        set_configuration_overrides(config)
     end
 end
 
