@@ -1,10 +1,10 @@
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions"
 
 require('auto-session').setup({
-    enabled = true, -- Enables/disables auto creating, saving and restoring
-    auto_save = true, -- Enables/disables auto saving session on exit
-    auto_restore = true, -- Enables/disables auto restoring session on start
-    auto_create = true, -- Enables/disables auto creating new session files. Can take a function that should return true/false if a new session file should be created or not
+    enabled = false, -- Enables/disables auto creating, saving and restoring
+    auto_save = false, -- Enables/disables auto saving session on exit
+    auto_restore = false, -- Enables/disables auto restoring session on start
+    auto_create = false, -- Enables/disables auto creating new session files. Can take a function that should return true/false if a new session file should be created or not
     suppressed_dirs = nil, -- Suppress session restore/create in certain directories
     allowed_dirs = nil, -- Allow session restore/create in certain directories
     auto_restore_last_session = false, -- On startup, loads the last saved session if session for cwd does not exist

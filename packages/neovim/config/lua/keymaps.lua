@@ -49,7 +49,6 @@ map('n', '<Leader>lE', ':Telescope diagnostics<CR>', default_opts)
 map('n', '<Leader>la', ':lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('n', '<Leader>lm', ':Telescope marks<CR>', default_opts)
 map('n', '<Leader>l/', ':Telescope builtin<CR>', default_opts)
-map('n', '<Leader>l5', ':Telescope session-lens<CR>', default_opts) -- 5 looks like s :D
 
 -- (g)oto commands
 map('n', 'gr', ':Telescope lsp_references<CR>', default_opts)
@@ -112,4 +111,8 @@ map('n', '<Leader>bd', ':bdelete!<CR>', default_opts)
 map('n', '<Leader>33', ':WhipOpen<CR>', default_opts)
 map('n', '<Leader>3l', ':WhipFindFile<CR>', default_opts)
 map('n', '<Leader>3n', ':WhipMake<CR>', default_opts)
+
+-- (5)ession
+map('n', '<Leader>5l', ':Telescope session-lens<CR>', default_opts) -- 5 looks like s :D
+map('n', '<Leader>5s', ':SessionSave<CR>', default_opts) -- 5 looks like s :D
 
