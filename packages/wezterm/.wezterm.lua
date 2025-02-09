@@ -3,12 +3,17 @@ local wezterm = require('wezterm')
 local os = require('os')
 
 local is_devbox = string.lower(os.getenv('IsDevBox') or '') == 'true'
+local devbox_config_path = os.getenv('DEVBOX_WEZTERM_CONFIG') or ''
 
 -- This will hold the configuration.
 local config = wezterm.config_builder();
 
 if is_devbox ~= false then
     config.prefer_egl = true
+    local status, err = pcall(function() dofile(devbox_config_path) end)
+    if not status then
+        print('failed to load external configuration from "' .. devbox_config_path .. '" error: ' .. err)
+    end
 end
 
 -- general
