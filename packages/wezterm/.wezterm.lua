@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require('wezterm')
+local mux = wezterm.mux
 local os = require('os')
 
 -- This will hold the configuration.
@@ -15,6 +16,7 @@ config.line_height = 1.1
 config.font = wezterm.font('CaskaydiaMono Nerd Font')
 
 -- ui
+config.front_end = "WebGpu"
 config.max_fps = 120
 config.animation_fps = 120
 config.color_scheme = 'Ubuntu'
@@ -70,6 +72,13 @@ for i = 1, 9 do
   table.insert(config.keys, { key = tostring(i), mods = 'LEADER', action = act.ActivateTab(i - 1), })
 end
 
+-- automatic fullscreen
+wezterm.on("gui-startup", function()
+  local _, _, window = mux.spawn_window{}
+  window:gui_window():maximize()
+end)
+
+-- devbox specific
 local is_devbox = string.lower(os.getenv('IsDevBox') or '') == 'true'
 local devbox_config_path = os.getenv('DEVBOX_WEZTERM_CONFIG') or ''
 
