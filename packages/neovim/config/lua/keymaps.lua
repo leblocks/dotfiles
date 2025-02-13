@@ -112,7 +112,3 @@ map('n', '<Leader>33', ':WhipOpen<CR>', default_opts)
 map('n', '<Leader>3l', ':WhipFindFile<CR>', default_opts)
 map('n', '<Leader>3n', ':WhipMake<CR>', default_opts)
 
--- (5)ession
-map('n', '<Leader>5l', ':Telescope session-lens<CR>', default_opts) -- 5 looks like s :D
-map('n', '<Leader>5s', ':SessionSave<CR>', default_opts) -- 5 looks like s :D
-

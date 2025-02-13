@@ -52,9 +52,6 @@ return packer.startup(function(use)
     -- keep track of configuration performance
     use('dstein64/vim-startuptime')
 
-    -- sessions
-    use('rmagatti/auto-session')
-
     -- marks
     use('chentoast/marks.nvim')
 
