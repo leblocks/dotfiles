@@ -1,6 +1,6 @@
 param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
-$ROSLYN_VERSION = "4.13.0-2.24563.22"
+$ROSLYN_VERSION = "5.0.0-1.25111.6"
 
 . $PSScriptRoot/../../../utils.ps1
 
