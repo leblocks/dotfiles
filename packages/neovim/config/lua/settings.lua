@@ -52,5 +52,5 @@ cmd [[
     set listchars=trail:·
 ]]
 
-vim.cmd('colorscheme ' .. (os.getenv('NEOVIM_COLORSCHEME') or 'retrobox'))
+vim.cmd('colorscheme ' .. (os.getenv('NEOVIM_COLORSCHEME') or 'default'))
 
