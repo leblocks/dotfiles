@@ -44,7 +44,7 @@ if enable_roslyn ~= false then
         exe = { "dotnet", roslyn_server_dll_location },
 
         args = {
-            "--logLevel=Information", "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path())
+            "--logLevel=Information", "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()), "--stdio"
         },
 
         -- NOTE: Set `filewatching` to false if you experience performance problems.
