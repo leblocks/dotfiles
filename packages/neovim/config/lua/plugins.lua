@@ -34,9 +34,6 @@ return packer.startup(function(use)
     use('hrsh7th/nvim-cmp')
     use('hrsh7th/cmp-nvim-lsp')
 
-    -- ctags
-    use('ludovicchabant/vim-gutentags')
-
     use('nathom/filetype.nvim')
 
     -- ui

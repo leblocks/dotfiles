@@ -53,5 +53,3 @@ New-Folder $pathToLanguageTools
 . $PSScriptRoot/lsp/dotnet.ps1 $pathToLanguageTools
 . "$PSScriptRoot/lsp/vscode-langservers-extracted.ps1" $pathToLanguageTools
 
-Set-EnvironmentVariable "NEOVIM_CTAGS_EXECUTABLE" (Get-Command ctags).Source
-
