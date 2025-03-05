@@ -172,3 +172,13 @@ function ConvertFrom-Base64([string] $Content) {
     return [System.Text.Encoding]::UTF8.GetString($bytes)
 }
 
+function New-Ctags([string] $Language) {
+    [string]::Join(" ",
+        "ctags",
+        "--recurse=yes",
+        "--languages=$Language",
+        "--tag-relative=yes",
+        "--fields=+ailmnS"
+    ) | Invoke-Expression
+}
+
