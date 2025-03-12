@@ -35,7 +35,7 @@ local handlers =  {
 
 local on_attach = function(client, bufnr)
     -- specifies what to do when language server attaches to the buffer
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
     lsp_signature.on_attach({
         doc_lines = 15,
         max_height = 15,
