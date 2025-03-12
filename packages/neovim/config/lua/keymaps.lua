@@ -95,6 +95,7 @@ map('n', '<Leader>00', ':Terminal<CR>', default_opts)
 map('n', '<Leader>0v', ':VTerminal<CR>', default_opts)
 map('n', '<Leader>0x', ':STerminal<CR>', default_opts)
 map('n', '<Leader>0t', ':TTerminal<CR>', default_opts)
+map('n', '<Leader>0s', ':SelectTerminal<CR>', default_opts)
 map('n', '<Leader>0D', ':CloseTerminals<CR>', default_opts)
 map('t', '<Esc>', [[<C-\><C-n>]], default_opts)
 
@@ -111,4 +112,9 @@ map('n', '<Leader>bd', ':bdelete!<CR>', default_opts)
 map('n', '<Leader>33', ':WhipOpen<CR>', default_opts)
 map('n', '<Leader>3l', ':WhipFindFile<CR>', default_opts)
 map('n', '<Leader>3n', ':WhipMake<CR>', default_opts)
+
+-- (5)ession
+map('n', '<Leader>5s', ':SaveSession<CR>', default_opts)
+map('n', '<Leader>5l', ':LoadSession<CR>', default_opts)
+map('n', '<Leader>5d', ':DeleteSession<CR>', default_opts)
 
