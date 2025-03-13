@@ -34,6 +34,7 @@ map('n', '<Leader>ff', ':Telescope find_files find_command=fd disable_devicons=t
 map('n', '<Leader>fd', ':Telescope fd<CR>', default_opts)
 map('n', '<Leader>fF', ':Telescope current_buffer_fuzzy_find<CR>', default_opts)
 map('n', '<Leader>fg', ':Telescope live_grep disable_devicons=true<CR>', default_opts)
+map('n', '<Leader>fs', ":lua require('telescope.builtin').live_grep({ additional_args = { '--no-binary', '--threads=16' } })<CR>", default_opts)
 map('n', '<Leader>fG', ':Telescope grep_string disable_devicons=true<CR>', default_opts)
 
 -- (l)ist commands
@@ -95,7 +96,7 @@ map('n', '<Leader>00', ':Terminal<CR>', default_opts)
 map('n', '<Leader>0v', ':VTerminal<CR>', default_opts)
 map('n', '<Leader>0x', ':STerminal<CR>', default_opts)
 map('n', '<Leader>0t', ':TTerminal<CR>', default_opts)
-map('n', '<Leader>0l', ':SelectTerminal<CR>', default_opts)
+map('n', '<Leader>l0', ':SelectTerminal<CR>', default_opts)
 map('n', '<Leader>0D', ':CloseTerminals<CR>', default_opts)
 map('t', '<Esc>', [[<C-\><C-n>]], default_opts)
 
@@ -115,6 +116,6 @@ map('n', '<Leader>3n', ':WhipMake<CR>', default_opts)
 
 -- (5)ession
 map('n', '<Leader>5s', ':SaveSession<CR>', default_opts)
-map('n', '<Leader>5l', ':LoadSession<CR>', default_opts)
+map('n', '<Leader>l5', ':LoadSession<CR>', default_opts)
 map('n', '<Leader>5d', ':DeleteSession<CR>', default_opts)
 
