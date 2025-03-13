@@ -28,7 +28,10 @@ end
 local function format_terminal_name(terminal_buffer)
     local title = vim.fn.getbufvar(terminal_buffer, 'term_title')
     local name = vim.api.nvim_buf_get_name(tonumber(terminal_buffer))
-    return '(' .. title .. ') ' .. name
+    if title ~= '' then
+        return '(' .. tostring(title) .. ') ' .. name
+    end
+    return name
 end
 
 local function select_terminal()
