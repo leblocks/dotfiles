@@ -29,20 +29,22 @@ map('n', '<Leader>q', ':q<CR>', default_opts)
 map('n', '<Leader>Q', ':q!<CR>', default_opts)
 map('n', '<Leader><Leader>', ':nohl<CR>', default_opts)
 
--- (f)ind commnands
-map('n', '<Leader>ff', ':Telescope find_files find_command=fd disable_devicons=true<CR>', default_opts)
-map('n', '<Leader>fd', ':Telescope fd<CR>', default_opts)
-map('n', '<Leader>fF', ':Telescope current_buffer_fuzzy_find<CR>', default_opts)
-map('n', '<Leader>fg', ':Telescope live_grep disable_devicons=true<CR>', default_opts)
-map('n', '<Leader>fs', ":lua require('telescope.builtin').live_grep({ additional_args = { '--no-binary', '--threads=16' } })<CR>", default_opts)
-map('n', '<Leader>fG', ':Telescope grep_string disable_devicons=true<CR>', default_opts)
+-- (f)ile commnands
+map('n', '<Leader>ff', ':Telescope find_files disable_devicons=true<CR>', default_opts)
+map('n', '<Leader>fe', ':TelescopeFindFilesOfSameExtension<CR>', default_opts)
+
+-- (g)rep commands
+map('n', '<Leader>gg', ':Telescope live_grep disable_devicons=true<CR>', default_opts)
+map('n', '<Leader>ge', ':TelescopeLiveGrepOfSameType<CR>', default_opts)
+map('n', '<Leader>gss', ':Telescope grep_string disable_devicons=true<CR>', default_opts)
+map('n', '<Leader>gse', ':TelescopeGrepStringOfSameType<CR>', default_opts)
 
 -- (l)ist commands
-map('n', '<Leader>lb', ':Telescope buffers<CR>', default_opts)
+map('n', '<Leader>lb', ':Telescope buffers ignore_current_buffer=true<CR>', default_opts)
 map('n', '<Leader>lq', ':copen<CR>', default_opts)
 map('n', '<Leader>ll', ':lopen<CR>', default_opts)
 map('n', '<Leader>lt', ':Telescope treesitter<CR>', default_opts)
-map('n', '<Leader>l]', ':Telescope tags<CR>', default_opts)
+map('n', '<Leader>l]', ':Telescope tags fname_width=50 only_sort_tags=true<CR>', default_opts)
 map('n', '<Leader>ls', ':Telescope lsp_document_symbols<CR>', default_opts)
 map('n', '<Leader>lS', ':Telescope lsp_workspace_symbols<CR>', default_opts)
 map('n', '<Leader>le', ':Telescope diagnostics bufnr=0<CR>', default_opts)
