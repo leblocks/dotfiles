@@ -1,25 +1,25 @@
 require('utils')
 
 local map = vim.api.nvim_set_keymap
-local default_opts = {noremap = true, silent = true}
+local default_opts = { noremap = true, silent = true }
 
-map('i', 'jj', '<Esc>', {noremap = true})
+map('i', 'jj', '<Esc>', { noremap = true })
 
 -- make Y work as expected (same as C and D)
-map('n', 'Y', 'y$', {noremap = true})
+map('n', 'Y', 'y$', { noremap = true })
 
 -- center screen after n and N during search and during J, <C-d> and <C-u>
-map('n', 'n', 'nzzzv', {noremap = true})
-map('n', 'N', 'Nzzzv', {noremap = true})
-map('n', 'J', 'mzJ`z', {noremap = true})
-map('n', '<C-d>', '<C-d>zzzv', {noremap = true})
-map('n', '<C-u>', '<C-u>zzzv', {noremap = true})
+map('n', 'n', 'nzzzv', { noremap = true })
+map('n', 'N', 'Nzzzv', { noremap = true })
+map('n', 'J', 'mzJ`z', { noremap = true })
+map('n', '<C-d>', '<C-d>zzzv', { noremap = true })
+map('n', '<C-u>', '<C-u>zzzv', { noremap = true })
 
 -- set undo breakpoints to make undo command more comfortable to use
-map('i', ',', ',<c-g>u', {noremap = true})
-map('i', '.', '.<c-g>u', {noremap = true})
-map('i', '!', '!<c-g>u', {noremap = true})
-map('i', '?', '?<c-g>u', {noremap = true})
+map('i', ',', ',<c-g>u', { noremap = true })
+map('i', '.', '.<c-g>u', { noremap = true })
+map('i', '!', '!<c-g>u', { noremap = true })
+map('i', '?', '?<c-g>u', { noremap = true })
 
 vim.g.mapleader = ' '
 
@@ -52,18 +52,21 @@ map('n', '<Leader>lE', ':Telescope diagnostics<CR>', default_opts)
 map('n', '<Leader>la', ':lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('n', '<Leader>lm', ':Telescope marks<CR>', default_opts)
 map('n', '<Leader>l/', ':Telescope builtin<CR>', default_opts)
+map('n', '<Leader>lic', ':Telescope lsp_incoming_calls<CR>', default_opts)
+map('n', '<Leader>loc', ':Telescope lsp_outgoing_calls<CR>', default_opts)
+
 
 -- (g)oto commands
 map('n', 'gr', ':Telescope lsp_references<CR>', default_opts)
 map('n', 'gd', ':Telescope lsp_definitions<CR>', default_opts)
+map('n', 'gt', ':Telescope lsp_type_definitions<CR>', default_opts)
 map('n', 'gi', ':Telescope lsp_implementations<CR>', default_opts)
 
 -- code (a)ctions
 map('n', '<Leader>ah', ':lua vim.lsp.buf.hover()<CR>', default_opts)
 map('n', '<Leader>ar', ':lua vim.lsp.buf.rename()<CR>', default_opts)
-map('n', '<Leader>af', ':lua vim.lsp.buf.format({ async = True })<CR>', default_opts)
--- TODO make it work!
-map('v', '<Leader>af', ':lua vim.lsp.buf.format({ async = True })<CR>', default_opts)
+
+vim.keymap.set({ 'n', 'v' }, '<Leader>af', vim.lsp.buf.format, { remap = false })
 
 -- language (s)erver specific bindings for language server commands
 local function register_lsp_keybindings(ls_server_name, pattern)
@@ -75,11 +78,12 @@ local function register_lsp_keybindings(ls_server_name, pattern)
     end
 
     local function server_attach_callback()
-        vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>sa', ':lua AttachCurrentBufferToLspClientByName(\'' .. ls_server_name .. '\')<CR>', default_opts)
+        vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>sa',
+            ':lua AttachCurrentBufferToLspClientByName(\'' .. ls_server_name .. '\')<CR>', default_opts)
     end
 
-    vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = server_start_callback , group = group })
-    vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = server_attach_callback , group = group })
+    vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = server_start_callback, group = group })
+    vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = server_attach_callback, group = group })
 end
 
 map('n', '<Leader>si', ':LspInfo<CR>', default_opts)
@@ -120,4 +124,3 @@ map('n', '<Leader>3n', ':WhipMake<CR>', default_opts)
 map('n', '<Leader>5s', ':SaveSession<CR>', default_opts)
 map('n', '<Leader>l5', ':LoadSession<CR>', default_opts)
 map('n', '<Leader>5d', ':DeleteSession<CR>', default_opts)
-
