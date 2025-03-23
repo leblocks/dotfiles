@@ -15,9 +15,17 @@ function Test-Dependencies ([string[]] $packages) {
 
 function LinkToHome ([string] $folder, [string] $fileName) {
     $pathToLink = Join-Path $HOME $fileName
-    $pathToConfig = Join-Path $folder $fileName
-    Remove-Item -Path $pathToLink -Force -ErrorAction SilentlyContinue
-    New-Item -ItemType SymbolicLink -Path $pathToLink -Target $pathToConfig -Force
+
+    Remove-Item `
+        -Path $pathToLink `
+        -ErrorAction SilentlyContinue `
+        -Force
+
+    New-Item `
+        -ItemType SymbolicLink `
+        -Path $pathToLink `
+        -Target (Join-Path $folder $fileName) `
+        -Force
 }
 
 function Install-Package ([string] $package) {
@@ -44,7 +52,11 @@ function Set-EnvironmentVariable ([string] $name, [string] $value) {
     $path = Join-Path $HOME ".environment.json"
 
     if (-Not (Test-Path $path)) {
-        New-Item $path -ItemType "file" -Force
+        New-Item `
+            -Path $path `
+            -ItemType File `
+            -Force
+
         # new file must be valid json
         Set-Content $path "{}"
     }
@@ -55,10 +67,16 @@ function Set-EnvironmentVariable ([string] $name, [string] $value) {
     if ($exists) {
         $environment."$name" = $value
     } else {
-        Add-Member -InputObject $environment -MemberType NoteProperty -Name $name -Value $value
+        Add-Member `
+           -InputObject $environment `
+           -MemberType NoteProperty `
+           -Name $name `
+           -Value $value
     }
 
-    $environment | ConvertTo-Json | Set-Content $path
+    $environment
+        | ConvertTo-Json
+        | Set-Content $path
 }
 
 function Add-PathEntry ([string] $pathEntry) {
@@ -71,8 +89,12 @@ function Add-PathEntry ([string] $pathEntry) {
         $pathEntries = [System.Collections.Generic.HashSet[string]](Get-Content $path | ConvertFrom-Json)
     }
 
-    $pathEntries.Add($pathEntry) | Out-Null
-    $pathEntries | ConvertTo-Json | Set-Content $path
+    $pathEntries.Add($pathEntry)
+        | Out-Null
+
+    $pathEntries
+        | ConvertTo-Json
+        | Set-Content $path
 }
 
 function New-Folder ([string] $path) {
@@ -100,17 +122,16 @@ function Invoke-FailFastExpression {
         [string]$command
     )
 
-    $debug = [System.Environment]::GetEnvironmentVariable("DOTFILES_DEBUG")
+    $debug = $env:DOTFILES_DEBUG
 
     try {
-        if ($debug -eq $Null) {
+        if ($debug -eq $null) {
             Invoke-Expression $command | Out-Null
         } else {
             Invoke-Expression $command
         }
     } catch {
-        Write-Error "Failed to execute $command, error details: $_"
-        throw "Invoke-FailFastExpression failed"
+        throw "Invoke-FailFastExpression failed on $command with: $_"
     }
 }
 
@@ -120,8 +141,16 @@ function Invoke-Expressions {
         [string[]]$commands
     )
 
+    $counter = 0;
+
     foreach ($command in $commands) {
-        Write-Message "executing: '$command'"
+        $counter++
+        $progress = [int](($counter / $commands.Length) * 100)
+
+        Write-Progress `
+            -Activity $command `
+            -PercentComplete $progress
+
         $command | Invoke-FailFastExpression
     }
 }
@@ -178,7 +207,8 @@ function New-Ctags([string] $Language) {
         "--recurse=yes",
         "--languages=$Language",
         "--tag-relative=yes",
-        "--fields=+ailmnS"
+        "--fields=+ailmnS",
+        "--exclude=node_modules"
     ) | Invoke-Expression
 }
 

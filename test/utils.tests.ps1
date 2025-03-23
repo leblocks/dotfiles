@@ -46,7 +46,7 @@ Describe 'utils environment variable manipulation' {
         Add-PathEntry "TEST_my_path_entry"
         . $PROFILE
 
-        [System.Collections.Generic.HashSet[string]]($env:PATH.Split($separator, 
+        [System.Collections.Generic.HashSet[string]]($env:PATH.Split($separator,
             [System.StringSplitOptions]::RemoveEmptyEntries)) | Should -Contain "TEST_my_path_entry"
     }
 
@@ -92,12 +92,12 @@ Describe 'utils' {
     }
 
     It "calling Invoke-FailFastExpression on success does not produce output" {
-        [System.Environment]::SetEnvironmentVariable("DOTFILES_DEBUG", "")
+        $env:DOTFILES_DEBUG = $null
         Invoke-FailFastExpression "echo 1" | Should -Be $Null
     }
 
     It "calling Invoke-FailFastExpression on success provides output with debug flag" {
-        [System.Environment]::SetEnvironmentVariable("DOTFILES_DEBUG", "1")
+        $env:DOTFILES_DEBUG = 1
         Invoke-FailFastExpression "echo 1" | Should -Be "1"
     }
 }
