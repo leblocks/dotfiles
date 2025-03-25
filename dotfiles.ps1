@@ -74,17 +74,20 @@ function Invoke-Tests {
 
 function Install {
     $pathToPackages = Join-Path $PSScriptRoot "packages" "packages.json"
-    Write-Message "Installing from '$pathToPackages'"
     Get-Content $pathToPackages -Raw
         | ConvertFrom-Json
         | ForEach-Object {
+            $i = 0
             $packagesToInstall = $_.common + ($IsWindows ? $_.windows : $_.linux)
-            $i = 1
-            $total = $packagesToInstall.Count
             foreach ($package in $packagesToInstall) {
-                Write-Message "Installing '$package' ($i/$total)"
-                Install-Package $package
                 $i = $i + 1
+                $progress = [int](($i / $packagesToInstall.Count) * 100)
+
+                Write-Progress `
+                    -Activity $package `
+                    -PercentComplete $progress
+
+                Install-Package $package
             }
         }
 }
