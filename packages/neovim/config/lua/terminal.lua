@@ -4,16 +4,14 @@ local function terminal_config()
 end
 
 local function get_launch_terminal_command()
-    local current_directory = vim.fn.expand('%:p:h')
-    current_directory = '\\"' .. current_directory:gsub(" ", "\\ ") .. '\\"'
+    current_directory = vim.uv.cwd()
 
-    local command = "pwsh -NoLogo -NoProfileLoadTime"
-
-    if (not current_directory:find("term://")) then
-        command = command .. " -WorkingDirectory " .. current_directory
+    -- prefer cmd on windows
+    if vim.loop.os_uname().sysname == "Windows_NT" then
+        return "cmd.exe /K clink inject && cd " .. current_directory
     end
 
-    return command
+    return "pwsh -NoLogo -NoProfileLoadTime -WorkingDirectory " .. current_directory
 end
 
 local function close_terminal_buffers()
