@@ -3,6 +3,11 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 local session_folder = vim.fs.normalize(vim.fn.stdpath('state') .. '/sessions')
 
+if vim.fn.isdirectory(session_folder) ~= 0 then
+    -- TODO creste sessions folder if it does not exist
+    print("TODO create session folder")
+end
+
 local function get_session_filepath()
     local session_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
     return vim.fs.joinpath(session_folder, session_name)

@@ -43,24 +43,29 @@ function List {
 function Configure {
     param ([Parameter(Position=0, Mandatory=$True)] [string] $tool)
 
-    $availableConfigurations = List
-    [System.Collections.ArrayList] $scriptsToInvoke = @()
+    $configurations = List
+    [System.Collections.ArrayList] $scripts = @()
 
     if ($tool -eq "all") {
-        $scriptsToInvoke = $availableConfigurations | ForEach-Object { Get-PathToConfigure $_ }
-    } elseif (-Not ($availableConfigurations -contains $tool)) {
+        $scripts = $configurations | ForEach-Object { Get-PathToConfigure $_ }
+    } elseif (-Not ($configurations -contains $tool)) {
         throw "Could not find configuration for '$tool', check available configurations with 'dotfiles list' command."
     } else {
-        $configurationPath = Get-PathToConfigure $tool
-        $scriptsToInvoke.Add($configurationPath)
+        $script = Get-PathToConfigure $tool
+        $scripts.Add($script)
     }
 
-    $i = 1
-    $total = $scriptsToInvoke.Count
-    foreach ($path in $scriptsToInvoke) {
-        Write-Message "Running '$path' ($i/$total)"
-        & $path
-        $i = $i + 1
+    $i = 0
+    foreach ($script in $scripts) {
+        $i += 1
+        $percent = [int](($i / $scripts.Count) * 100)
+
+        & $script
+
+        Write-Progress `
+            -Activity "configuring packages" `
+            -Status $script `
+            -PercentComplete $percent
     }
 }
 
@@ -69,7 +74,9 @@ function Invoke-Tests {
         Install-Module "Pester" -Force
     }
     Import-Module Pester -PassThru
-    Invoke-Pester -Path $PSScriptRoot/test/**/*.tests.ps1, $PSScriptRoot/test/*.tests.ps1 -Output Detailed
+    Invoke-Pester `
+        -Path $PSScriptRoot/test/**/*.tests.ps1, $PSScriptRoot/test/*.tests.ps1 `
+        -Output Detailed
 }
 
 function Install {
@@ -77,23 +84,19 @@ function Install {
     Get-Content $pathToPackages -Raw
         | ConvertFrom-Json
         | ForEach-Object {
-            $i = 0
-            $packagesToInstall = $_.common + ($IsWindows ? $_.windows : $_.linux)
-            foreach ($package in $packagesToInstall) {
-                $i = $i + 1
-                $progress = [int](($i / $packagesToInstall.Count) * 100)
-
-                Write-Progress `
-                    -Activity $package `
-                    -PercentComplete $progress
-
-                Install-Package $package
-            }
+            $packageManager = Get-PackageManager
+            Install-Packages `
+                -PackageManager $packageManager `
+                -Packages $_.PSObject.properties[$packageManager].Value
         }
 }
 
 function Get-PathToConfigure($tool) {
-    return Join-Path $PSScriptRoot "packages" $tool "configure.ps1"
+    Join-Path `
+        $PSScriptRoot `
+        "packages" `
+        $tool `
+        "configure.ps1"
 }
 
 switch ($Command) {

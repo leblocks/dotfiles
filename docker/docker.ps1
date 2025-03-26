@@ -1,4 +1,4 @@
-param([Parameter(Position=0, Mandatory=$True)] [ValidateSet("archlinux", "alpine", "ubuntu")] [string] $ImageName)
+param([Parameter(Position=0, Mandatory=$True)] [ValidateSet("archlinux", "ubuntu")] [string] $ImageName)
 
 . $PSScriptRoot/../utils.ps1
 
@@ -13,9 +13,6 @@ $entrypointArgument = "`"" +
             ) + "`""
 
 switch ($ImageName) {
-    "alpine" {
-        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/sh", "alpine:3.18", "-c",  $entrypointArgument) 
-    }
     "archlinux" {
         $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "archlinux:base", "-c", $entrypointArgument)
     }

@@ -1,11 +1,12 @@
 {
-    "common" : [
+    "scoop": [
         "bat",
         "bottom",
         "curl",
         "fd",
         "jq",
         "mc",
+        "mingw",
         "neovim",
         "ripgrep",
         "shellcheck",
@@ -14,14 +15,41 @@
         "unzip"
     ],
 
-    "windows" : [
-        "mingw"
+    "pacman": [
+        "bash",
+        "bat",
+        "bottom",
+        "curl",
+        "fd",
+        "gcc",
+        "jq",
+        "mc",
+        "neovim",
+        "ripgrep",
+        "shellcheck",
+        "tar",
+        "tmux",
+        "tree",
+        "universal-ctags",
+        "unzip"
     ],
 
-    "linux" : [
+    "brew": [
         "bash",
+        "bat",
+        "bottom",
+        "curl",
+        "fd",
         "gcc",
+        "jq",
+        "mc",
+        "neovim",
+        "ripgrep",
+        "shellcheck",
         "tar",
-        "tmux"
+        "tmux",
+        "tree",
+        "universal-ctags",
+        "unzip"
     ]
 }

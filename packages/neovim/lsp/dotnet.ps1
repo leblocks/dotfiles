@@ -12,18 +12,14 @@ function Get-Link([string] $arch, [string] $version) {
     return "https://pkgs.dev.azure.com/azure-public/vside/_apis/packaging/feeds/vs-impl/nuget/packages/Microsoft.CodeAnalysis.LanguageServer.$arch/versions/$version/content?api-version=7.1-preview.1"
 }
 
-$link = ""
-if ($IsWindows) {
-    $link = Get-Link "win-x64" $ROSLYN_VERSION
-} elseif (Test-Command("pacman") ) {
-    $link = Get-Link "linux-x64" $ROSLYN_VERSION
-} elseif (Test-Command("apk")) {
-    $link = Get-Link "linux-musl-x64" $ROSLYN_VERSION
-} elseif (Test-Command("brew")) {
-    $link = Get-Link "linux-x64" $ROSLYN_VERSION
-} else {
-    throw "unsupported OS"
+$arch = ""
+switch (Get-PackageManager) {
+    "scoop" { $arch = "win-x64" }
+    { ($_ -eq "brew") -or ($_ -eq "pacman") } { $arch = "linux-x64" }
+    default { throw "unsupported OS" }
 }
+
+$link = Get-Link $arch $ROSLYN_VERSION
 
 New-Folder $toolPath
 

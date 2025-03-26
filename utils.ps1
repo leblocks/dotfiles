@@ -28,24 +28,41 @@ function LinkToHome ([string] $folder, [string] $fileName) {
         -Force
 }
 
-function Install-Package ([string] $package) {
-    $sudo = ((Test-Command -Command "sudo") ? "sudo" : "")
+function Get-PackageManager {
+    if (Test-Command -Command "brew") { return "brew" }
+    if (Test-Command -Command "scoop") { return "scoop" }
+    if (Test-Command -Command "pacman") { return "pacman" }
+    throw "Could not find supported package manager for installation."
+}
 
-    if (Test-Command -Command "scoop") {
-        $command = "scoop install $package"
-    } elseif (Test-Command -Command "choco") {
-        $command = "choco upgrade $package --confirm"
-    } elseif (Test-Command -Command "apk") {
-        $command = "$sudo apk add $package --no-cache"
-    } elseif (Test-Command -Command "pacman") {
-        $command = "$sudo pacman -Sy --noconfirm $package"
-    } elseif (Test-Command -Command "brew") {
-        $command = "brew install $package"
-    } else {
-        throw "Could not find supported package manager for installation."
+function Get-PackageManagerInstallCommand([string] $PackageManager, [string] $Package) {
+    switch($PackageManager) {
+        "brew" { return "brew install $Package" }
+        "scoop" { return "scoop install $Package" }
+        "pacman" {
+            $sudo = ((Test-Command -Command "sudo") ? "sudo" : "")
+            return "$sudo pacman -Sy --noconfirm $Package"
+        }
+        default { throw "$PackageManager is not supported." }
     }
+}
 
-    $command | Invoke-FailFastExpression
+function Install-Packages([string] $PackageManager, [string[]] $Packages) {
+    $counter = 0
+    foreach ($package in $Packages) {
+        $counter++
+        $progress = [int](($counter / $Packages.Count) * 100)
+
+        Get-PackageManagerInstallCommand `
+            -PackageManager $PackageManager `
+            -Package $package
+            | Invoke-FailFastExpression
+
+        Write-Progress `
+            -Activity "installing packages" `
+            -Status $package `
+            -PercentComplete $progress
+    }
 }
 
 function Set-EnvironmentVariable ([string] $name, [string] $value) {
@@ -98,8 +115,16 @@ function Add-PathEntry ([string] $pathEntry) {
 }
 
 function New-Folder ([string] $path) {
-    Remove-Item -Path $path -Recurse -Force -ErrorAction SilentlyContinue
-    New-Item -Path $path -ItemType "directory" -Force
+    Remove-Item `
+        -Path $path `
+        -ErrorAction SilentlyContinue `
+        -Recurse `
+        -Force
+
+    New-Item `
+        -Path $path `
+        -ItemType Directory `
+        -Force
 }
 
 function Write-Message ([string] $message) {
@@ -112,8 +137,14 @@ function Get-Files {
 
 function Get-Ports {
     Get-NetTCPConnection
-        | ForEach-Object { Add-Member -InputObject $_ -MemberType NoteProperty -Name "Cmd" -Value (Get-Process -Id $_.OwningProcess).Path -PassThru }
-        | Select-Object LocalAddress, LocalPort, RemoteAddress, Remote-Port, State, OwningProcess, Cmd
+        | ForEach-Object {
+            Add-Member `
+                -InputObject $_ `
+                -MemberType NoteProperty `
+                -Value (Get-Process -Id $_.OwningProcess).Path `
+                -Name "Cmd" `
+                -PassThru
+        } | Select-Object LocalAddress, LocalPort, RemoteAddress, Remote-Port, State, OwningProcess, Cmd
 }
 
 function Invoke-FailFastExpression {
@@ -208,7 +239,8 @@ function New-Ctags([string] $Language) {
         "--languages=$Language",
         "--tag-relative=yes",
         "--fields=+ailmnS",
-        "--exclude=node_modules"
+        "--exclude=node_modules",
+        "--totals=yes"
     ) | Invoke-Expression
 }
 

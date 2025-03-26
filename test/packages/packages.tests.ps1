@@ -1,7 +1,19 @@
 
 function Get-PackagesList {
-    $packages = Join-Path $PSScriptRoot ".." ".." "packages" "packages.json"
-    Get-Content $packages | ConvertFrom-Json
+    . $PSScriptRoot/../../utils.ps1
+
+    $path = Join-Path `
+        $PSScriptRoot `
+        ".." `
+        ".." `
+        "packages" `
+        "packages.json"
+
+    $packages = Get-Content $path | ConvertFrom-Json
+
+    $packageManager = Get-PackageManager
+
+    $packages.PSObject.properties[$packageManager].Value
 }
 
 BeforeAll {
@@ -16,19 +28,7 @@ BeforeAll {
 }
 
 Describe 'packages from packages.json were installed' {
-    It "common package <_> is installed" -ForEach (Get-PackagesList).common {
-        if ($exceptions.ContainsKey($_)) {
-            Test-Command $exceptions[$_] | Should -Be $true
-        } else {
-            Test-Command $_ | Should -Be $true
-        }
-    }
-
-    It "linux package <_> is installed" -Skip:$IsWindows -ForEach (Get-PackagesList).linux {
-        Test-Command $_ | Should -Be $true
-    }
-
-    It "windows package <_> is installed" -Skip:$IsLinux -ForEach (Get-PackagesList).windows {
+    It "package <_> is installed" -ForEach (Get-PackagesList) {
         if ($exceptions.ContainsKey($_)) {
             Test-Command $exceptions[$_] | Should -Be $true
         } else {

@@ -14,7 +14,11 @@ if (Test-Path $pathToScript) {
     Remove-Item -Path $pathToScript -Force
 }
 
-Invoke-WebRequest "https://dot.net/v1/$installationScript" -OutFile $pathToScript -MaximumRetryCount 5 -RetryIntervalSec 3
+Invoke-WebRequest `
+    -Uri "https://dot.net/v1/$installationScript" `
+    -OutFile $pathToScript `
+    -MaximumRetryCount 5 `
+    -RetryIntervalSec 3
 
 $DOTNET_ROOT = Join-Path $HOME ".dotnet"
 
