@@ -49,12 +49,10 @@ map('n', '<Leader>ls', ':Telescope lsp_document_symbols<CR>', default_opts)
 map('n', '<Leader>lS', ':Telescope lsp_workspace_symbols<CR>', default_opts)
 map('n', '<Leader>le', ':Telescope diagnostics bufnr=0<CR>', default_opts)
 map('n', '<Leader>lE', ':Telescope diagnostics<CR>', default_opts)
-map('n', '<Leader>la', ':lua vim.lsp.buf.code_action()<CR>', default_opts)
 map('n', '<Leader>lm', ':Telescope marks<CR>', default_opts)
 map('n', '<Leader>l/', ':Telescope builtin<CR>', default_opts)
 map('n', '<Leader>lic', ':Telescope lsp_incoming_calls<CR>', default_opts)
 map('n', '<Leader>loc', ':Telescope lsp_outgoing_calls<CR>', default_opts)
-
 
 -- (g)oto commands
 map('n', 'gr', ':Telescope lsp_references<CR>', default_opts)
@@ -63,9 +61,22 @@ map('n', 'gt', ':Telescope lsp_type_definitions<CR>', default_opts)
 map('n', 'gi', ':Telescope lsp_implementations<CR>', default_opts)
 
 -- code (a)ctions
-map('n', '<Leader>ah', ':lua vim.lsp.buf.hover()<CR>', default_opts)
-map('n', '<Leader>ar', ':lua vim.lsp.buf.rename()<CR>', default_opts)
+local border = {
+      {"╭", "FloatBorder"},
+      {"─", "FloatBorder"},
+      {"╮", "FloatBorder"},
+      {"│", "FloatBorder"},
+      {"╯", "FloatBorder"},
+      {"─", "FloatBorder"},
+      {"╰", "FloatBorder"},
+      {"│", "FloatBorder"},
+}
 
+vim.keymap.set({ 'n' }, '<Leader>la', vim.lsp.buf.code_action, { remap = false })
+vim.keymap.set({ 'n' }, '<Leader>as', function() vim.lsp.buf.signature_help({ border = border }) end, { remap = false })
+vim.keymap.set({ 'n' }, '<Leader>ah', function() vim.lsp.buf.hover({ border = border }) end, { remap = false })
+vim.keymap.set({ 'n' }, '<Leader>at', vim.lsp.buf.typehierarchy, { remap = false })
+vim.keymap.set({ 'n' }, '<Leader>ar', vim.lsp.buf.rename, { remap = false })
 vim.keymap.set({ 'n', 'v' }, '<Leader>af', vim.lsp.buf.format, { remap = false })
 
 -- language (s)erver specific bindings for language server commands

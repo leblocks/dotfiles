@@ -1,5 +1,5 @@
 function AttachCurrentBufferToLspClientByName(client_name)
-    local active_clients = vim.lsp.get_active_clients()
+    local active_clients = vim.lsp.get_clients()
     for _, value in pairs(active_clients) do
         if value.name == client_name then
             -- check if current buffer already attached to the client
