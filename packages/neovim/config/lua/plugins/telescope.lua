@@ -1,7 +1,6 @@
 local action_layout = require('telescope.actions.layout')
 
 local telescope = require('telescope')
-local builtin = require('telescope.builtin')
 
 local cpu_count = 0
 for _ in pairs(vim.loop.cpu_info()) do
@@ -55,32 +54,6 @@ telescope.setup({
     }
 })
 
-
-vim.api.nvim_create_user_command('TelescopeFindFilesOfSameExtension', function()
-    builtin.find_files({
-        find_command = {
-            'fd',
-            '--type', 'f',
-            '--strip-cwd-prefix',
-            '--extension', vim.fn.expand('%:e'),
-        },
-    })
-end, {})
-
-vim.api.nvim_create_user_command('TelescopeLiveGrepOfSameType', function()
-    builtin.live_grep({
-        glob_pattern = "*." .. vim.fn.expand('%:e')
-    })
-end, {})
-
-vim.api.nvim_create_user_command('TelescopeGrepStringOfSameType', function()
-    builtin.grep_string({
-        additional_args = {
-            "--glob=*." .. vim.fn.expand('%:e')
-        },
-    })
-end, {})
-
-telescope.load_extension('fzy_native')
 telescope.load_extension('ui-select')
+telescope.load_extension('fzy_native')
 

@@ -31,13 +31,10 @@ map('n', '<Leader><Leader>', ':nohl<CR>', default_opts)
 
 -- (f)ile commnands
 map('n', '<Leader>ff', ':Telescope find_files disable_devicons=true<CR>', default_opts)
-map('n', '<Leader>fe', ':TelescopeFindFilesOfSameExtension<CR>', default_opts)
 
 -- (g)rep commands
 map('n', '<Leader>gg', ':Telescope live_grep disable_devicons=true<CR>', default_opts)
-map('n', '<Leader>ge', ':TelescopeLiveGrepOfSameType<CR>', default_opts)
-map('n', '<Leader>gss', ':Telescope grep_string disable_devicons=true<CR>', default_opts)
-map('n', '<Leader>gse', ':TelescopeGrepStringOfSameType<CR>', default_opts)
+map('n', '<Leader>gs', ':Telescope grep_string disable_devicons=true<CR>', default_opts)
 
 -- (l)ist commands
 map('n', '<Leader>lb', ':Telescope buffers ignore_current_buffer=true<CR>', default_opts)
@@ -135,3 +132,4 @@ map('n', '<Leader>3n', ':WhipMake<CR>', default_opts)
 map('n', '<Leader>5s', ':SaveSession<CR>', default_opts)
 map('n', '<Leader>l5', ':LoadSession<CR>', default_opts)
 map('n', '<Leader>5d', ':DeleteSession<CR>', default_opts)
+
