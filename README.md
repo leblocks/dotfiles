@@ -16,7 +16,8 @@ from the headache of managing different sets of scripts, making development more
 ## TODOs
 * tests for empty windows installation, vm?
 * make sure that none of commands requires admin (except package installations)
-* support different package names for different installers
+* refactor pwsh stuff
+* ditch nvim-cmp from config
 
 ## Repository structure
 
