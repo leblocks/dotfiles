@@ -1,7 +1,5 @@
 vim.o.completeopt = 'menuone,noselect,popup,fuzzy'
 
--- https://georgebrock.github.io/talks/vim-completion/
--- TODO how to provide treesitter source? for usercomplete c-x c-u?
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -11,3 +9,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+
+-- TODO configure treesitter nodes for completion as well

@@ -41,6 +41,7 @@ map('n', '<Leader>lb', ':Telescope buffers ignore_current_buffer=true<CR>', defa
 map('n', '<Leader>lq', ':copen<CR>', default_opts)
 map('n', '<Leader>ll', ':lopen<CR>', default_opts)
 map('n', '<Leader>lt', ':Telescope treesitter<CR>', default_opts)
+-- TODO broken!
 map('n', '<Leader>l]', ':Telescope tags fname_width=50 only_sort_tags=true<CR>', default_opts)
 map('n', '<Leader>ls', ':Telescope lsp_document_symbols<CR>', default_opts)
 map('n', '<Leader>lS', ':Telescope lsp_workspace_symbols<CR>', default_opts)

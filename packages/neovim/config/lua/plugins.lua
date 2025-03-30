@@ -26,13 +26,7 @@ return packer.startup(function(use)
 
     -- lsp
     use('neovim/nvim-lspconfig')
-    use('ray-x/lsp_signature.nvim')
-    use('ray-x/cmp-treesitter')
     use('seblj/roslyn.nvim')
-
-    -- completion
-    use('hrsh7th/nvim-cmp')
-    use('hrsh7th/cmp-nvim-lsp')
 
     use('nathom/filetype.nvim')
 
