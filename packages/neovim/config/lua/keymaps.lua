@@ -45,6 +45,7 @@ map('n', '<Leader>lt', ':Telescope treesitter<CR>', default_opts)
 map('n', '<Leader>l]', ':Telescope tags fname_width=50 only_sort_tags=true<CR>', default_opts)
 map('n', '<Leader>ls', ':Telescope lsp_document_symbols<CR>', default_opts)
 map('n', '<Leader>lS', ':Telescope lsp_workspace_symbols<CR>', default_opts)
+map('n', '<Leader>lt', ':Telescope lsp_type_definitions<CR>', default_opts)
 map('n', '<Leader>le', ':Telescope diagnostics bufnr=0<CR>', default_opts)
 map('n', '<Leader>lE', ':Telescope diagnostics<CR>', default_opts)
 map('n', '<Leader>lm', ':Telescope marks<CR>', default_opts)
@@ -55,7 +56,6 @@ map('n', '<Leader>loc', ':Telescope lsp_outgoing_calls<CR>', default_opts)
 -- (g)oto commands
 map('n', 'gr', ':Telescope lsp_references<CR>', default_opts)
 map('n', 'gd', ':Telescope lsp_definitions<CR>', default_opts)
-map('n', 'gt', ':Telescope lsp_type_definitions<CR>', default_opts)
 map('n', 'gi', ':Telescope lsp_implementations<CR>', default_opts)
 
 -- code (a)ctions
