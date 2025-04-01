@@ -31,6 +31,7 @@ map('n', '<Leader><Leader>', ':nohl<CR>', default_opts)
 
 -- (f)ile commnands
 map('n', '<Leader>ff', ':Telescope find_files disable_devicons=true<CR>', default_opts)
+map('n', '<Leader>fl', ':Telescope current_buffer_fuzzy_find disable_devicons=true<CR>', default_opts)
 
 -- (g)rep commands
 map('n', '<Leader>gg', ':Telescope live_grep disable_devicons=true<CR>', default_opts)
@@ -115,7 +116,7 @@ map('n', '<Leader>l0', ':SelectTerminal<CR>', default_opts)
 map('n', '<Leader>0D', ':CloseTerminals<CR>', default_opts)
 map('t', '<Esc>', [[<C-\><C-n>]], default_opts)
 
--- netrw
+-- netrw (vinegar)
 map('n', '<Leader>11', ':Explore<CR>', default_opts)
 map('n', '<Leader>1v', ':Vexplore<CR>', default_opts)
 map('n', '<Leader>1x', ':Sexplore<CR>', default_opts)

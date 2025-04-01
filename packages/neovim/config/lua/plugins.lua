@@ -32,7 +32,6 @@ return packer.startup(function(use)
 
     -- ui
     use({ 'nvim-lualine/lualine.nvim' })
-    use({ 'alvarosevilla95/luatab.nvim' })
 
     -- note taking
     use('slugbyte/whip.nvim')
@@ -43,13 +42,8 @@ return packer.startup(function(use)
     -- keep track of configuration performance
     use('dstein64/vim-startuptime')
 
-    -- marks
-    use('chentoast/marks.nvim')
-
     -- colorschemes
     use({ "catppuccin/nvim", as = "catppuccin" })
-    use({ 'sainnhe/everforest' })
-    use({ 'rebelot/kanagawa.nvim' })
     use({ 'jackplus-xyz/binary.nvim' })
 
     if packer_bootstrap then
