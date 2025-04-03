@@ -31,6 +31,7 @@ map('n', '<Leader><Leader>', ':nohl<CR>', default_opts)
 
 -- (f)ile commnands
 map('n', '<Leader>ff', ':Telescope find_files disable_devicons=true<CR>', default_opts)
+map('n', '<Leader>fg', ':Telescope git_files disable_devicons=true<CR>', default_opts)
 map('n', '<Leader>fl', ':Telescope current_buffer_fuzzy_find disable_devicons=true<CR>', default_opts)
 
 -- (g)rep commands
