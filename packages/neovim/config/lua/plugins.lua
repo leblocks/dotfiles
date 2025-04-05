@@ -9,9 +9,7 @@ end
 local packer = require('packer')
 
 return packer.startup(function(use)
-    use({ 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' } } })
-    use('nvim-telescope/telescope-fzy-native.nvim')
-    use('nvim-telescope/telescope-ui-select.nvim')
+    use('ibhagwan/fzf-lua')
 
     -- treesitter
     use('nvim-treesitter/nvim-treesitter')
@@ -32,9 +30,6 @@ return packer.startup(function(use)
 
     -- ui
     use({ 'nvim-lualine/lualine.nvim' })
-
-    -- note taking
-    use('slugbyte/whip.nvim')
 
     -- center buffer
     use({"shortcuts/no-neck-pain.nvim", tag = "*" })

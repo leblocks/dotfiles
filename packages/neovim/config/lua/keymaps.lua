@@ -30,35 +30,38 @@ map('n', '<Leader>Q', ':q!<CR>', default_opts)
 map('n', '<Leader><Leader>', ':nohl<CR>', default_opts)
 
 -- (f)ile commnands
-map('n', '<Leader>ff', ':Telescope find_files disable_devicons=true<CR>', default_opts)
-map('n', '<Leader>fg', ':Telescope git_files disable_devicons=true<CR>', default_opts)
-map('n', '<Leader>fl', ':Telescope current_buffer_fuzzy_find disable_devicons=true<CR>', default_opts)
+map('n', '<Leader>ff', ':FzfLua files<CR>', default_opts)
+map('n', '<Leader>fb', ':FzfLua blines<CR>', default_opts)
 
 -- (g)rep commands
-map('n', '<Leader>gg', ':Telescope live_grep disable_devicons=true<CR>', default_opts)
-map('n', '<Leader>gs', ':Telescope grep_string disable_devicons=true<CR>', default_opts)
+map('n', '<Leader>gg', ':FzfLua grep<CR>', default_opts)
+map('n', '<Leader>gb', ':FzfLua grep_curbuf<CR>', default_opts)
+map('n', '<Leader>gw', ':FzfLua grep_cword<CR>', default_opts)
+map('n', '<Leader>gW', ':FzfLua grep_cWORD<CR>', default_opts)
+map('n', '<Leader>gl', ':FzfLua live_grep<CR>', default_opts)
+
+-- (])ags commands
+map('n', '<Leader>]]', ':FzfLua tags<CR>', default_opts)
+map('n', '<Leader>]b', ':FzfLua btags<CR>', default_opts)
+
+-- (t)reesitter commands
+map('n', '<Leader>tt', ':FzfLua treesitter<CR>', default_opts)
 
 -- (l)ist commands
-map('n', '<Leader>lb', ':Telescope buffers ignore_current_buffer=true<CR>', default_opts)
+map('n', '<Leader>l/', ':FzfLua builtin<CR>', default_opts)
+map('n', '<Leader>lb', ':FzfLua buffers<CR>', default_opts)
 map('n', '<Leader>lq', ':copen<CR>', default_opts)
 map('n', '<Leader>ll', ':lopen<CR>', default_opts)
-map('n', '<Leader>lt', ':Telescope treesitter<CR>', default_opts)
--- TODO broken!
-map('n', '<Leader>l]', ':Telescope tags fname_width=50 only_sort_tags=true<CR>', default_opts)
-map('n', '<Leader>ls', ':Telescope lsp_document_symbols<CR>', default_opts)
-map('n', '<Leader>lS', ':Telescope lsp_workspace_symbols<CR>', default_opts)
-map('n', '<Leader>le', ':Telescope diagnostics bufnr=0<CR>', default_opts)
-map('n', '<Leader>lE', ':Telescope diagnostics<CR>', default_opts)
-map('n', '<Leader>lm', ':Telescope marks<CR>', default_opts)
-map('n', '<Leader>l/', ':Telescope builtin<CR>', default_opts)
-map('n', '<Leader>lic', ':Telescope lsp_incoming_calls<CR>', default_opts)
-map('n', '<Leader>loc', ':Telescope lsp_outgoing_calls<CR>', default_opts)
-map('n', '<Leader>ld', ':Telescope lsp_type_definitions<CR>', default_opts)
+map('n', '<Leader>le', ':FzfLua diagnostics_document<CR>', default_opts)
+map('n', '<Leader>lE', ':FzfLua diagnostics_workspace<CR>', default_opts)
+map('n', '<Leader>ls', ':FzfLua lsp_document_symbols<CR>', default_opts)
+map('n', '<Leader>lS', ':FzfLua lsp_workspace_symbols<CR>', default_opts)
+map('n', '<Leader>la', ':FzfLua lsp_code_actions<CR>', default_opts)
 
 -- (g)oto commands
-map('n', 'gr', ':Telescope lsp_references<CR>', default_opts)
-map('n', 'gd', ':Telescope lsp_definitions<CR>', default_opts)
-map('n', 'gi', ':Telescope lsp_implementations<CR>', default_opts)
+map('n', 'gr', ':FzfLua lsp_references<CR>', default_opts)
+map('n', 'gd', ':FzfLua lsp_definitions<CR>', default_opts)
+map('n', 'gi', ':FzfLua lsp_implementations<CR>', default_opts)
 
 -- code (a)ctions
 local border = {
@@ -72,7 +75,6 @@ local border = {
       {"│", "FloatBorder"},
 }
 
-vim.keymap.set({ 'n' }, '<Leader>la', vim.lsp.buf.code_action, { remap = false })
 vim.keymap.set({ 'n' }, '<Leader>as', function() vim.lsp.buf.signature_help({ border = border }) end, { remap = false })
 vim.keymap.set({ 'n' }, '<Leader>ah', function() vim.lsp.buf.hover({ border = border }) end, { remap = false })
 vim.keymap.set({ 'n' }, '<Leader>at', vim.lsp.buf.typehierarchy, { remap = false })
