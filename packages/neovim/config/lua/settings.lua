@@ -50,7 +50,6 @@ cmd [[
     " highlight trailing spaces
     set list
     set listchars=trail:·
+    colorscheme catppuccin-mocha
 ]]
-
-vim.cmd('colorscheme ' .. (os.getenv('NEOVIM_COLORSCHEME') or 'default'))
 
