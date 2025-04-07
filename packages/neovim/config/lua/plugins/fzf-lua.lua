@@ -6,7 +6,7 @@ require("fzf-lua").setup({
     winopts = {
         fullscreen = true,
         preview = {
-            hidden = false
+            hidden = true
         }
     },
 })
