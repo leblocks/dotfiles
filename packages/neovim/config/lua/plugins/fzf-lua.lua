@@ -9,4 +9,9 @@ require("fzf-lua").setup({
             hidden = true
         }
     },
+
+    fzf_opts = {
+        ["--layout"] = "default",
+    }
+
 })
