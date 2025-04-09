@@ -31,9 +31,6 @@ return packer.startup(function(use)
     -- ui
     use({ 'nvim-lualine/lualine.nvim' })
 
-    -- center buffer
-    use({'shortcuts/no-neck-pain.nvim', tag = '*' })
-
     -- keep track of configuration performance
     use('dstein64/vim-startuptime')
 

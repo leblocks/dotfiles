@@ -107,9 +107,6 @@ register_lsp_keybindings('powershell_es', { 'ps1' })
 register_lsp_keybindings('ts_ls', { 'javascript', 'typescript' })
 register_lsp_keybindings('html', { 'html' })
 
--- some utility mappings
-map('n', 'yop', ':NoNeckPain<CR>', default_opts)
-
 -- terminal
 map('n', '<Leader>00', ':Terminal<CR>', default_opts)
 map('n', '<Leader>0v', ':VTerminal<CR>', default_opts)
