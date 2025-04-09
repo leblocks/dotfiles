@@ -22,4 +22,5 @@ require('plugins.nvim-lspconfig')
 require('plugins.nvim-ts-autotag')
 require('plugins.roslyn')
 require('plugins.fzf-lua')
+require('plugins.vim-gutentags')
 

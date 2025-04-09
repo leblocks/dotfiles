@@ -32,14 +32,17 @@ return packer.startup(function(use)
     use({ 'nvim-lualine/lualine.nvim' })
 
     -- center buffer
-    use({"shortcuts/no-neck-pain.nvim", tag = "*" })
+    use({'shortcuts/no-neck-pain.nvim', tag = '*' })
 
     -- keep track of configuration performance
     use('dstein64/vim-startuptime')
 
     -- colorschemes
-    use({ "catppuccin/nvim", as = "catppuccin" })
+    use({ 'catppuccin/nvim', as = 'catppuccin' })
     use({ 'jackplus-xyz/binary.nvim' })
+
+    -- tags
+    use({ 'ludovicchabant/vim-gutentags' })
 
     if packer_bootstrap then
         packer.sync()
