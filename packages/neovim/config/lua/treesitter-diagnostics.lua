@@ -1,4 +1,4 @@
---- TODO refactor and understand
+--- TODO understand till the end
 --- language-independent query for syntax errors and missing elements
 local error_query = vim.treesitter.query.parse('query', '[(ERROR)(MISSING)] @a')
 local namespace = vim.api.nvim_create_namespace('treesitter.diagnostics')
@@ -7,9 +7,11 @@ vim.diagnostic.config({ virtual_text = true }, namespace)
 
 --- @param args vim.api.keyset.create_autocmd.callback_args
 local function diagnose(args)
+
   if not vim.diagnostic.is_enabled({bufnr = args.buf}) then
     return
   end
+
   -- don't diagnose strange stuff
   if vim.bo[args.buf].buftype ~= '' then
     return
@@ -17,12 +19,17 @@ local function diagnose(args)
 
   local diagnostics = {}
   local parser = vim.treesitter.get_parser(args.buf, nil, { error = false })
+
   if parser then
+
     parser:parse(false, function(_, trees)
+
       if not trees then
         return
       end
+
       parser:for_each_tree(function(tree, ltree)
+
         -- only process trees containing errors
         if tree:root():has_error() then
           for _, node in error_query:iter_captures(tree:root(), args.buf) do
@@ -55,9 +62,9 @@ local function diagnose(args)
             }
 
             if node:missing() then
-              diagnostic.message = 'treesitter: ' .. string.format('missing `%s`', node:type())
+              diagnostic.message = 'trs: ' .. string.format('missing `%s`', node:type())
             else
-              diagnostic.message = 'treesitter: error'
+              diagnostic.message = 'trs: ' .. string.format('error `%s`', node:type())
             end
 
             -- add context to the error using sibling and parent nodes
