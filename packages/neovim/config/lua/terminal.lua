@@ -18,14 +18,6 @@ local function launch_terminal(callback)
 
     local commands = {
         {
-            command = "cmd.exe /K clink inject && cd " .. current_working_directory,
-            description = "clink in cwd"
-        },
-        {
-            command = "cmd.exe /K clink inject && cd " .. current_buffer_directory,
-            description = "clink in buffer folder"
-        },
-        {
             command = "pwsh -NoLogo -NoProfileLoadTime -WorkingDirectory " .. current_working_directory,
             description = "pwsh in cwd"
         },
@@ -85,7 +77,7 @@ local function select_terminal()
             then
                 return
             end
-            vim.api.nvim_set_current_buf(tonumber(buf))
+            vim.api.nvim_set_current_buf(buf)
         end)
 end
 
