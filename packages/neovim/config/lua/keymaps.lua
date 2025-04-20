@@ -92,7 +92,7 @@ local function register_lsp_keybindings(ls_server_name, pattern)
 
     local function server_attach_callback()
         vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>sa',
-            ':lua AttachCurrentBufferToLspClientByName(\'' .. ls_server_name .. '\')<CR>', default_opts)
+            ':lua attach_cur_buf_to_lsp_by_name(\'' .. ls_server_name .. '\')<CR>', default_opts)
     end
 
     vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = server_start_callback, group = group })
@@ -130,3 +130,5 @@ map('n', '<Leader>5s', ':SaveSession<CR>', default_opts)
 map('n', '<Leader>l5', ':LoadSession<CR>', default_opts)
 map('n', '<Leader>5d', ':DeleteSession<CR>', default_opts)
 
+-- (4)genda (does 4 resemble A a little bit?)
+map('n', '<Leader>4', ':lua open_agenda()<CR>', default_opts)
