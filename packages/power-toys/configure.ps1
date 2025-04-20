@@ -1,6 +1,6 @@
-. $PSScriptRoot/../../utils.ps1
+. $(Join-Path .. .. utils.ps1)
 
-Test-Dependencies(@("winget"))
+Test-Dependencies @("winget")
 
 $path = Join-Path $PSScriptRoot "configuration.yaml"
 

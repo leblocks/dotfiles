@@ -40,7 +40,12 @@ function Get-PackageManagerInstallCommand([string] $PackageManager, [string] $Pa
         "brew" { return "brew install $Package" }
         "scoop" { return "scoop install $Package" }
         "pacman" {
-            $sudo = ((Test-Command -Command "sudo") ? "sudo" : "")
+            $sudo = ""
+
+            if (Test-Command -Command "sudo") {
+                $sudo = "sudo"
+            }
+
             return "$sudo pacman -Sy --noconfirm $Package"
         }
         default { throw "$PackageManager is not supported." }
@@ -136,15 +141,14 @@ function Get-Files {
 }
 
 function Get-Ports {
-    Get-NetTCPConnection
-        | ForEach-Object {
+    Get-NetTCPConnection | ForEach-Object {
             Add-Member `
                 -InputObject $_ `
                 -MemberType NoteProperty `
                 -Value (Get-Process -Id $_.OwningProcess).Path `
                 -Name "Cmd" `
                 -PassThru
-        } | Select-Object LocalAddress, LocalPort, RemoteAddress, Remote-Port, State, OwningProcess, Cmd
+        } | Select-Object "LocalAddress", "LocalPort", "RemoteAddress", "Remote-Port", "State", "OwningProcess", "Cmd"
 }
 
 function Invoke-FailFastExpression {
@@ -156,7 +160,7 @@ function Invoke-FailFastExpression {
     $debug = $env:DOTFILES_DEBUG
 
     try {
-        if ($debug -eq $null) {
+        if ($null -eq $debug) {
             Invoke-Expression $command | Out-Null
         } else {
             Invoke-Expression $command
@@ -191,7 +195,7 @@ function Invoke-Expressions {
 # we have to check always that we are working
 # with python 3
 function Get-PythonExecutable {
-    if (Test-Command("python")) {
+    if (Test-Command -Command "python") {
         $isPython3 = "python -V"
             | Invoke-Expression
             | Select-String -Pattern " 3." -Quiet
@@ -201,7 +205,7 @@ function Get-PythonExecutable {
         }
     }
 
-    if (Test-Command("python3")) {
+    if (Test-Command -Command "python3") {
         return (Get-Command "python3").Source
     }
 

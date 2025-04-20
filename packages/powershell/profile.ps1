@@ -5,8 +5,8 @@ $ErrorActionPreference = "Stop"
 # I have to do some magic to get actual file location
 $actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path $PSScriptRoot $MyInvocation.MyCommand.Name)).Target)
 
-. $actualProfileLocation/../../utils.ps1
-. $actualProfileLocation/watchFiles.ps1
+. $(Join-Path $actualProfileLocation .. .. utils.ps1)
+. $(Join-Path $actualProfileLocation watchFiles.ps1)
 
 # add dotfiles to path
 Add-PathEntry (Join-Path $actualProfileLocation .. ..)
@@ -36,7 +36,6 @@ Set-Alias lp Get-Ports
 Set-Alias pop Pop-Location
 Set-Alias push Push-Location
 
-function gto { Push-Location $env:OneDrive/devbox-config }
 function env { Get-ChildItem env: }
 function top { "btm -b" | Invoke-Expression }
 function guid { (New-Guid).ToString() }
@@ -54,7 +53,7 @@ function touch([string] $Path) {
 #>
 $path = Join-Path $HOME ".environment.json"
 if (Test-Path $path) {
-    Get-Content -Path $path 
+    Get-Content -Path $path
         | ConvertFrom-Json
         | ForEach-Object {
             foreach ($ev in $_.PSObject.Properties) {
@@ -72,7 +71,7 @@ $path = Join-Path $HOME ".path.json"
 if (Test-Path $path) {
     $separator = [IO.Path]::PathSeparator
 
-    $pathEntries = [System.Collections.Generic.HashSet[string]]($env:PATH.Split($separator, 
+    $pathEntries = [System.Collections.Generic.HashSet[string]]($env:PATH.Split($separator,
         [System.StringSplitOptions]::RemoveEmptyEntries))
 
     foreach ($entry in (Get-Content -Path $path | ConvertFrom-Json)) {

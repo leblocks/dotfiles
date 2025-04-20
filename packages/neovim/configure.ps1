@@ -1,6 +1,6 @@
-. $PSScriptRoot/../../utils.ps1
+. $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
-Test-Dependencies(@("nvim", "git"))
+Test-Dependencies @("nvim", "git")
 
 $pathToLink = $IsWindows ? (Join-Path $HOME "AppData" "Local" "nvim")
     : (Join-Path $HOME ".config" "nvim")

@@ -1,8 +1,8 @@
 param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
-. $PSScriptRoot/../../../utils.ps1
+. $(Join-Path $PSScriptRoot .. .. .. utils.ps1)
 
-Test-Dependencies(@("tar"))
+Test-Dependencies @("tar")
 
 $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
 

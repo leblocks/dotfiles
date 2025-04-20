@@ -1,6 +1,6 @@
-. $PSScriptRoot/../../utils.ps1
+. $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
-Test-Dependencies(@("winget"))
+Test-Dependencies @("winget")
 
 winget install GlazeWM
 

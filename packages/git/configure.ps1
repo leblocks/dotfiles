@@ -1,6 +1,6 @@
-. $PSScriptRoot/../../utils.ps1
+. $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
-Test-Dependencies(@("git"))
+Test-Dependencies @("git")
 
 # linking .gitconfig to the $HOME is not that great
 # it will override custom defined stuff, so I'll do inlcude instead

@@ -1,6 +1,6 @@
 
 function Get-PackagesList {
-    . $PSScriptRoot/../../utils.ps1
+    . $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
     $path = Join-Path `
         $PSScriptRoot `
@@ -17,7 +17,7 @@ function Get-PackagesList {
 }
 
 BeforeAll {
-    . $PSScriptRoot/../../utils.ps1
+    . $(Join-Path $PSScriptRoot .. .. utils.ps1)
     $exceptions = @{
         neovim = 'nvim'
         ripgrep = 'rg'
@@ -36,5 +36,4 @@ Describe 'packages from packages.json were installed' {
         }
     }
 }
-
 

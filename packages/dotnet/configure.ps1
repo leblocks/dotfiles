@@ -1,9 +1,9 @@
 param([Parameter(Position=0, Mandatory=$False)] [string] $Version = "latest")
 
-. $PSScriptRoot/../../utils.ps1
+. $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
 if ($IsLinux) {
-    Test-Dependencies(@("bash"))
+    Test-Dependencies @("bash")
 }
 
 $installationScript = "dotnet-install." + ($IsWindows ? "ps1" : "sh")

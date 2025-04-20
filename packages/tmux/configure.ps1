@@ -1,6 +1,6 @@
-. $PSScriptRoot/../../utils.ps1
+. $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
-Test-Dependencies(@("tmux", "git", "bash"))
+Test-Dependencies @("tmux", "git", "bash")
 
 # get tmux plugins manager
 if (-Not (Test-Path "$HOME/.tmux/plugins/tpm")) {

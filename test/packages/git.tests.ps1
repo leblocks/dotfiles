@@ -1,4 +1,4 @@
-. $PSScriptRoot/../../utils.ps1
+. $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
 Describe 'git' {
     It 'link to .gitconfig exists' {

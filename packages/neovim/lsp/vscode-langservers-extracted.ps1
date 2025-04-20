@@ -1,8 +1,8 @@
 param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
-. $PSScriptRoot/../../../utils.ps1
+. $(Join-Path $PSScriptRoot .. .. .. utils.ps1)
 
-Test-Dependencies(@("npm"))
+Test-Dependencies @("npm")
 
 $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
 
@@ -17,8 +17,8 @@ Push-Location $toolPath
 
 $fileName = "vscode-html-language-server" + ($IsWindows ? ".cmd" : "")
 
-$path = Get-ChildItem . -Include $fileName -Recurse -Force -File 
-    | ForEach-Object { $_.FullName } 
+$path = Get-ChildItem . -Include $fileName -Recurse -Force -File
+    | ForEach-Object { $_.FullName }
     | Select-Object -First 1
 
 Set-EnvironmentVariable "NEOVIM_VSCODE_HTML_LANGUAGE_SERVER" $path

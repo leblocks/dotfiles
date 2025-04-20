@@ -2,7 +2,7 @@ param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
 $ROSLYN_VERSION = "5.0.0-1.25127.3"
 
-. $PSScriptRoot/../../../utils.ps1
+. $(Join-Path $PSScriptRoot .. .. .. utils.ps1)
 
 $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
 
