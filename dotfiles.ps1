@@ -28,12 +28,17 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-. $PSScriptRoot/utils.ps1
+. $(Join-Path $PSScriptRoot utils.ps1)
 
-Test-Dependencies(@("git", "node", "npm", "python3"))
+Test-Dependencies @("git", "node", "npm", "python3")
 
 function List {
-    $osMarker = $IsWindows ? '\.windows' : '\.linux'
+    $osMarker = '\.linux'
+
+    if ($IsWindows) {
+        $osMarker = '\.windows'
+    }
+
     Get-ChildItem -Recurse -File -Path $PSScriptRoot -Force
         | Where-Object { $_.Name -match $osMarker }
         | Split-Path -Parent
@@ -75,7 +80,7 @@ function Invoke-Tests {
     }
     Import-Module Pester -PassThru
     Invoke-Pester `
-        -Path $PSScriptRoot/test/**/*.tests.ps1, $PSScriptRoot/test/*.tests.ps1 `
+        -Path $(Join-Path $PSScriptRoot test ** *.tests.ps1), $(Join-Path $PSScriptRoot test *.tests.ps1) `
         -Output Detailed
 }
 

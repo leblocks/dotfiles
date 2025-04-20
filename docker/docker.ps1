@@ -1,12 +1,13 @@
 param([Parameter(Position=0, Mandatory=$True)] [ValidateSet("archlinux", "ubuntu")] [string] $ImageName)
 
-. $PSScriptRoot/../utils.ps1
+. $(Join-Path $PSScriptRoot .. utils.ps1)
 
 $contaienerName = $ImageName + "-" + [Guid]::NewGuid().ToString()
 $repoRootFolder = Join-Path $PSScriptRoot ".."
 
 $entrypointArgument = "`"" +
             [string]::Join(" && ",
+
                 "/dotfiles/bootstrap/$ImageName.sh",
                 "pwsh -f /dotfiles/dotfiles.ps1 kaboom",
                 "pwsh"
