@@ -1,4 +1,4 @@
-. $(Join-Path .. .. utils.ps1)
+. $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
 # recreate profile link
 Remove-Item `
