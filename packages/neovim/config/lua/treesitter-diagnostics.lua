@@ -88,10 +88,10 @@ local function diagnose(args)
   end
 end
 
-
 local autocmd_group = vim.api.nvim_create_augroup('editor.treesitter', { clear = true })
 
 vim.api.nvim_create_autocmd({ 'FileType', 'TextChanged', 'InsertLeave' }, {
+  pattern = { '*.cs', '*.lua', '*.ts', '*.js', '*.json', '*.xml', '*.csproj', '*.html', '*.yaml' },
   desc = 'treesitter diagnostics',
   group = autocmd_group,
   callback = vim.schedule_wrap(diagnose),

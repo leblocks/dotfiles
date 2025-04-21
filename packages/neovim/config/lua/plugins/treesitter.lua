@@ -12,7 +12,8 @@ require('nvim-treesitter.configs').setup({
         "sql",
         "typescript",
         "yaml",
-        "markdown"
+        "markdown",
+        "xml"
     },
 
     additional_vim_regex_highlighting = false,
