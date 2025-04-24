@@ -38,9 +38,6 @@ return packer.startup(function(use)
     use({ 'catppuccin/nvim', as = 'catppuccin' })
     use({ 'jackplus-xyz/binary.nvim' })
 
-    -- tags
-    use({ 'ludovicchabant/vim-gutentags' })
-
     if packer_bootstrap then
         packer.sync()
     end
