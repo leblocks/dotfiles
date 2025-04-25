@@ -39,12 +39,11 @@ if enable_roslyn ~= false then
                     dotnet_search_reference_assemblies = false,
                 },
             },
-        },
 
-        exe = { "dotnet", roslyn_server_dll_location },
-
-        args = {
-            "--logLevel=Information", "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()), "--stdio"
+            cmd = {
+                "dotnet", roslyn_server_dll_location,
+                "--logLevel=Information", "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()), "--stdio"
+            },
         },
 
         -- Optional function that takes an array of solutions as the only argument. Return the solution you
