@@ -3,8 +3,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 local session_folder = vim.fs.normalize(vim.fn.stdpath('state') .. '/sessions')
 
-if vim.fn.isdirectory(session_folder) ~= 0 then
-    -- TODO create sessions folder if it does not exist
+if vim.fn.isdirectory(session_folder) ~= 1 then
     print("TODO create session folder")
 end
 
