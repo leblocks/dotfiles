@@ -1,3 +1,6 @@
+local os = require('os')
+
+
 local fn = vim.fn
 -- packer installation bootstrapping
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -31,12 +34,15 @@ return packer.startup(function(use)
     -- ui
     use({ 'nvim-lualine/lualine.nvim' })
 
-    -- keep track of configuration performance
-    use('dstein64/vim-startuptime')
-
     -- colorschemes
     use({ 'catppuccin/nvim', as = 'catppuccin' })
-    use({ 'jackplus-xyz/binary.nvim' })
+
+    if os.getenv('NEOVIM_PLUGIN_DEVELOPMENT') == 'true' then
+        -- plugin development
+        use({ 'kkharji/sqlite.lua' })
+        use({ 'nvim-lua/plenary.nvim' })
+        use({ '..//hopcsharp.nvim' })
+    end
 
     if packer_bootstrap then
         packer.sync()
