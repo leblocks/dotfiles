@@ -1,6 +1,8 @@
 local os = require('os')
 
-function attach_cur_buf_to_lsp_by_name(client_name)
+local M = {}
+
+M.attach_cur_buf_to_lsp_by_name = function(client_name)
     local active_clients = vim.lsp.get_clients()
     for _, value in pairs(active_clients) do
         if value.name == client_name then
@@ -21,7 +23,7 @@ function attach_cur_buf_to_lsp_by_name(client_name)
     print("Could not find " .. client_name .. " language server.")
 end
 
-function open_agenda()
+M.open_agenda = function()
     -- get path to agenda file
     local agenda_path = vim.fs.joinpath(os.getenv('OneDrive') or os.getenv('HOME') or os.getenv('USERPROFILE'), 'agenda.md')
 
@@ -46,4 +48,5 @@ function open_agenda()
     vim.api.nvim_command('edit ' .. agenda_path)
 end
 
+return M
 
