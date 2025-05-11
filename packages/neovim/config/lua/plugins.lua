@@ -39,10 +39,11 @@ return packer.startup(function(use)
 
     if os.getenv('NEOVIM_PLUGIN_DEVELOPMENT') == 'true' then
         -- plugin development
-        use({ 'kkharji/sqlite.lua' })
         use({ 'nvim-lua/plenary.nvim' })
         use({ '..//hopcsharp.nvim' })
     end
+
+    use({ 'kkharji/sqlite.lua' })
 
     if packer_bootstrap then
         packer.sync()
