@@ -1,4 +1,3 @@
-require('utils')
 
 local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
@@ -65,14 +64,14 @@ map('n', 'gi', ':FzfLua lsp_implementations<CR>', default_opts)
 
 -- code (a)ctions
 local border = {
-      {"╭", "FloatBorder"},
-      {"─", "FloatBorder"},
-      {"╮", "FloatBorder"},
-      {"│", "FloatBorder"},
-      {"╯", "FloatBorder"},
-      {"─", "FloatBorder"},
-      {"╰", "FloatBorder"},
-      {"│", "FloatBorder"},
+    { "╭", "FloatBorder" },
+    { "─", "FloatBorder" },
+    { "╮", "FloatBorder" },
+    { "│", "FloatBorder" },
+    { "╯", "FloatBorder" },
+    { "─", "FloatBorder" },
+    { "╰", "FloatBorder" },
+    { "│", "FloatBorder" },
 }
 
 vim.keymap.set({ 'n' }, '<Leader>as', function() vim.lsp.buf.signature_help({ border = border }) end, { remap = false })
@@ -92,7 +91,7 @@ local function register_lsp_keybindings(ls_server_name, pattern)
 
     local function server_attach_callback()
         vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>sa',
-            ':lua attach_cur_buf_to_lsp_by_name(\'' .. ls_server_name .. '\')<CR>', default_opts)
+            ':lua require("utils").attach_cur_buf_to_lsp_by_name(\'' .. ls_server_name .. '\')<CR>', default_opts)
     end
 
     vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = server_start_callback, group = group })
@@ -131,4 +130,20 @@ map('n', '<Leader>l5', ':LoadSession<CR>', default_opts)
 map('n', '<Leader>5d', ':DeleteSession<CR>', default_opts)
 
 -- (4)genda (does 4 resemble A a little bit?)
-map('n', '<Leader>4', ':lua open_agenda()<CR>', default_opts)
+vim.keymap.set({ 'n' }, '<Leader>4', require('utils').open_agenda, default_opts)
+
+-- (h)opcsharp
+local hopcsharp_autocmd_group = vim.api.nvim_create_augroup('hopcsharp', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'cs',
+    callback = function()
+        vim.keymap.set({ 'n' }, ';d', require('hopcsharp').hop_to_definition, { buffer = true })
+        vim.keymap.set({ 'n' }, ';ll', require('utils').hopcsharp.list_all, { buffer = true })
+        vim.keymap.set({ 'n' }, ';lc', require('utils').hopcsharp.list_classes, { buffer = true })
+        vim.keymap.set({ 'n' }, ';li', require('utils').hopcsharp.list_interfaces, { buffer = true })
+        vim.keymap.set({ 'n' }, ';ls', require('utils').hopcsharp.list_structs, { buffer = true })
+        vim.keymap.set({ 'n' }, ';lr', require('utils').hopcsharp.list_records, { buffer = true })
+        vim.keymap.set({ 'n' }, ';le', require('utils').hopcsharp.list_enums, { buffer = true })
+    end,
+    group = hopcsharp_autocmd_group
+})

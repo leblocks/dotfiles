@@ -34,5 +34,9 @@ Describe 'neovim' {
     It 'NEOVIM_ROSLYN_SERVER_DLL_LOCATION env variable is set and points to an existing path' {
         Test-Path $env:NEOVIM_ROSLYN_SERVER_DLL_LOCATION | Should -Be $true
     }
+
+    It 'NEOVIM_SQLITE_DLL_PATH env variable is set and points to an existing path' {
+        Test-Path $env:NEOVIM_SQLITE_DLL_PATH | Should -Be $true
+    }
 }
 
