@@ -9,5 +9,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-
--- TODO configure treesitter nodes for completion as well

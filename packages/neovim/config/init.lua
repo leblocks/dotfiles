@@ -5,9 +5,9 @@ then
     vim.loader.enable()
 end
 
+require('settings')
 require('plugins')
 require('keymaps')
-require('settings')
 require('abbreviations')
 require('terminal')
 require('commands')
