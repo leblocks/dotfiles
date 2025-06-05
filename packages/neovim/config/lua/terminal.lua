@@ -77,7 +77,7 @@ local function select_terminal()
             then
                 return
             end
-            vim.api.nvim_set_current_buf(buf)
+            vim.api.nvim_set_current_buf(tonumber(buf))
         end)
 end
 
