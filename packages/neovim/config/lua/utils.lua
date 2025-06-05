@@ -89,12 +89,12 @@ local get_hopcsharp_picker = function(item_producer, item_formatter)
     end
 end
 
-
 M.hopcsharp.list_all = get_hopcsharp_picker(function() return db:eval(query.get_all_definitions) end)
 M.hopcsharp.list_classes = get_hopcsharp_picker(function() return db:eval(query.get_definition_by_type, { type = dbutils.__types.CLASS }) end)
 M.hopcsharp.list_interfaces = get_hopcsharp_picker(function() return db:eval(query.get_definition_by_type, { type = dbutils.__types.INTERFACE }) end)
 M.hopcsharp.list_structs = get_hopcsharp_picker(function() return db:eval(query.get_definition_by_type, { type = dbutils.__types.STRUCT }) end)
 M.hopcsharp.list_records = get_hopcsharp_picker(function() return db:eval(query.get_definition_by_type, { type = dbutils.__types.RECORD}) end)
 M.hopcsharp.list_enums = get_hopcsharp_picker(function() return db:eval(query.get_definition_by_type, { type = dbutils.__types.ENUM }) end)
+M.hopcsharp.list_methods = get_hopcsharp_picker(function() return db:eval(query.get_definition_by_type, { type = dbutils.__types.METHOD }) end)
 
 return M
