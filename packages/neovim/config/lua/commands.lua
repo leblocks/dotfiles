@@ -19,7 +19,3 @@ vim.api.nvim_create_user_command('BufCopyPath', function()
     vim.notify('copied to clipboard ' .. path)
 end, {})
 
-vim.api.nvim_create_user_command('HopcsharpInit', function()
-    require('hopcsharp').init_database()
-end, {})
-

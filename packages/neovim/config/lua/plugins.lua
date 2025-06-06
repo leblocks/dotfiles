@@ -27,7 +27,6 @@ return packer.startup(function(use)
 
     -- lsp
     use('neovim/nvim-lspconfig')
-    use('seblj/roslyn.nvim')
 
     use('nathom/filetype.nvim')
 
@@ -36,14 +35,6 @@ return packer.startup(function(use)
 
     -- colorschemes
     use({ 'catppuccin/nvim', as = 'catppuccin' })
-
-    if os.getenv('NEOVIM_PLUGIN_DEVELOPMENT') == 'true' then
-        -- plugin development
-        use({ 'nvim-lua/plenary.nvim' })
-        use({ '..//hopcsharp.nvim' })
-    end
-
-    use({ 'kkharji/sqlite.lua' })
 
     if packer_bootstrap then
         packer.sync()

@@ -132,20 +132,3 @@ map('n', '<Leader>5d', ':DeleteSession<CR>', default_opts)
 -- (4)genda (does 4 resemble A a little bit?)
 vim.keymap.set({ 'n' }, '<Leader>4', require('utils').open_agenda, default_opts)
 
--- (h)opcsharp
-local hopcsharp_autocmd_group = vim.api.nvim_create_augroup('hopcsharp', { clear = true })
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'cs',
-    callback = function()
-        vim.keymap.set({ 'n' }, ';d', require('hopcsharp').hop_to_definition, { buffer = true })
-        vim.keymap.set({ 'n' }, ';i', require('hopcsharp').hop_to_implementation, { buffer = true })
-        vim.keymap.set({ 'n' }, ';ll', require('utils').hopcsharp.list_all, { buffer = true })
-        vim.keymap.set({ 'n' }, ';lc', require('utils').hopcsharp.list_classes, { buffer = true })
-        vim.keymap.set({ 'n' }, ';li', require('utils').hopcsharp.list_interfaces, { buffer = true })
-        vim.keymap.set({ 'n' }, ';ls', require('utils').hopcsharp.list_structs, { buffer = true })
-        vim.keymap.set({ 'n' }, ';lr', require('utils').hopcsharp.list_records, { buffer = true })
-        vim.keymap.set({ 'n' }, ';le', require('utils').hopcsharp.list_enums, { buffer = true })
-        vim.keymap.set({ 'n' }, ';lm', require('utils').hopcsharp.list_methods, { buffer = true })
-    end,
-    group = hopcsharp_autocmd_group
-})

@@ -17,7 +17,6 @@ from the headache of managing different sets of scripts, making development more
 * tests for empty windows installation, vm?
 * make sure that none of commands requires admin (except package installations)
 * refactor pwsh stuff
-* add automatic sqlitedll installation on windows and path definition (see settings.lua)
 
 ## Repository structure
 
