@@ -7,6 +7,7 @@ local bash_server_location = os.getenv('NEOVIM_BASH_LANGUAGE_SERVER') or '~'
 local lua_server_location = os.getenv('NEOVIM_LUA_LANGUAGE_SERVER') or '~'
 local powershell_server_location = os.getenv('NEOVIM_POWERSHELL_LANGUAGE_SERVER') or '~'
 local vscode_html_server_location = os.getenv('NEOVIM_VSCODE_HTML_LANGUAGE_SERVER') or '~'
+local omnisharp_server_location = os.getenv('OMNISHARP_LANGUAGE_SERVER') or '~'
 
 local lsp_config = require('lspconfig')
 
@@ -72,3 +73,15 @@ lsp_config.html.setup({
     cmd = { vscode_html_server_location, "--stdio" },
 })
 
+lsp_config.omnisharp.setup({
+    autostart = false,
+    on_attach = on_attach,
+    cmd = {
+        omnisharp_server_location,
+        "-z",
+        "--hostPID", tostring(pid),
+        "DotNet:enablePackageRestore=false",
+        "--encoding", "utf-8",
+        "--languageserver",
+    },
+})
