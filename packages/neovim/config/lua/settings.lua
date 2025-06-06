@@ -42,14 +42,11 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_node_provider = 0
 
-vim.g.sqlite_clib_path = os.getenv('NEOVIM_SQLITE_DLL_PATH')
-
 -- hide status line
 vim.o.showmode = false
 vim.o.ruler = false
 vim.o.showcmd = false
 vim.o.laststatus = 0
-
 
 cmd [[
     " highlight trailing spaces
