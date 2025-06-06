@@ -52,5 +52,4 @@ New-Folder $pathToLanguageTools
 . $PSScriptRoot/lsp/powershell.ps1 $pathToLanguageTools
 . $PSScriptRoot/lsp/dotnet.ps1 $pathToLanguageTools
 . "$PSScriptRoot/lsp/vscode-langservers-extracted.ps1" $pathToLanguageTools
-. $PSScriptRoot/lsp/sqlite.ps1 $pathToLanguageTools
 
