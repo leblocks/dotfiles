@@ -9,34 +9,32 @@ local powershell_server_location = os.getenv('NEOVIM_POWERSHELL_LANGUAGE_SERVER'
 local vscode_html_server_location = os.getenv('NEOVIM_VSCODE_HTML_LANGUAGE_SERVER') or '~'
 local omnisharp_server_location = os.getenv('OMNISHARP_LANGUAGE_SERVER') or '~'
 
-local lsp_config = require('lspconfig')
-
+-- TODO see if this is needed
 local on_attach = function(_, bufnr)
     -- specifies what to do when language server attaches to the buffer
     -- vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 end
 
-lsp_config.pyright.setup({
+vim.lsp.config('pyright', {
     autostart = false,
     on_attach = on_attach,
-    handlers = handlers,
     cmd = { pyright_server_location, "--stdio" },
 })
 
-lsp_config.ts_ls.setup({
+vim.lsp.config('ts_ls', {
     autostart = false,
     on_attach = on_attach,
     cmd = { typescript_server_location, "--stdio" },
 })
 
-lsp_config.bashls.setup({
+vim.lsp.config('bashls', {
     autostart = false,
     on_attach = on_attach,
     cmd = { bash_server_location, "start" },
 })
 
 -- lua server configuration, with specifics for neovim
-lsp_config.lua_ls.setup({
+vim.lsp.config('lua_ls', {
     settings = {
         Lua = {
             runtime = {
@@ -61,19 +59,19 @@ lsp_config.lua_ls.setup({
     cmd = { lua_server_location, },
 })
 
-lsp_config.powershell_es.setup({
+vim.lsp.config('powershell_es', {
     autostart = false,
     on_attach = on_attach,
     bundle_path = powershell_server_location,
 })
 
-lsp_config.html.setup({
+vim.lsp.config('html', {
     autostart = false,
     on_attach = on_attach,
     cmd = { vscode_html_server_location, "--stdio" },
 })
 
-lsp_config.omnisharp.setup({
+vim.lsp.config('omnisharp', {
     autostart = false,
     on_attach = on_attach,
     cmd = {
