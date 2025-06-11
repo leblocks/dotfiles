@@ -14,7 +14,7 @@ New-Folder $toolPath
 
 Push-Location $toolPath
 
-$omnisharp = ($IsWindows ? "omnisharp-win-x64.zip" : "omnisharp-linux-x64-net6.0.tar.gz")
+$omnisharp = ($IsWindows ? "omnisharp-win-x64-net6.0.zip" : "omnisharp-linux-x64-net6.0.tar.gz")
 $downloadLink = "https://github.com/OmniSharp/omnisharp-roslyn/releases/latest/download/$omnisharp"
 
 Invoke-WebRequest `
