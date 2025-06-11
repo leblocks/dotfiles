@@ -9,6 +9,8 @@ local powershell_server_location = os.getenv('NEOVIM_POWERSHELL_LANGUAGE_SERVER'
 local vscode_html_server_location = os.getenv('NEOVIM_VSCODE_HTML_LANGUAGE_SERVER') or '~'
 local omnisharp_server_location = os.getenv('OMNISHARP_LANGUAGE_SERVER') or '~'
 
+local pid = vim.fn.getpid()
+
 -- TODO see if this is needed
 local on_attach = function(_, bufnr)
     -- specifies what to do when language server attaches to the buffer
