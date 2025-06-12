@@ -124,6 +124,7 @@ map('n', '<Leader>1t', ':Texplore<CR>', default_opts)
 
 -- (b)uffer
 map('n', '<Leader>bd', ':bdelete!<CR>', default_opts)
+map('n', '<Leader>bb', ':ls<CR>:b<Space>', default_opts)
 
 -- (5)ession
 map('n', '<Leader>5s', ':SaveSession<CR>', default_opts)
