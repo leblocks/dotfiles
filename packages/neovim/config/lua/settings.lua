@@ -48,10 +48,7 @@ vim.o.ruler = false
 vim.o.showcmd = false
 vim.o.laststatus = 0
 
-cmd [[
-    " highlight trailing spaces
-    set list
-    set listchars=trail:·
-    colorscheme catppuccin-mocha
-]]
+-- trailing whitespaces
+vim.o.list = true
+vim.o.listchars = "trail:·"
 
