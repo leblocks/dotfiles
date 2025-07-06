@@ -21,4 +21,5 @@ require('plugins.treesitter')
 require('plugins.nvim-lspconfig')
 require('plugins.nvim-ts-autotag')
 require('plugins.fzf-lua')
+require('plugins.hopcsharp')
 

@@ -134,3 +134,7 @@ map('n', '<Leader>5d', ':DeleteSession<CR>', default_opts)
 -- (4)genda (does 4 resemble A a little bit?)
 vim.keymap.set({ 'n' }, '<Leader>4', require('utils').open_agenda, default_opts)
 
+-- (h)opcsharp
+local hopcsharp = require('plugins.hopcsharp')
+vim.keymap.set({ 'n' }, '<Leader>hl', hopcsharp.list_types, default_opts)
+
