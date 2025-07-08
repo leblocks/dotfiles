@@ -136,5 +136,7 @@ vim.keymap.set({ 'n' }, '<Leader>4', require('utils').open_agenda, default_opts)
 
 -- (h)opcsharp
 local hopcsharp = require('plugins.hopcsharp')
-vim.keymap.set({ 'n' }, '<Leader>hl', hopcsharp.list_types, default_opts)
+vim.keymap.set({ 'n' }, '<Leader>hh', hopcsharp.hopcsharp_menu, default_opts)
+vim.keymap.set({ 'n' }, '<Leader>hd', require('hopcsharp').hop_to_definition, default_opts)
+vim.keymap.set({ 'n' }, '<Leader>hi', require('hopcsharp').hop_to_implementation, default_opts)
 
