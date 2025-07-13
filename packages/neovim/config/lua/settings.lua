@@ -52,3 +52,6 @@ vim.o.laststatus = 0
 vim.o.list = true
 vim.o.listchars = "trail:·"
 
+-- sqlite support
+vim.g.sqlite_clib_path = os.getenv('NEOVIM_SQLITE_DLL_PATH')
+
