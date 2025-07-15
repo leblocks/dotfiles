@@ -12,6 +12,11 @@ local get_items_by_type = function(type)
     return function() return db:eval(db_query.get_definition_by_type, { type = type }) end
 end
 
+local get_attributes = function()
+    local db = hopcsharp.get_db()
+    return db:eval(db_query.get_attributes)
+end
+
 local get_picker = function(items_provider)
     local picker = function()
         -- get database (connection is always opened)
@@ -56,10 +61,12 @@ M.hopcsharp_menu = function()
         },
         { name = 'list classes',    action = get_picker(get_items_by_type(db_utils.__types.CLASS)), },
         { name = 'list interfaces', action = get_picker(get_items_by_type(db_utils.__types.INTERFACE)), },
+        { name = 'list attributes', action = get_picker(get_attributes), },
         { name = 'list methods',    action = get_picker(get_items_by_type(db_utils.__types.METHOD)), },
+        { name = 'list enums',      action = get_picker(get_items_by_type(db_utils.__types.ENUM)), },
         { name = 'list structs',    action = get_picker(get_items_by_type(db_utils.__types.STRUCT)), },
         { name = 'list records',    action = get_picker(get_items_by_type(db_utils.__types.RECORD)), },
-        { name = 'list enums',      action = get_picker(get_items_by_type(db_utils.__types.ENUM)), },
+
     }
 
     vim.ui.select(actions,
