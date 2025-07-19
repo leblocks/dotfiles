@@ -3,6 +3,7 @@ local hop_utils = require('hopcsharp.hop.utils')
 local db_query = require('hopcsharp.database.query')
 local db_utils = require('hopcsharp.database.utils')
 
+
 local fzf_lua = require('fzf-lua')
 
 local M = {}
@@ -17,6 +18,19 @@ local get_attributes = function()
     return db:eval(db_query.get_attributes)
 end
 
+local parse_entry = function(entry)
+    local result = {}
+    for part in string.gmatch(entry, "([^ ]+)") do
+        table.insert(result, part)
+    end
+    return result[3], result[4] + 1, result[5]
+end
+
+local format_entry = function(entry)
+    local type_name = db_utils.get_type_name(entry.type)
+    return string.format("%-12s %-50s %-50s %s %s", type_name, entry.name, entry.path, entry.row, entry.column)
+end
+
 local get_picker = function(items_provider)
     local picker = function()
         -- get database (connection is always opened)
@@ -24,11 +38,7 @@ local get_picker = function(items_provider)
             coroutine.wrap(function()
                 local co = coroutine.running()
                 for _, entry in pairs(items_provider()) do
-                    local type_name = db_utils.__get_type_name(entry.type)
-                    fzf_cb(
-                        string.format("%-12s %-50s %-50s %s %s", type_name, entry.name, entry.path, entry.row,
-                            entry.column),
-                        function() coroutine.resume(co) end)
+                    fzf_cb(format_entry(entry), function() coroutine.resume(co) end)
                     coroutine.yield()
                 end
                 fzf_cb()
@@ -37,12 +47,24 @@ local get_picker = function(items_provider)
             actions = {
                 -- on select hop to definition by path row and column
                 ['default'] = function(selected)
-                    local result = {}
-                    for part in string.gmatch(selected[1], "([^ ]+)") do
-                        table.insert(result, part)
-                    end
-                    hop_utils.__hop(result[3], result[4] + 1, result[5])
-                end
+                    local path, row, column = parse_entry(selected[1])
+                    hop_utils.__hop(path, row, column)
+                end,
+
+                ['ctrl-v'] = function(selected)
+                    local path, row, column = parse_entry(selected[1])
+                    hop_utils.__vhop(path, row, column)
+                end,
+
+                ['ctrl-s'] = function(selected)
+                    local path, row, column = parse_entry(selected[1])
+                    hop_utils.__shop(path, row, column)
+                end,
+
+                ['ctrl-t'] = function(selected)
+                    local path, row, column = parse_entry(selected[1])
+                    hop_utils.__thop(path, row, column)
+                end,
             }
         })
     end
@@ -59,13 +81,13 @@ M.hopcsharp_menu = function()
                 return db:eval(db_query.get_all_definitions)
             end),
         },
-        { name = 'list classes',    action = get_picker(get_items_by_type(db_utils.__types.CLASS)), },
-        { name = 'list interfaces', action = get_picker(get_items_by_type(db_utils.__types.INTERFACE)), },
+        { name = 'list classes',    action = get_picker(get_items_by_type(db_utils.types.CLASS)), },
+        { name = 'list interfaces', action = get_picker(get_items_by_type(db_utils.types.INTERFACE)), },
         { name = 'list attributes', action = get_picker(get_attributes), },
-        { name = 'list methods',    action = get_picker(get_items_by_type(db_utils.__types.METHOD)), },
-        { name = 'list enums',      action = get_picker(get_items_by_type(db_utils.__types.ENUM)), },
-        { name = 'list structs',    action = get_picker(get_items_by_type(db_utils.__types.STRUCT)), },
-        { name = 'list records',    action = get_picker(get_items_by_type(db_utils.__types.RECORD)), },
+        { name = 'list methods',    action = get_picker(get_items_by_type(db_utils.types.METHOD)), },
+        { name = 'list enums',      action = get_picker(get_items_by_type(db_utils.types.ENUM)), },
+        { name = 'list structs',    action = get_picker(get_items_by_type(db_utils.types.STRUCT)), },
+        { name = 'list records',    action = get_picker(get_items_by_type(db_utils.types.RECORD)), },
 
     }
 
