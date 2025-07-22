@@ -35,10 +35,8 @@ return packer.startup(function(use)
     -- ui
     use({ 'nvim-lualine/lualine.nvim' })
 
-    -- hopcsharp development
-    use({ '../hopcsharp.nvim' })
-    use({ 'kkharji/sqlite.lua' })
-    use({ 'nvim-lua/plenary.nvim' })
+    -- hopcsharp yay
+    use({ 'leblocks/hopcsharp.nvim', requires = { { 'kkharji/sqlite.lua' } } })
 
     if packer_bootstrap then
         packer.sync()

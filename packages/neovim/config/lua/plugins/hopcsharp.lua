@@ -37,7 +37,13 @@ local get_picker = function(items_provider)
         fzf_lua.fzf_exec(function(fzf_cb)
             coroutine.wrap(function()
                 local co = coroutine.running()
-                for _, entry in pairs(items_provider()) do
+                local items = items_provider()
+
+                if type(items) ~= 'table' then
+                    items = {}
+                end
+
+                for _, entry in pairs(items) do
                     fzf_cb(format_entry(entry), function() coroutine.resume(co) end)
                     coroutine.yield()
                 end
