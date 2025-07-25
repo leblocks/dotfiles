@@ -15,8 +15,13 @@ from the headache of managing different sets of scripts, making development more
 
 ## TODOs
 * tests for empty windows installation, vm?
+  * check github workflows
 * make sure that none of commands requires admin (except package installations)
 * refactor pwsh stuff
+* neovim
+  * replace packer with native module
+  * ditch filetype.nvim
+  * nvim-lspconfig?
 
 ## Repository structure
 
