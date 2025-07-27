@@ -5,6 +5,7 @@ local db_utils = require('hopcsharp.database.utils')
 
 
 local fzf_lua = require('fzf-lua')
+local actions = fzf_lua.actions
 
 local M = {}
 
@@ -78,6 +79,41 @@ local get_picker = function(items_provider)
     return picker
 end
 
+local list_files = function()
+    -- get database (connection is always opened)
+    fzf_lua.fzf_exec(function(fzf_cb)
+        coroutine.wrap(function()
+            local db = hopcsharp.get_db()
+            local co = coroutine.running()
+            local items = db:eval([[ SELECT path FROM files ]])
+
+            if type(items) ~= 'table' then
+                items = {}
+            end
+
+            for _, entry in pairs(items) do
+                fzf_cb(entry.path, function() coroutine.resume(co) end)
+                coroutine.yield()
+            end
+            fzf_cb()
+        end)()
+    end, {
+        actions = {
+            ["enter"]  = actions.file_edit_or_qf,
+            ["ctrl-s"] = actions.file_split,
+            ["ctrl-v"] = actions.file_vsplit,
+            ["ctrl-t"] = actions.file_tabedit,
+            ["alt-q"]  = actions.file_sel_to_qf,
+            ["alt-Q"]  = actions.file_sel_to_ll,
+            ["alt-i"]  = actions.toggle_ignore,
+            ["alt-h"]  = actions.toggle_hidden,
+            ["alt-f"]  = actions.toggle_follow,
+        }
+    })
+end
+
+
+
 M.hopcsharp_menu = function()
     local actions = {
         {
@@ -94,7 +130,7 @@ M.hopcsharp_menu = function()
         { name = 'list enums',      action = get_picker(get_items_by_type(db_utils.types.ENUM)), },
         { name = 'list structs',    action = get_picker(get_items_by_type(db_utils.types.STRUCT)), },
         { name = 'list records',    action = get_picker(get_items_by_type(db_utils.types.RECORD)), },
-
+        { name = 'list files',      action = list_files, },
     }
 
     vim.ui.select(actions,
