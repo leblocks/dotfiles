@@ -52,8 +52,10 @@ vim.o.laststatus = 0
 vim.o.list = true
 vim.o.listchars = "trail:·"
 
--- sqlite support
-vim.g.sqlite_clib_path = os.getenv('NEOVIM_SQLITE_DLL_PATH') or '~'
+-- sqlite support for windows
+if vim.loop.os_uname().sysname == "Windows_NT" then
+    vim.g.sqlite_clib_path = os.getenv('NEOVIM_SQLITE_DLL_PATH') or '~'
+end
 
 vim.api.nvim_command("colorscheme retrobox")
 
