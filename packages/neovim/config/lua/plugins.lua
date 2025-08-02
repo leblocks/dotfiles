@@ -30,8 +30,6 @@ return packer.startup(function(use)
     -- lsp
     use('neovim/nvim-lspconfig')
 
-    use('nathom/filetype.nvim')
-
     -- ui
     use({ 'nvim-lualine/lualine.nvim' })
 

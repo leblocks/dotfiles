@@ -20,7 +20,6 @@ from the headache of managing different sets of scripts, making development more
 * refactor pwsh stuff
 * neovim
   * replace packer with native module
-  * ditch filetype.nvim
   * nvim-lspconfig?
 
 ## Repository structure
