@@ -68,6 +68,7 @@ vim.lsp.config('omnisharp', {
         "-z",
         "--hostPID", tostring(pid),
         "DotNet:enablePackageRestore=false",
+        "MSBuild:loadProjectsOnDemand=true",
         "--encoding", "utf-8",
         "--languageserver",
     },
