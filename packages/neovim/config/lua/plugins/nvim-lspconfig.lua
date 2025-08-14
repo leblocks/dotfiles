@@ -73,3 +73,7 @@ vim.lsp.config('omnisharp', {
         "--languageserver",
     },
 })
+
+vim.lsp.config('csharp_ls', {
+    autostart = false,
+})

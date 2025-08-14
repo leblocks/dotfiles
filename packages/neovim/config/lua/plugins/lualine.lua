@@ -20,9 +20,10 @@ require('lualine').setup({
     sections = {
         lualine_a = {'mode'},
         lualine_b = {'encoding', 'fileformat', 'filetype'},
-        lualine_c = { { 'filename', path = 1 } },
-        lualine_x = {'diagnostics', 'selectioncount',},
+        lualine_c = { { 'filename', path = 1, } },
+        lualine_x = {'diagnostics', 'selectioncount', 'lsp_status' },
         lualine_y = {'progress'},
         lualine_z = {'location'}
     },
 })
+
