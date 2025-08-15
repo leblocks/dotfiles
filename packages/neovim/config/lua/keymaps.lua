@@ -1,4 +1,3 @@
-
 local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
 
@@ -137,6 +136,12 @@ vim.keymap.set({ 'n' }, '<Leader>4', require('utils').open_agenda, default_opts)
 -- (h)opcsharp
 local hopcsharp = require('plugins.hopcsharp')
 vim.keymap.set({ 'n' }, '<Leader>hh', hopcsharp.hopcsharp_menu, default_opts)
-vim.keymap.set({ 'n' }, '<Leader>hd', require('hopcsharp').hop_to_definition, default_opts)
-vim.keymap.set({ 'n' }, '<Leader>hi', require('hopcsharp').hop_to_implementation, default_opts)
+
+vim.keymap.set({ 'n' }, '<Leader>hd', function()
+    require('hopcsharp').hop_to_definition(nil, { jump_on_quickfix = true })
+end, default_opts)
+
+vim.keymap.set({ 'n' }, '<Leader>hi', function()
+    require('hopcsharp').hop_to_implementation(nil, { jump_on_quickfix = true })
+end, default_opts)
 
