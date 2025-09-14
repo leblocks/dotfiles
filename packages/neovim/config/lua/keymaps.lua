@@ -138,11 +138,11 @@ local hopcsharp = require('plugins.hopcsharp')
 vim.keymap.set({ 'n' }, '<Leader>hh', hopcsharp.hopcsharp_menu, default_opts)
 
 vim.keymap.set({ 'n' }, '<Leader>hd', function()
-    require('hopcsharp').hop_to_definition(nil, { jump_on_quickfix = true })
+    require('hopcsharp').hop_to_definition({ jump_on_quickfix = true })
 end, default_opts)
 
 vim.keymap.set({ 'n' }, '<Leader>hi', function()
-    require('hopcsharp').hop_to_implementation(nil, { jump_on_quickfix = true })
+    require('hopcsharp').hop_to_implementation({ jump_on_quickfix = true })
 end, default_opts)
 
 vim.keymap.set({ 'n' }, '<Leader>ht', function()
