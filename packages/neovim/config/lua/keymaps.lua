@@ -113,7 +113,7 @@ map('n', '<Leader>0x', ':STerminal<CR>', default_opts)
 map('n', '<Leader>0t', ':TTerminal<CR>', default_opts)
 map('n', '<Leader>l0', ':SelectTerminal<CR>', default_opts)
 map('n', '<Leader>0D', ':CloseTerminals<CR>', default_opts)
-map('t', '<Esc>', [[<C-\><C-n>]], default_opts)
+map('t', '<Esc><Esc>', [[<C-\><C-n>]], default_opts)
 
 -- netrw (vinegar)
 map('n', '<Leader>11', ':Explore<CR>', default_opts)
@@ -143,5 +143,9 @@ end, default_opts)
 
 vim.keymap.set({ 'n' }, '<Leader>hi', function()
     require('hopcsharp').hop_to_implementation(nil, { jump_on_quickfix = true })
+end, default_opts)
+
+vim.keymap.set({ 'n' }, '<Leader>ht', function()
+    require('hopcsharp').get_type_hierarchy(nil)
 end, default_opts)
 
