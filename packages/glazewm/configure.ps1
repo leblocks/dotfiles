@@ -5,5 +5,6 @@ Test-Dependencies @("winget")
 winget install GlazeWM
 
 # recreate config link
-LinkToHome $PSScriptRoot ".glaze-wm"
+LinkToHome $PSScriptRoot ".glzr"
+
 
