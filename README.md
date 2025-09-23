@@ -14,13 +14,21 @@ tools on both Windows and Linux with a unified approach. This not only simplifie
 from the headache of managing different sets of scripts, making development more efficient and straightforward.
 
 ## TODOs
-* tests for empty windows installation, vm?
-  * check github workflows
 * make sure that none of commands requires admin (except package installations)
 * refactor pwsh stuff
+  * create pre-baked powershell images and push those to registry
+  * tests for empty windows installation, vm?
+  * check github workflows for pwsh tests
+  * stylua for neovim?
+  * psscript analyzer for pwsh
+  * run tests
+
 * neovim
-  * replace packer with native module
-  * nvim-lspconfig?
+  * replace packer with native module, v0.12.0+
+  * ditch nvim-lspconfig?
+  * remove sessions
+  * add file bookmarks functionality
+  * wrap plugins in a pcall to prevent config from failures
 
 ## Repository structure
 
