@@ -19,7 +19,6 @@ from the headache of managing different sets of scripts, making development more
   * create pre-baked powershell images and push those to registry
   * tests for empty windows installation, vm?
   * check github workflows for pwsh tests
-  * stylua for neovim?
   * psscript analyzer for pwsh
   * run tests
 
