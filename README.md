@@ -26,7 +26,6 @@ from the headache of managing different sets of scripts, making development more
   * replace packer with native module, v0.12.0+
   * ditch nvim-lspconfig?
   * add file bookmarks functionality
-  * wrap plugins in a pcall to prevent config from failures
 
 ## Repository structure
 

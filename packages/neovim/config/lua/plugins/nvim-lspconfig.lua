@@ -1,41 +1,41 @@
 -- lsp config
-local os = require('os')
+local os = require("os")
 
-local bash_server_location = os.getenv('NEOVIM_BASH_LANGUAGE_SERVER') or '~'
-local lua_server_location = os.getenv('NEOVIM_LUA_LANGUAGE_SERVER') or '~'
-local omnisharp_server_location = os.getenv('OMNISHARP_LANGUAGE_SERVER') or '~'
-local powershell_server_location = os.getenv('NEOVIM_POWERSHELL_LANGUAGE_SERVER') or '~'
-local pyright_server_location = os.getenv('NEOVIM_PYRIGHT_LANGUAGE_SERVER') or '~'
-local typescript_server_location = os.getenv('NEOVIM_TYPESCRIPT_LANGUAGE_SERVER') or '~'
-local vscode_html_server_location = os.getenv('NEOVIM_VSCODE_HTML_LANGUAGE_SERVER') or '~'
+local bash_server_location = os.getenv("NEOVIM_BASH_LANGUAGE_SERVER") or "~"
+local lua_server_location = os.getenv("NEOVIM_LUA_LANGUAGE_SERVER") or "~"
+local omnisharp_server_location = os.getenv("OMNISHARP_LANGUAGE_SERVER") or "~"
+local powershell_server_location = os.getenv("NEOVIM_POWERSHELL_LANGUAGE_SERVER") or "~"
+local pyright_server_location = os.getenv("NEOVIM_PYRIGHT_LANGUAGE_SERVER") or "~"
+local typescript_server_location = os.getenv("NEOVIM_TYPESCRIPT_LANGUAGE_SERVER") or "~"
+local vscode_html_server_location = os.getenv("NEOVIM_VSCODE_HTML_LANGUAGE_SERVER") or "~"
 
 local pid = vim.fn.getpid()
 
-vim.lsp.config('pyright', {
+vim.lsp.config("pyright", {
     autostart = false,
     cmd = { pyright_server_location, "--stdio" },
 })
 
-vim.lsp.config('ts_ls', {
+vim.lsp.config("ts_ls", {
     autostart = false,
     cmd = { typescript_server_location, "--stdio" },
 })
 
-vim.lsp.config('bashls', {
+vim.lsp.config("bashls", {
     autostart = false,
     cmd = { bash_server_location, "start" },
 })
 
 -- lua server configuration, with specifics for neovim
-vim.lsp.config('lua_ls', {
+vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
             runtime = {
-                version = 'LuaJIT',
+                version = "LuaJIT",
             },
             diagnostics = {
                 -- get the language server to recognize the `vim` global
-                globals = { 'vim' },
+                globals = { "vim" },
             },
             workspace = {
                 -- make the server aware of Neovim runtime files
@@ -48,32 +48,34 @@ vim.lsp.config('lua_ls', {
         },
     },
     autostart = false,
-    cmd = { lua_server_location, },
+    cmd = { lua_server_location },
 })
 
-vim.lsp.config('powershell_es', {
+vim.lsp.config("powershell_es", {
     autostart = false,
     bundle_path = powershell_server_location,
 })
 
-vim.lsp.config('html', {
+vim.lsp.config("html", {
     autostart = false,
     cmd = { vscode_html_server_location, "--stdio" },
 })
 
-vim.lsp.config('omnisharp', {
+vim.lsp.config("omnisharp", {
     autostart = false,
     cmd = {
         omnisharp_server_location,
         "-z",
-        "--hostPID", tostring(pid),
+        "--hostPID",
+        tostring(pid),
         "DotNet:enablePackageRestore=false",
         "MSBuild:loadProjectsOnDemand=true",
-        "--encoding", "utf-8",
+        "--encoding",
+        "utf-8",
         "--languageserver",
     },
 })
 
-vim.lsp.config('csharp_ls', {
+vim.lsp.config("csharp_ls", {
     autostart = false,
 })

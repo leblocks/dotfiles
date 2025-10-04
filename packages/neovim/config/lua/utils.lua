@@ -1,4 +1,4 @@
-local os = require('os')
+local os = require("os")
 
 local M = {}
 
@@ -12,7 +12,7 @@ M.attach_cur_buf_to_lsp_by_name = function(client_name)
                 print("Current buffer already attached to " .. client_name .. " language server.")
             else
                 -- attach!
-                vim.lsp.buf_attach_client(0, value.id);
+                vim.lsp.buf_attach_client(0, value.id)
                 print("Current buffer attached to " .. client_name .. " language server.")
             end
             -- stop iteration
@@ -25,8 +25,8 @@ end
 
 M.open_agenda = function()
     -- get path to agenda file
-    local agenda_path = vim.fs.joinpath(os.getenv('OneDrive') or os.getenv('HOME') or os.getenv('USERPROFILE'),
-        'agenda.md')
+    local agenda_path =
+        vim.fs.joinpath(os.getenv("OneDrive") or os.getenv("HOME") or os.getenv("USERPROFILE"), "agenda.md")
 
     if nil == vim.loop.fs_stat(agenda_path) then
         print("no agenda file '" .. agenda_path .. "'")
@@ -46,7 +46,7 @@ M.open_agenda = function()
     end
 
     -- If the buffer is not open, open the file in a new buffer
-    vim.api.nvim_command('edit ' .. agenda_path)
+    vim.api.nvim_command("edit " .. agenda_path)
 end
 
 return M
