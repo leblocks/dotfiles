@@ -131,7 +131,7 @@ local list_files = function()
 end
 
 M.hopcsharp_menu = function()
-    local actions = {
+    local lists = {
         {
             name = "list all types",
             action = get_picker(function()
@@ -149,7 +149,7 @@ M.hopcsharp_menu = function()
         { name = "list files",      action = list_files },
     }
 
-    vim.ui.select(actions, {
+    vim.ui.select(lists, {
         prompt = "hopcsharp",
         format_item = function(item)
             return item.name
