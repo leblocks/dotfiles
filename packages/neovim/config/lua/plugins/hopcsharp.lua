@@ -25,7 +25,12 @@ local parse_entry = function(entry)
     for part in string.gmatch(entry, "([^ ]+)") do
         table.insert(result, part)
     end
-    return result[3], result[4] + 1, result[5]
+
+    if #result == 5 then
+        return result[3], result[4] + 1, result[5]
+    end
+
+    return result[2], result[3] + 1, result[4]
 end
 
 local format_entry = function(entry)
@@ -33,7 +38,11 @@ local format_entry = function(entry)
     return string.format("%-12s %-50s %-50s %s %s", type_name, entry.name, entry.path, entry.row, entry.column)
 end
 
-local get_picker = function(items_provider)
+local format_entry_no_type = function(entry)
+    return string.format("%-50s %s %s %s", entry.name, entry.path, entry.row, entry.column)
+end
+
+local get_picker = function(items_provider, formatter)
     local picker = function()
         -- get database (connection is always opened)
         fzf_lua.fzf_exec(function(fzf_cb)
@@ -46,7 +55,7 @@ local get_picker = function(items_provider)
                 end
 
                 for _, entry in pairs(items) do
-                    fzf_cb(format_entry(entry), function()
+                    fzf_cb(formatter(entry), function()
                         coroutine.resume(co)
                     end)
                     coroutine.yield()
@@ -75,6 +84,10 @@ local get_picker = function(items_provider)
                     local path, row, column = parse_entry(selected[1])
                     hop_utils.__thop(path, row, column)
                 end,
+            },
+
+            fzf_opts = {
+                ['--wrap'] = true,
             },
         })
     end
@@ -124,16 +137,16 @@ M.hopcsharp_menu = function()
             action = get_picker(function()
                 local db = hopcsharp.get_db()
                 return db:eval(db_query.get_all_definitions)
-            end),
+            end, format_entry),
         },
-        { name = "list classes", action = get_picker(get_items_by_type(db_utils.types.CLASS)) },
-        { name = "list interfaces", action = get_picker(get_items_by_type(db_utils.types.INTERFACE)) },
-        { name = "list attributes", action = get_picker(get_attributes) },
-        { name = "list methods", action = get_picker(get_items_by_type(db_utils.types.METHOD)) },
-        { name = "list enums", action = get_picker(get_items_by_type(db_utils.types.ENUM)) },
-        { name = "list structs", action = get_picker(get_items_by_type(db_utils.types.STRUCT)) },
-        { name = "list records", action = get_picker(get_items_by_type(db_utils.types.RECORD)) },
-        { name = "list files", action = list_files },
+        { name = "list classes",    action = get_picker(get_items_by_type(db_utils.types.CLASS), format_entry_no_type) },
+        { name = "list interfaces", action = get_picker(get_items_by_type(db_utils.types.INTERFACE), format_entry_no_type) },
+        { name = "list attributes", action = get_picker(get_attributes, format_entry_no_type) },
+        { name = "list methods",    action = get_picker(get_items_by_type(db_utils.types.METHOD), format_entry_no_type) },
+        { name = "list enums",      action = get_picker(get_items_by_type(db_utils.types.ENUM), format_entry_no_type) },
+        { name = "list structs",    action = get_picker(get_items_by_type(db_utils.types.STRUCT), format_entry_no_type) },
+        { name = "list records",    action = get_picker(get_items_by_type(db_utils.types.RECORD), format_entry_no_type) },
+        { name = "list files",      action = list_files },
     }
 
     vim.ui.select(actions, {
