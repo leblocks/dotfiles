@@ -134,21 +134,21 @@ map("n", "<Leader>1t", ":Texplore<CR>", opts)
 map("n", "<Leader>bd", ":bdelete!<CR>", opts)
 map("n", "<Leader>bb", ":ls<CR>:b<Space>", opts)
 
--- (4)genda (does 4 resemble A a little bit?)
-vim.keymap.set({ "n" }, "<Leader>4", require("utils").open_agenda, opts)
+-- (4)genda, used to be agenda, now bookmarks
+map("n", "<Leader>4", ":BookmarkList<CR>", opts)
 
 -- (h)opcsharp
-local hopcsharp = require('plugins.hopcsharp')
+local hopcsharp = require("plugins.hopcsharp")
 vim.keymap.set({ "n" }, "<Leader>hh", hopcsharp.hopcsharp_menu, opts)
 
 vim.keymap.set({ "n" }, "<Leader>hd", function()
-    require('hopcsharp').hop_to_definition({ jump_on_quickfix = true })
+    require("hopcsharp").hop_to_definition({ jump_on_quickfix = true })
 end, opts)
 
 vim.keymap.set({ "n" }, "<Leader>hi", function()
-    require('hopcsharp').hop_to_implementation({ jump_on_quickfix = true })
+    require("hopcsharp").hop_to_implementation({ jump_on_quickfix = true })
 end, opts)
 
 vim.keymap.set({ "n" }, "<Leader>ht", function()
-    require('hopcsharp').get_type_hierarchy()
+    require("hopcsharp").get_type_hierarchy()
 end, opts)
