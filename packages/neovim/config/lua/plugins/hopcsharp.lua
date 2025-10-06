@@ -87,7 +87,7 @@ local get_picker = function(items_provider, formatter)
             },
 
             fzf_opts = {
-                ['--wrap'] = true,
+                ["--wrap"] = true,
             },
         })
     end
@@ -139,14 +139,29 @@ M.hopcsharp_menu = function()
                 return db:eval(db_query.get_all_definitions)
             end, format_entry),
         },
-        { name = "list classes",    action = get_picker(get_items_by_type(db_utils.types.CLASS), format_entry_no_type) },
-        { name = "list interfaces", action = get_picker(get_items_by_type(db_utils.types.INTERFACE), format_entry_no_type) },
+        {
+            name = "list classes",
+            action = get_picker(get_items_by_type(db_utils.types.CLASS), format_entry_no_type),
+        },
+        {
+            name = "list interfaces",
+            action = get_picker(get_items_by_type(db_utils.types.INTERFACE), format_entry_no_type),
+        },
         { name = "list attributes", action = get_picker(get_attributes, format_entry_no_type) },
-        { name = "list methods",    action = get_picker(get_items_by_type(db_utils.types.METHOD), format_entry_no_type) },
-        { name = "list enums",      action = get_picker(get_items_by_type(db_utils.types.ENUM), format_entry_no_type) },
-        { name = "list structs",    action = get_picker(get_items_by_type(db_utils.types.STRUCT), format_entry_no_type) },
-        { name = "list records",    action = get_picker(get_items_by_type(db_utils.types.RECORD), format_entry_no_type) },
-        { name = "list files",      action = list_files },
+        {
+            name = "list methods",
+            action = get_picker(get_items_by_type(db_utils.types.METHOD), format_entry_no_type),
+        },
+        { name = "list enums", action = get_picker(get_items_by_type(db_utils.types.ENUM), format_entry_no_type) },
+        {
+            name = "list structs",
+            action = get_picker(get_items_by_type(db_utils.types.STRUCT), format_entry_no_type),
+        },
+        {
+            name = "list records",
+            action = get_picker(get_items_by_type(db_utils.types.RECORD), format_entry_no_type),
+        },
+        { name = "list files", action = list_files },
     }
 
     vim.ui.select(lists, {
