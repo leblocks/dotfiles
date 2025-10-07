@@ -1,9 +1,9 @@
-local hopcsharp = require("hopcsharp")
-local hop_utils = require("hopcsharp.hop.utils")
-local db_query = require("hopcsharp.database.query")
-local db_utils = require("hopcsharp.database.utils")
+local db_query = require('hopcsharp.database.query')
+local db_utils = require('hopcsharp.database.utils')
+local hop_utils = require('hopcsharp.hop.utils')
+local hopcsharp = require('hopcsharp')
 
-local fzf_lua = require("fzf-lua")
+local fzf_lua = require('fzf-lua')
 local actions = fzf_lua.actions
 
 local M = {}
@@ -22,7 +22,7 @@ end
 
 local parse_entry = function(entry)
     local result = {}
-    for part in string.gmatch(entry, "([^ ]+)") do
+    for part in string.gmatch(entry, '([^ ]+)') do
         table.insert(result, part)
     end
 
@@ -35,11 +35,11 @@ end
 
 local format_entry = function(entry)
     local type_name = db_utils.get_type_name(entry.type)
-    return string.format("%-12s %-50s %-50s %s %s", type_name, entry.name, entry.path, entry.row, entry.column)
+    return string.format('%-12s %-50s %-50s %s %s', type_name, entry.name, entry.path, entry.row, entry.column)
 end
 
 local format_entry_no_type = function(entry)
-    return string.format("%-50s %s %s %s", entry.name, entry.path, entry.row, entry.column)
+    return string.format('%-50s %s %s %s', entry.name, entry.path, entry.row, entry.column)
 end
 
 local get_picker = function(items_provider, formatter)
@@ -50,7 +50,7 @@ local get_picker = function(items_provider, formatter)
                 local co = coroutine.running()
                 local items = items_provider()
 
-                if type(items) ~= "table" then
+                if type(items) ~= 'table' then
                     items = {}
                 end
 
@@ -65,29 +65,29 @@ local get_picker = function(items_provider, formatter)
         end, {
             actions = {
                 -- on select hop to definition by path row and column
-                ["default"] = function(selected)
+                ['default'] = function(selected)
                     local path, row, column = parse_entry(selected[1])
                     hop_utils.__hop(path, row, column)
                 end,
 
-                ["ctrl-v"] = function(selected)
+                ['ctrl-v'] = function(selected)
                     local path, row, column = parse_entry(selected[1])
                     hop_utils.__vhop(path, row, column)
                 end,
 
-                ["ctrl-s"] = function(selected)
+                ['ctrl-s'] = function(selected)
                     local path, row, column = parse_entry(selected[1])
                     hop_utils.__shop(path, row, column)
                 end,
 
-                ["ctrl-t"] = function(selected)
+                ['ctrl-t'] = function(selected)
                     local path, row, column = parse_entry(selected[1])
                     hop_utils.__thop(path, row, column)
                 end,
             },
 
             fzf_opts = {
-                ["--wrap"] = true,
+                ['--wrap'] = true,
             },
         })
     end
@@ -103,7 +103,7 @@ local list_files = function()
             local co = coroutine.running()
             local items = db:eval([[ SELECT path FROM files ]])
 
-            if type(items) ~= "table" then
+            if type(items) ~= 'table' then
                 items = {}
             end
 
@@ -117,15 +117,15 @@ local list_files = function()
         end)()
     end, {
         actions = {
-            ["enter"] = actions.file_edit_or_qf,
-            ["ctrl-s"] = actions.file_split,
-            ["ctrl-v"] = actions.file_vsplit,
-            ["ctrl-t"] = actions.file_tabedit,
-            ["alt-q"] = actions.file_sel_to_qf,
-            ["alt-Q"] = actions.file_sel_to_ll,
-            ["alt-i"] = actions.toggle_ignore,
-            ["alt-h"] = actions.toggle_hidden,
-            ["alt-f"] = actions.toggle_follow,
+            ['enter'] = actions.file_edit_or_qf,
+            ['ctrl-s'] = actions.file_split,
+            ['ctrl-v'] = actions.file_vsplit,
+            ['ctrl-t'] = actions.file_tabedit,
+            ['alt-q'] = actions.file_sel_to_qf,
+            ['alt-Q'] = actions.file_sel_to_ll,
+            ['alt-i'] = actions.toggle_ignore,
+            ['alt-h'] = actions.toggle_hidden,
+            ['alt-f'] = actions.toggle_follow,
         },
     })
 end
@@ -133,39 +133,39 @@ end
 M.hopcsharp_menu = function()
     local lists = {
         {
-            name = "list all types",
+            name = 'list all types',
             action = get_picker(function()
                 local db = hopcsharp.get_db()
                 return db:eval(db_query.get_all_definitions)
             end, format_entry),
         },
         {
-            name = "list classes",
+            name = 'list classes',
             action = get_picker(get_items_by_type(db_utils.types.CLASS), format_entry_no_type),
         },
         {
-            name = "list interfaces",
+            name = 'list interfaces',
             action = get_picker(get_items_by_type(db_utils.types.INTERFACE), format_entry_no_type),
         },
-        { name = "list attributes", action = get_picker(get_attributes, format_entry_no_type) },
+        { name = 'list attributes', action = get_picker(get_attributes, format_entry_no_type) },
         {
-            name = "list methods",
+            name = 'list methods',
             action = get_picker(get_items_by_type(db_utils.types.METHOD), format_entry_no_type),
         },
-        { name = "list enums", action = get_picker(get_items_by_type(db_utils.types.ENUM), format_entry_no_type) },
+        { name = 'list enums', action = get_picker(get_items_by_type(db_utils.types.ENUM), format_entry_no_type) },
         {
-            name = "list structs",
+            name = 'list structs',
             action = get_picker(get_items_by_type(db_utils.types.STRUCT), format_entry_no_type),
         },
         {
-            name = "list records",
+            name = 'list records',
             action = get_picker(get_items_by_type(db_utils.types.RECORD), format_entry_no_type),
         },
-        { name = "list files", action = list_files },
+        { name = 'list files', action = list_files },
     }
 
     vim.ui.select(lists, {
-        prompt = "hopcsharp",
+        prompt = 'hopcsharp',
         format_item = function(item)
             return item.name
         end,

@@ -1,4 +1,4 @@
-require("fzf-lua").setup({
+require('fzf-lua').setup({
     defaults = {
         file_icons = false,
     },
@@ -11,6 +11,6 @@ require("fzf-lua").setup({
     },
 
     fzf_opts = {
-        ["--layout"] = "default",
+        ['--layout'] = 'default',
     },
 })

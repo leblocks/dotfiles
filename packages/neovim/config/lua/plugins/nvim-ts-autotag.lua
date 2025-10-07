@@ -1,4 +1,4 @@
-require("nvim-ts-autotag").setup({
+require('nvim-ts-autotag').setup({
     opts = {
         enable_close = true, -- Auto close tags
         enable_rename = true, -- Auto rename pairs of tags
@@ -6,9 +6,9 @@ require("nvim-ts-autotag").setup({
     },
 
     aliases = {
-        ["csproj"] = "html",
-        ["props"] = "html",
-        ["targets"] = "html",
-        ["resx"] = "html",
+        ['csproj'] = 'html',
+        ['props'] = 'html',
+        ['targets'] = 'html',
+        ['resx'] = 'html',
     },
 })
