@@ -248,21 +248,3 @@ function New-Ctags([string] $Language) {
     ) | Invoke-Expression
 }
 
-function New-Ignore {
-    $path = Join-Path $HOME repos dotfiles config .ignore
-
-    @('.rgignore', '.fdignore')
-        | ForEach-Object {
-            Remove-Item `
-                -Path $_ `
-                -ErrorAction SilentlyContinue `
-                -Force
-
-            New-Item `
-                -ItemType SymbolicLink `
-                -Path $_ `
-                -Target $path `
-                -Force
-        }
-}
-
