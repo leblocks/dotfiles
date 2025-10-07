@@ -37,7 +37,7 @@ Set-Alias pop Pop-Location
 Set-Alias push Push-Location
 
 function env { Get-ChildItem env: }
-function top { "btm -b" | Invoke-Expression }
+function top { btm -b }
 function guid { (New-Guid).ToString() }
 
 function touch([string] $Path) {

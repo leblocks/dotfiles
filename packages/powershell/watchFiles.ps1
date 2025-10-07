@@ -18,6 +18,7 @@
 #>
 function Watch-Files {
     [CmdletBinding()]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification='script is being executed on a console')]
     param (
         [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
         [string[]] $Paths,
@@ -35,7 +36,7 @@ function Watch-Files {
             $fileName = (Get-ChildItem $path).Name
             Get-Content -Wait -Tail $($using:Tail) -Path $path
                 | ForEach-Object {
-                    $colors = [Enum]::GetNames([System.ConsoleColor]) 
+                    $colors = [Enum]::GetNames([System.ConsoleColor])
                         | Select-Object -Skip 1
 
                     $index = [array]::IndexOf($($using:Paths), $path)

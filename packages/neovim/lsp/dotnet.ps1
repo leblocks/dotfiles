@@ -1,3 +1,4 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Justification='no malicious code can be injected')]
 param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
 . $PSScriptRoot/../../../utils.ps1

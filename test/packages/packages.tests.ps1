@@ -1,13 +1,9 @@
 
-function Get-PackagesList {
+function Get-PackagesList
+{
     . $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
-    $path = Join-Path `
-        $PSScriptRoot `
-        ".." `
-        ".." `
-        "packages" `
-        "packages.json"
+    $path = Join-Path $PSScriptRoot ".." ".." "packages" "packages.json"
 
     $packages = Get-Content $path | ConvertFrom-Json
 
@@ -18,6 +14,7 @@ function Get-PackagesList {
 
 BeforeAll {
     . $(Join-Path $PSScriptRoot .. .. utils.ps1)
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUserDeclaredVarsMoreThanAssignments', '')]
     $exceptions = @{
         neovim = 'nvim'
         ripgrep = 'rg'
@@ -29,9 +26,11 @@ BeforeAll {
 
 Describe 'packages from packages.json were installed' {
     It "package <_> is installed" -ForEach (Get-PackagesList) {
-        if ($exceptions.ContainsKey($_)) {
+        if ($exceptions.ContainsKey($_))
+        {
             Test-Command $exceptions[$_] | Should -Be $true
-        } else {
+        } else
+        {
             Test-Command $_ | Should -Be $true
         }
     }

@@ -1,3 +1,4 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Justification='no malicious code can be injected')]
 param([Parameter(Position=0, Mandatory=$True)] [ValidateSet("archlinux", "ubuntu")] [string] $ImageName)
 
 . $(Join-Path $PSScriptRoot .. utils.ps1)
@@ -34,7 +35,6 @@ $commandToInvoke = [string]::Join(" ",
     "--network=host",
     $containerCommand)
 
-Write-Message "invoking $commandToInvoke" -ForegroundColor Green
+Write-Message "invoking $commandToInvoke"
 
 $commandToInvoke | Invoke-Expression
-
