@@ -35,7 +35,7 @@ Describe 'neovim' {
         Test-Path $env:OMNISHARP_LANGUAGE_SERVER | Should -Be $true
     }
 
-    It 'NEOVIM_SQLITE_DLL_PATH env variable is set and points to an existing path' {
+    It 'NEOVIM_SQLITE_DLL_PATH env variable is set and points to an existing path' -Skip:$IsLinux {
         Test-Path $env:NEOVIM_SQLITE_DLL_PATH  | Should -Be $true
     }
 }

@@ -1,5 +1,9 @@
 param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
+if (-Not ($IsWindows)) {
+    return
+}
+
 $SQLITE_BINARY_VERSION = "3490200"
 
 . $(Join-Path $PSScriptRoot .. .. .. utils.ps1)
@@ -9,12 +13,7 @@ $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps
 Write-Message "downloading sqlite.dll at $toolPath"
 # download sqlite3 dll for sqlite.lua (windows only)
 
-$link = ""
-if ($IsWindows) {
-    $link = "https://www.sqlite.org/2025/sqlite-dll-win-x64-$SQLITE_BINARY_VERSION.zip"
-} else {
-    $link = "https://www.sqlite.org/2025/sqlite-tools-linux-x64-$SQLITE_BINARY_VERSION.zip"
-}
+$link = "https://www.sqlite.org/2025/sqlite-dll-win-x64-$SQLITE_BINARY_VERSION.zip"
 
 New-Folder $toolPath
 
