@@ -15,7 +15,10 @@ $entrypointArgument = "`"" +
 
 switch ($ImageName) {
     "archlinux" {
-        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "archlinux:base", "-c", $entrypointArgument)
+        $containerCommand = [string]::Join(" ",
+            "sashag1990/dotfiles-test-archlinux:7.5.3",
+            "pwsh -f /dotfiles/dotfiles.ps1 kaboom && pwsh"
+        )
     }
     "ubuntu" {
         $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "homebrew/brew", "-c", $entrypointArgument)
