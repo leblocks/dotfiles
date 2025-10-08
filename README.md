@@ -17,15 +17,16 @@ from the headache of managing different sets of scripts, making development more
 * make sure that none of commands requires admin (except package installations)
 * refactor pwsh stuff
   * create pre-baked powershell images and push those to registry
+    * rename images
+    * script for automatic update and push of a new version
   * tests for empty windows installation, vm?
   * check github workflows for pwsh tests
-  * psscript analyzer for pwsh
   * run tests
+  * debloat - remove brew functionality and bootstrap (I'm not using it anyway)
 
 * neovim
   * replace packer with native module, v0.12.0+
   * ditch nvim-lspconfig?
-  * add file bookmarks functionality
 
 ## Repository structure
 
