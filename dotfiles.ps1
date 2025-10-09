@@ -12,13 +12,14 @@ COMMANDS
                            "all" will invoke configuration of all available packages
     install                installs packages listed in packages/packages.json
     test                   run self checks
-    docker [imageName]     run installation scripts in a docker container
+    docker                 run installation scripts in a docker container
     kaboom                 run install, configure all and test
+    lint                   run lint checks on a repository
     help, -?               show this help message
 #>
 param(
   [Parameter(Position=0, Mandatory=$True)]
-  [ValidateSet("list", "configure", "install",  "test", "docker", "kaboom", "help")]
+  [ValidateSet("list", "configure", "install",  "test", "docker", "kaboom", "lint", "help")]
   [string]
   $Command,
   [Parameter(Position=1, ValueFromRemainingArguments=$true)]
@@ -115,6 +116,9 @@ switch ($Command) {
         Configure "all"
         . $PROFILE
         Invoke-Tests
+    }
+    "lint" {
+        Invoke-PSScriptAnalyzer $PSScriptRoot
     }
     "help" { Get-Help $PSCommandPath }
 }
