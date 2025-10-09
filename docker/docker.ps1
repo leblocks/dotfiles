@@ -1,34 +1,13 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Justification='no malicious code can be injected')]
-param([Parameter(Position=0, Mandatory=$True)] [ValidateSet("archlinux", "ubuntu")] [string] $ImageName)
-
 . $(Join-Path $PSScriptRoot .. utils.ps1)
 
-$contaienerName = $ImageName + "-" + [Guid]::NewGuid().ToString()
+$newLine = [System.Environment]::NewLine
+
 $repoRootFolder = Join-Path $PSScriptRoot ".."
 
-$entrypointArgument = "`"" +
-            [string]::Join(" && ",
-                "/dotfiles/bootstrap/$ImageName.sh",
-                "pwsh -f /dotfiles/dotfiles.ps1 kaboom",
-                "pwsh"
-            ) + "`""
-
-switch ($ImageName) {
-    "archlinux" {
-        $containerCommand = [string]::Join(" ",
-            "sashag1990/dotfiles-test-archlinux:7.5.3",
-            "pwsh -f /dotfiles/dotfiles.ps1 kaboom && pwsh"
-        )
-    }
-    "ubuntu" {
-        $containerCommand = [string]::Join(" ", "--entrypoint", "/bin/bash", "homebrew/brew", "-c", $entrypointArgument)
-    }
-}
-
-$commandToInvoke = [string]::Join(" ",
+$commandToInvoke = @(
     "docker run",
     "--rm",
-    "--name $contaienerName",
+    "--name $((New-Guid).ToString())",
     "--interactive",
     "--tty",
     "--volume $repoRootFolder`:/dotfiles",
@@ -36,8 +15,13 @@ $commandToInvoke = [string]::Join(" ",
     "--env TERM=xterm-256color",
     "--env DOTFILES_DEBUG=true",
     "--network=host",
-    $containerCommand)
+    "sashag1990/dotfiles:7.5.3 pwsh -NoLogo -NoExit"
+)
 
-Write-Message "invoking $commandToInvoke"
+Write-Message "invoking $(Join-String -InputObject $commandToInvoke -Separator $newLine)"
 
-$commandToInvoke | Invoke-Expression
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Justification='no malicious code can be injected')]
+$commandToInvoke
+    | Join-String -Separator " "
+    | Invoke-Expression
+
