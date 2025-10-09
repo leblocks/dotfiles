@@ -56,7 +56,9 @@ if vim.loop.os_uname().sysname == 'Windows_NT' then
     vim.g.sqlite_clib_path = os.getenv('NEOVIM_SQLITE_DLL_PATH') or '~'
 end
 
-vim.api.nvim_command('colorscheme retrobox')
+-- wrapping in a pcall so it won't fail config if
+-- colorscheme was not installed
+pcall(vim.api.nvim_command, 'colorscheme space_vim_theme')
 
 if vim.fn.executable('pwsh') == 1 then
     vim.o.shell = 'pwsh'
