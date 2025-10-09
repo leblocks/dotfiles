@@ -303,6 +303,10 @@ function New-Ctags([string] $Language)
 
 function Invoke-PSScriptAnalyzer([string] $Path)
 {
+    if (-Not ([bool](Get-InstalledModule -Name "PSScriptAnalyzer" -ErrorAction SilentlyContinue))) {
+        Install-Module "PSScriptAnalyzer" -Force
+    }
+
     $params = @{
         Path = $Path
         Recurse = $True
