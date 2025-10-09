@@ -16,9 +16,11 @@
    # watching files in a path by a glob
    Write-Output (Get-ChildItem *.txt) -NoEnumerate | Watch-Files
 #>
-function Watch-Files {
+function Watch-Files
+{
     [CmdletBinding()]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification='script is being executed on a console')]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseProcessBlockForPipelineCommand', '', Justification='TODO')]
     param (
         [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
         [string[]] $Paths,
@@ -26,7 +28,8 @@ function Watch-Files {
         [int] $ThrottleLimit
     )
 
-    if ($ThrottleLimit -eq 0) {
+    if ($ThrottleLimit -eq 0)
+    {
         $ThrottleLimit = $Paths.Length
     }
 
@@ -35,16 +38,16 @@ function Watch-Files {
             $path = $_;
             $fileName = (Get-ChildItem $path).Name
             Get-Content -Wait -Tail $($using:Tail) -Path $path
-                | ForEach-Object {
-                    $colors = [Enum]::GetNames([System.ConsoleColor])
-                        | Select-Object -Skip 1
+            | ForEach-Object {
+                $colors = [Enum]::GetNames([System.ConsoleColor])
+                | Select-Object -Skip 1
 
-                    $index = [array]::IndexOf($($using:Paths), $path)
+                $index = [array]::IndexOf($($using:Paths), $path)
 
-                    $color = $colors[$index % $colors.Length]
-                    Write-Host "[$fileName] " -NoNewLine -ForegroundColor $color
-                    Write-Host ${_}
-                }
+                $color = $colors[$index % $colors.Length]
+                Write-Host "[$fileName] " -NoNewLine -ForegroundColor $color
+                Write-Host ${_}
+            }
         } -ThrottleLimit $ThrottleLimit
 }
 

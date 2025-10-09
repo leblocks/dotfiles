@@ -194,20 +194,22 @@ function Invoke-FailFastExpression
         [string]$command
     )
 
-    $debug = $env:DOTFILES_DEBUG
-
-    try
+    process
     {
-        if ($null -eq $debug)
+        $debug = $env:DOTFILES_DEBUG
+        try
         {
-            Invoke-Expression $command | Out-Null
-        } else
+            if ($null -eq $debug)
+            {
+                Invoke-Expression $command | Out-Null
+            } else
+            {
+                Invoke-Expression $command
+            }
+        } catch
         {
-            Invoke-Expression $command
+            throw "Invoke-FailFastExpression failed on $command with: $_"
         }
-    } catch
-    {
-        throw "Invoke-FailFastExpression failed on $command with: $_"
     }
 }
 
@@ -218,18 +220,21 @@ function Invoke-Expressions
         [string[]]$commands
     )
 
-    $counter = 0;
-
-    foreach ($command in $commands)
+    process
     {
-        $counter++
-        $progress = [int](($counter / $commands.Length) * 100)
+        $counter = 0;
 
-        Write-Progress `
-            -Activity $command `
-            -PercentComplete $progress
+        foreach ($command in $commands)
+        {
+            $counter++
+            $progress = [int](($counter / $commands.Length) * 100)
 
-        $command | Invoke-FailFastExpression
+            Write-Progress `
+                -Activity $command `
+                -PercentComplete $progress
+
+            $command | Invoke-FailFastExpression
+        }
     }
 }
 
@@ -303,7 +308,8 @@ function New-Ctags([string] $Language)
 
 function Invoke-PSScriptAnalyzer([string] $Path)
 {
-    if (-Not ([bool](Get-InstalledModule -Name "PSScriptAnalyzer" -ErrorAction SilentlyContinue))) {
+    if (-Not ([bool](Get-InstalledModule -Name "PSScriptAnalyzer" -ErrorAction SilentlyContinue)))
+    {
         Install-Module "PSScriptAnalyzer" -Force
     }
 
