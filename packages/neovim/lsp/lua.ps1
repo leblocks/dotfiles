@@ -14,9 +14,9 @@ Push-Location $toolPath
 
 $ARCH = ""
 switch (Get-PackageManager) {
-    "scoop" { $ARCH = "win32-x64.zip" }
-    { ($_ -eq "brew") -or ($_ -eq "pacman") } { $ARCH = "linux-x64.tar.gz" }
-    default { throw "unsupported OS" }
+    "scoop"  { $ARCH = "win32-x64.zip" }
+    "pacman" { $ARCH = "linux-x64.tar.gz" }
+    default  { throw "unsupported OS" }
 }
 
 # getting latest version of lua server

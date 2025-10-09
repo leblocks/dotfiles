@@ -34,25 +34,5 @@
         "tree",
         "universal-ctags",
         "unzip"
-    ],
-
-    "brew": [
-        "bash",
-        "bat",
-        "bottom",
-        "curl",
-        "fd",
-        "fzf",
-        "gcc",
-        "jq",
-        "mc",
-        "neovim",
-        "ripgrep",
-        "shellcheck",
-        "tar",
-        "tmux",
-        "tree",
-        "universal-ctags",
-        "unzip"
     ]
 }

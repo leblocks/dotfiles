@@ -34,15 +34,16 @@ function LinkToHome ([string] $folder, [string] $fileName)
 
 function Get-PackageManager
 {
-    if (Test-Command -Command "brew")
-    { return "brew"
-    }
     if (Test-Command -Command "scoop")
-    { return "scoop"
+    {
+        return "scoop"
     }
+
     if (Test-Command -Command "pacman")
-    { return "pacman"
+    {
+        return "pacman"
     }
+
     throw "Could not find supported package manager for installation."
 }
 
@@ -50,12 +51,11 @@ function Get-PackageManagerInstallCommand([string] $PackageManager, [string] $Pa
 {
     switch($PackageManager)
     {
-        "brew"
-        { return "brew install $Package"
-        }
         "scoop"
-        { return "scoop install $Package"
+        {
+            return "scoop install $Package"
         }
+
         "pacman"
         {
             $sudo = ""
@@ -67,8 +67,10 @@ function Get-PackageManagerInstallCommand([string] $PackageManager, [string] $Pa
 
             return "$sudo pacman -Sy --noconfirm $Package"
         }
+
         default
-        { throw "$PackageManager is not supported."
+        {
+            throw "$PackageManager is not supported."
         }
     }
 }
