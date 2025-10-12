@@ -8,21 +8,17 @@ local function log(message)
     print('bookmarks ' .. message)
 end
 
-local function ensure_bookmarks_file_exists()
-    -- ensure file will exist
-    local file, error = io.open(bookmark_store, 'a')
+-- ensure bookmarks file exists on module require
+local bookmarks_file, err = io.open(bookmark_store, 'a')
 
-    if error ~= nil then
-        log(error)
-        return
-    else
-        file:close()
-    end
+if err ~= nil then
+    log(err)
+    return
+else
+    bookmarks_file:close()
 end
 
 local function get_bookmarks()
-    ensure_bookmarks_file_exists()
-
     local bookmarks = {}
     for line in io.lines(bookmark_store) do
         table.insert(bookmarks, line)
@@ -32,8 +28,6 @@ local function get_bookmarks()
 end
 
 local function set_bookmarks(paths)
-    ensure_bookmarks_file_exists()
-
     local file, error = io.open(bookmark_store, 'w+')
 
     if error ~= nil then
