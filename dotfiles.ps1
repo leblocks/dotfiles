@@ -68,10 +68,7 @@ function Configure {
 
         & $script
 
-        Write-Progress `
-            -Activity "configuring packages" `
-            -Status $script `
-            -PercentComplete $percent
+        Write-Progress -Activity "configuring packages" -Status $script -PercentComplete $percent
     }
 }
 
@@ -80,9 +77,13 @@ function Invoke-Tests {
         Install-Module "Pester" -Force
     }
     Import-Module Pester -PassThru
-    Invoke-Pester `
-        -Path $(Join-Path $PSScriptRoot test ** *.tests.ps1), $(Join-Path $PSScriptRoot test *.tests.ps1) `
-        -Output Detailed
+
+    $paths = @(
+        (Join-Path $PSScriptRoot test ** *.tests.ps1),
+        (Join-Path $PSScriptRoot test *.tests.ps1)
+    )
+
+    Invoke-Pester -Path $paths -Output Detailed
 }
 
 function Install {
@@ -91,18 +92,13 @@ function Install {
         | ConvertFrom-Json
         | ForEach-Object {
             $packageManager = Get-PackageManager
-            Install-Packages `
-                -PackageManager $packageManager `
-                -Packages $_.PSObject.properties[$packageManager].Value
+            $packages = $_.PSObject.properties[$packageManager].Value
+            Install-Packages -PackageManager $packageManager -Packages $packages
         }
 }
 
 function Get-PathToConfigure($tool) {
-    Join-Path `
-        $PSScriptRoot `
-        "packages" `
-        $tool `
-        "configure.ps1"
+    return Join-Path $PSScriptRoot "packages" $tool "configure.ps1"
 }
 
 switch ($Command) {

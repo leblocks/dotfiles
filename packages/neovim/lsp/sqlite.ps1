@@ -13,22 +13,20 @@ $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps
 Write-Message "downloading sqlite.dll at $toolPath"
 # download sqlite3 dll for sqlite.lua (windows only)
 
-$link = "https://www.sqlite.org/2025/sqlite-dll-win-x64-$SQLITE_BINARY_VERSION.zip"
-
 New-Folder $toolPath
 
 Push-Location $toolPath
 
-Invoke-WebRequest `
-    -Uri $link `
-    -OutFile "sqlitedll.zip" `
-    -MaximumRetryCount 5 `
-    -RetryIntervalSec 3
+$params = @{
+    Uri = "https://www.sqlite.org/2025/sqlite-dll-win-x64-$SQLITE_BINARY_VERSION.zip"
+    OutFile = "sqlitedll.zip"
+    MaximumRetryCount = 5
+    RetryIntervalSec = 3
+}
 
-Expand-Archive `
-    -LiteralPath "sqlitedll.zip" `
-    -DestinationPath . `
-    -Force
+Invoke-WebRequest @params
+
+Expand-Archive -LiteralPath "sqlitedll.zip" -DestinationPath . -Force
 
 Set-EnvironmentVariable "NEOVIM_SQLITE_DLL_PATH" (Resolve-Path sqlite3.dll).Path.Replace('\', '/')
 

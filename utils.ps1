@@ -19,17 +19,8 @@ function Test-Dependencies ([string[]] $packages)
 function LinkToHome ([string] $folder, [string] $fileName)
 {
     $pathToLink = Join-Path $HOME $fileName
-
-    Remove-Item `
-        -Path $pathToLink `
-        -ErrorAction SilentlyContinue `
-        -Force
-
-    New-Item `
-        -ItemType SymbolicLink `
-        -Path $pathToLink `
-        -Target (Join-Path $folder $fileName) `
-        -Force
+    Remove-Item -Path $pathToLink -ErrorAction SilentlyContinue -Force
+    New-Item -ItemType SymbolicLink -Path $pathToLink -Target (Join-Path $folder $fileName) -Force
 }
 
 function Get-PackageManager
@@ -83,15 +74,10 @@ function Install-Packages([string] $PackageManager, [string[]] $Packages)
         $counter++
         $progress = [int](($counter / $Packages.Count) * 100)
 
-        Get-PackageManagerInstallCommand `
-            -PackageManager $PackageManager `
-            -Package $package
-        | Invoke-FailFastExpression
+        Get-PackageManagerInstallCommand -PackageManager $PackageManager -Package $package
+            | Invoke-FailFastExpression
 
-        Write-Progress `
-            -Activity "installing packages" `
-            -Status $package `
-            -PercentComplete $progress
+        Write-Progress -Activity "installing packages" -Status $package -PercentComplete $progress
     }
 }
 
@@ -101,10 +87,7 @@ function Set-EnvironmentVariable ([string] $name, [string] $value)
 
     if (-Not (Test-Path $path))
     {
-        New-Item `
-            -Path $path `
-            -ItemType File `
-            -Force
+        New-Item -Path $path -ItemType File -Force
 
         # new file must be valid json
         Set-Content $path "{}"
@@ -116,18 +99,15 @@ function Set-EnvironmentVariable ([string] $name, [string] $value)
     if ($exists)
     {
         $environment."$name" = $value
-    } else
+    }
+    else
     {
-        Add-Member `
-            -InputObject $environment `
-            -MemberType NoteProperty `
-            -Name $name `
-            -Value $value
+        Add-Member -InputObject $environment -MemberType NoteProperty -Name $name -Value $value
     }
 
     $environment
-    | ConvertTo-Json
-    | Set-Content $path
+        | ConvertTo-Json
+        | Set-Content $path
 }
 
 function Add-PathEntry ([string] $pathEntry)
@@ -153,21 +133,14 @@ function Add-PathEntry ([string] $pathEntry)
 
 function New-Folder ([string] $path)
 {
-    Remove-Item `
-        -Path $path `
-        -ErrorAction SilentlyContinue `
-        -Recurse `
-        -Force
+    Remove-Item -Path $path -ErrorAction SilentlyContinue -Recurse -Force
 
-    New-Item `
-        -Path $path `
-        -ItemType Directory `
-        -Force
+    New-Item -Path $path -ItemType Directory -Force
 }
 
 function Write-Message ([string] $message)
 {
-    Write-Host $message -ForegroundColor Green
+    Write-Output "[dotfiles] $message"
 }
 
 function Get-Files
@@ -177,14 +150,17 @@ function Get-Files
 
 function Get-Ports
 {
-    Get-NetTCPConnection | ForEach-Object {
-        Add-Member `
-            -InputObject $_ `
-            -MemberType NoteProperty `
-            -Value (Get-Process -Id $_.OwningProcess).Path `
-            -Name "Cmd" `
-            -PassThru
-    } | Select-Object "LocalAddress", "LocalPort", "RemoteAddress", "Remote-Port", "State", "OwningProcess", "Cmd"
+    Get-NetTCPConnection
+        | ForEach-Object {
+            $params = @{
+                InputObject = $_
+                MemberType = "NoteProperty"
+                Value = (Get-Process -Id $_.OwningProcess).Path
+                Name = "Cmd"
+                PassThru = $true
+            }
+            Add-Member @params
+        } | Select-Object "LocalAddress", "LocalPort", "RemoteAddress", "Remote-Port", "State", "OwningProcess", "Cmd"
 }
 
 function Invoke-FailFastExpression
@@ -229,9 +205,7 @@ function Invoke-Expressions
             $counter++
             $progress = [int](($counter / $commands.Length) * 100)
 
-            Write-Progress `
-                -Activity $command `
-                -PercentComplete $progress
+            Write-Progress -Activity $command -PercentComplete $progress
 
             $command | Invoke-FailFastExpression
         }
@@ -246,9 +220,7 @@ function Get-PythonExecutable
 {
     if (Test-Command -Command "python")
     {
-        $isPython3 = "python -V"
-        | Invoke-Expression
-        | Select-String -Pattern " 3." -Quiet
+        $isPython3 = python -V | Select-String -Pattern " 3." -Quiet
 
         if ($isPython3)
         {
@@ -319,6 +291,7 @@ function Invoke-PSScriptAnalyzer([string] $Path)
         ExcludeRule = @(
             "PSUseShouldProcessForStateChangingFunctions",
             "PSAvoidUsingPositionalParameters",
+            "PSAvoidUsingInvokeExpression",
             "PSUseSingularNouns"
         )
     }

@@ -8,26 +8,16 @@ $pathToLink = $IsWindows ? (Join-Path $HOME "AppData" "Local" "nvim")
 if ($IsLinux) {
     $linuxPathToConfig = Join-Path $HOME ".config"
     if (-Not (Test-Path $linuxPathToConfig)) {
-        New-Item `
-            -ItemType Directory `
-            -Path $linuxPathToConfig `
-            -Force
+        New-Item -ItemType Directory -Path $linuxPathToConfig -Force
     }
 }
 
 $pathToConfig = Join-Path $PSScriptRoot "config"
 
 # recreate link to neovim config to $HOME folder
-Remove-Item `
-    -Path $pathToLink `
-    -ErrorAction SilentlyContinue `
-    -Force
+Remove-Item -Path $pathToLink -ErrorAction SilentlyContinue -Force
 
-New-Item `
-    -ItemType SymbolicLink `
-    -Path $pathToLink `
-    -Target $pathToConfig `
-    -Force
+New-Item -ItemType SymbolicLink -Path $pathToLink -Target $pathToConfig -Force
 
 $pathToPacker = $IsWindows ? (Join-Path $HOME "\AppData\Local\nvim-data\site\pack\packer\start\packer.nvim")
     : (Join-Path $HOME "/.local/share/nvim/site/pack/packer/start/packer.nvim")

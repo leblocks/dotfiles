@@ -20,7 +20,6 @@ $commandToInvoke = @(
 
 Write-Message "invoking $(Join-String -InputObject $commandToInvoke -Separator $newLine)"
 
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Justification='no malicious code can be injected')]
 $commandToInvoke
     | Join-String -Separator " "
     | Invoke-Expression

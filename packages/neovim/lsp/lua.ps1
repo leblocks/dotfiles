@@ -25,19 +25,17 @@ $tags = git -c 'versionsort.suffix=-' ls-remote --tags --sort='v:refname' https:
 
 $VERSION = ($tags -Replace "^.*tags/", "") -Replace "\^\{\}", ""
 
-$luaServerLink = "https://github.com/LuaLS/lua-language-server/releases/download/$VERSION/lua-language-server-$VERSION-$ARCH"
+$params = @{
+    Uri = "https://github.com/LuaLS/lua-language-server/releases/download/$VERSION/lua-language-server-$VERSION-$ARCH"
+    OutFile = "luaserver"
+    MaximumRetryCount = 5
+    RetryIntervalSec = 3
+}
 
-Invoke-WebRequest `
-    -Uri $luaServerLink `
-    -OutFile "luaserver" `
-    -MaximumRetryCount 5 `
-    -RetryIntervalSec 3
+Invoke-WebRequest @params
 
 if ($IsWindows) {
-    Expand-Archive `
-        -LiteralPath "luaserver" `
-        -DestinationPath . `
-        -Force
+    Expand-Archive -LiteralPath "luaserver" -DestinationPath . -Force
 } else {
     "tar -xvf luaserver" | Invoke-FailFastExpression
 }
