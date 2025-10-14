@@ -38,5 +38,15 @@ Describe 'neovim' {
     It 'NEOVIM_SQLITE_DLL_PATH env variable is set and points to an existing path' -Skip:$IsLinux {
         Test-Path $env:NEOVIM_SQLITE_DLL_PATH  | Should -Be $true
     }
+
+    It 'configuration luacheck pass' {
+        & { Invoke-Luacheck }
+        $LASTEXITCODE | Should -Be 0
+    }
+
+    It 'configuration stylua pass' {
+        & { Invoke-Stylua }
+        $LASTEXITCODE | Should -Be 0
+    }
 }
 

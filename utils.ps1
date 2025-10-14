@@ -299,3 +299,15 @@ function Invoke-PSScriptAnalyzer([string] $Path)
     return Invoke-ScriptAnalyzer @params
 }
 
+function Invoke-Luacheck
+{
+    $path = Join-Path $PSScriptRoot packages neovim
+    luacheck $path --config $(Join-Path $path .luacheckrc)
+}
+
+function Invoke-Stylua
+{
+    $path = Join-Path $PSScriptRoot packages neovim
+    stylua $path --config-path $(Join-Path $path stylua.toml) --color Always --check
+}
+

@@ -115,6 +115,8 @@ switch ($Command) {
     }
     "lint" {
         Invoke-PSScriptAnalyzer $PSScriptRoot
+        Invoke-Luacheck
+        Invoke-Stylua
     }
     "help" { Get-Help $PSCommandPath }
 }

@@ -1,5 +1,3 @@
-local os = require('os')
-
 local M = {}
 
 M.attach_cur_buf_to_lsp_by_name = function(client_name)

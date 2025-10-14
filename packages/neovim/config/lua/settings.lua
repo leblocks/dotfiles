@@ -61,10 +61,9 @@ end
 pcall(vim.api.nvim_command, 'colorscheme space_vim_theme')
 
 if vim.fn.executable('pwsh') == 1 then
+    local shellcommand = '$PSStyle.OutputRendering = [System.Management.Automation.OutputRendering]::PlainText;'
     vim.o.shell = 'pwsh'
-    vim.api.nvim_command(
-        [[ let &shellcmdflag = '-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';$PSStyle.OutputRendering=''plaintext'';Remove-Alias -Force -ErrorAction SilentlyContinue tee;' ]]
-    )
+    vim.o.shellcmdflag = '-NoLogo -NonInteractive -Command ' .. shellcommand
     vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
     vim.o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
     vim.o.shellquote = ''

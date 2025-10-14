@@ -1,6 +1,7 @@
 local fn = vim.fn
 -- packer installation bootstrapping
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local packer_bootstrap = nil
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system({
         'git',
