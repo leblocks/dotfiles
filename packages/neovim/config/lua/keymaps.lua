@@ -113,7 +113,7 @@ register_lsp_keybindings('lua_ls', { 'lua' })
 register_lsp_keybindings('powershell_es', { 'ps1' })
 register_lsp_keybindings('ts_ls', { 'javascript', 'typescript' })
 register_lsp_keybindings('html', { 'html' })
-register_lsp_keybindings('csharp_ls', { 'cs' })
+register_lsp_keybindings('omnisharp', { 'cs' })
 
 -- terminal
 map('n', '<Leader>00', ':Terminal<CR>', opts)
