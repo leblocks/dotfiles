@@ -39,6 +39,7 @@ opt.spellsuggest = 'best,9'
 -- disable python provider support to speed-up start time
 vim.g.loaded_python_provider = 0
 vim.g.loaded_python3_provider = 0
+vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
 -- hide status line

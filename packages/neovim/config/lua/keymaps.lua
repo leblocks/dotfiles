@@ -149,6 +149,10 @@ vim.keymap.set({ 'n' }, '<Leader>hi', function()
     require('hopcsharp').hop_to_implementation({ jump_on_quickfix = true })
 end, opts)
 
+vim.keymap.set({ 'n' }, '<Leader>hr', function()
+    require('hopcsharp').hop_to_reference({ jump_on_quickfix = true })
+end, opts)
+
 vim.keymap.set({ 'n' }, '<Leader>ht', function()
     require('hopcsharp').get_type_hierarchy()
 end, opts)
