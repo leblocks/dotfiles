@@ -75,4 +75,3 @@ vim.lsp.config('omnisharp', {
         '--languageserver',
     },
 })
-
