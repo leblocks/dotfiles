@@ -292,7 +292,8 @@ function Invoke-PSScriptAnalyzer([string] $Path)
             "PSUseShouldProcessForStateChangingFunctions",
             "PSAvoidUsingPositionalParameters",
             "PSAvoidUsingInvokeExpression",
-            "PSUseSingularNouns"
+            "PSUseSingularNouns",
+            "PSUseApprovedVerbs"
         )
     }
 

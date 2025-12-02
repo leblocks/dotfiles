@@ -2,6 +2,14 @@
 
 Test-Dependencies @("nvim", "git")
 
+# make sure all instances are shutdown
+$processes = Get-Process nvim -ErrorAction SilentlyContinue
+
+if ($processes)
+{
+    $processes | Stop-Process
+}
+
 $pathToLink = $IsWindows ? (Join-Path $HOME "AppData" "Local" "nvim")
     : (Join-Path $HOME ".config" "nvim")
 
