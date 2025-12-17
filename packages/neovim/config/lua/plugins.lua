@@ -39,7 +39,7 @@ return packer.startup(function(use)
     use({ 'leblocks/hopcsharp.nvim', requires = { { 'kkharji/sqlite.lua' } } })
 
     -- some colors
-    use({ 'liuchengxu/space-vim-theme' })
+    use({ 'miikanissi/modus-themes.nvim' })
 
     if packer_bootstrap then
         packer.sync()
