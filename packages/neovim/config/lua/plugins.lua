@@ -19,7 +19,7 @@ return packer.startup(function(use)
     use('ibhagwan/fzf-lua')
 
     -- treesitter
-    use('nvim-treesitter/nvim-treesitter')
+    use({ 'nvim-treesitter/nvim-treesitter', branch = 'master' })
     use('windwp/nvim-ts-autotag')
 
     -- hail to the tpope
