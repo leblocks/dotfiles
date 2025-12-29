@@ -4,6 +4,7 @@ local os = require('os')
 local bash_server_location = os.getenv('NEOVIM_BASH_LANGUAGE_SERVER') or '~'
 local lua_server_location = os.getenv('NEOVIM_LUA_LANGUAGE_SERVER') or '~'
 local omnisharp_server_location = os.getenv('OMNISHARP_LANGUAGE_SERVER') or '~'
+local roslyn_server_location = os.getenv('NEOVIM_ROSLYN_LANGUAGE_SERVER') or '~'
 local powershell_server_location = os.getenv('NEOVIM_POWERSHELL_LANGUAGE_SERVER') or '~'
 local pyright_server_location = os.getenv('NEOVIM_PYRIGHT_LANGUAGE_SERVER') or '~'
 local typescript_server_location = os.getenv('NEOVIM_TYPESCRIPT_LANGUAGE_SERVER') or '~'
@@ -73,5 +74,16 @@ vim.lsp.config('omnisharp', {
         '--encoding',
         'utf-8',
         '--languageserver',
+    },
+})
+
+vim.lsp.config('roslyn_ls', {
+    autostart = false,
+    cmd = {
+        'dotnet',
+        roslyn_server_location,
+        '--logLevel', 'Information',
+        '--extensionLogDirectory', vim.fs.joinpath(vim.uv.os_tmpdir(), 'roslyn_ls/logs'),
+        '--stdio',
     },
 })

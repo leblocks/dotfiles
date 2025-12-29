@@ -113,7 +113,8 @@ register_lsp_keybindings('lua_ls', { 'lua' })
 register_lsp_keybindings('powershell_es', { 'ps1' })
 register_lsp_keybindings('ts_ls', { 'javascript', 'typescript' })
 register_lsp_keybindings('html', { 'html' })
-register_lsp_keybindings('omnisharp', { 'cs' })
+-- register_lsp_keybindings('omnisharp', { 'cs' })
+register_lsp_keybindings('roslyn_ls', { 'cs' })
 
 -- tabs
 map('n', '\\1', '1gt', opts)
