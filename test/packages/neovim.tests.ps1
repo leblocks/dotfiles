@@ -31,12 +31,16 @@ Describe 'neovim' {
         Test-Path $env:NEOVIM_VSCODE_HTML_LANGUAGE_SERVER | Should -Be $true
     }
 
-    It 'OMNISHARP_LANGUAGE_SERVER env variable is set and points to an existing path' {
+    It 'OMNISHARP_LANGUAGE_SERVER env variable is set and points to an existing path' -Skip {
         Test-Path $env:OMNISHARP_LANGUAGE_SERVER | Should -Be $true
     }
 
     It 'NEOVIM_SQLITE_DLL_PATH env variable is set and points to an existing path' -Skip:$IsLinux {
-        Test-Path $env:NEOVIM_SQLITE_DLL_PATH  | Should -Be $true
+        Test-Path $env:NEOVIM_SQLITE_DLL_PATH | Should -Be $true
+    }
+
+    It 'NEOVIM_ROSLYN_LANGUAGE_SERVER env variable is set and points to an existing path' {
+        Test-Path $env:NEOVIM_ROSLYN_LANGUAGE_SERVER | Should -Be $true
     }
 
     It 'configuration luacheck pass' {

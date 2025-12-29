@@ -23,25 +23,32 @@ $params = @{
 
 Invoke-WebRequest @params
 
-$DOTNET_ROOT = Join-Path $HOME ".dotnet"
+$INSTALL_DIR = Join-Path $HOME ".dotnet"
+$WINDOWS_GLOBAL_INSTALLATION = "C:\Program Files\dotnet"
+
+if ($IsWindows -And (Test-Path $WINDOWS_GLOBAL_INSTALLATION)) {
+    $INSTALL_DIR = "`"$WINDOWS_GLOBAL_INSTALLATION`""
+}
 
 $command = @(
     ($IsWindows ? "pwsh" : "bash"),
     $pathToScript,
     ($IsWindows ? "-NoPath" : "--no-path"),
-    ($IsWindows ? "-InstallDir" : "--install-dir"), $DOTNET_ROOT,
+    ($IsWindows ? "-InstallDir" : "--install-dir"), $INSTALL_DIR,
     ($IsWindows ? "-Version" : "--version"), $Version
 ) -Join " "
 
 $command | Invoke-FailFastExpression
 
-Add-PathEntry $DOTNET_ROOT
-Add-PathEntry (Join-Path $DOTNET_ROOT "tools")
+$DOTNET_ROOT = $INSTALL_DIR
 
-Set-EnvironmentVariable "DOTNET_ROOT" $DOTNET_ROOT
-Set-EnvironmentVariable "DOTNET_CLI_TELEMETRY_OPTOUT" "true"
+# special case when we don't need to do anything on windows
+if (-Not (Test-Path $WINDOWS_GLOBAL_INSTALLATION)) {
+    Add-PathEntry $DOTNET_ROOT
+    Add-PathEntry $(Join-Path $DOTNET_ROOT "tools")
 
-if ($IsLinux) {
+    Set-EnvironmentVariable "DOTNET_ROOT" $DOTNET_ROOT
+    Set-EnvironmentVariable "DOTNET_CLI_TELEMETRY_OPTOUT" "true"
     Set-EnvironmentVariable "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT" "1"
 }
 

@@ -3,13 +3,11 @@ local os = require('os')
 
 local bash_server_location = os.getenv('NEOVIM_BASH_LANGUAGE_SERVER') or '~'
 local lua_server_location = os.getenv('NEOVIM_LUA_LANGUAGE_SERVER') or '~'
-local omnisharp_server_location = os.getenv('OMNISHARP_LANGUAGE_SERVER') or '~'
+local roslyn_server_location = os.getenv('NEOVIM_ROSLYN_LANGUAGE_SERVER') or '~'
 local powershell_server_location = os.getenv('NEOVIM_POWERSHELL_LANGUAGE_SERVER') or '~'
 local pyright_server_location = os.getenv('NEOVIM_PYRIGHT_LANGUAGE_SERVER') or '~'
 local typescript_server_location = os.getenv('NEOVIM_TYPESCRIPT_LANGUAGE_SERVER') or '~'
 local vscode_html_server_location = os.getenv('NEOVIM_VSCODE_HTML_LANGUAGE_SERVER') or '~'
-
-local pid = vim.fn.getpid()
 
 vim.lsp.config('pyright', {
     autostart = false,
@@ -61,17 +59,15 @@ vim.lsp.config('html', {
     cmd = { vscode_html_server_location, '--stdio' },
 })
 
-vim.lsp.config('omnisharp', {
+vim.lsp.config('roslyn_ls', {
     autostart = false,
     cmd = {
-        omnisharp_server_location,
-        '-z',
-        '--hostPID',
-        tostring(pid),
-        'DotNet:enablePackageRestore=false',
-        'MSBuild:loadProjectsOnDemand=true',
-        '--encoding',
-        'utf-8',
-        '--languageserver',
+        'dotnet',
+        roslyn_server_location,
+        '--logLevel',
+        'Information',
+        '--extensionLogDirectory',
+        vim.fs.joinpath(vim.uv.os_tmpdir(), 'roslyn_ls/logs'),
+        '--stdio',
     },
 })
