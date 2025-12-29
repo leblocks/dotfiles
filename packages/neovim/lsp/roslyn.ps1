@@ -2,10 +2,6 @@ param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
 
 . $PSScriptRoot/../../../utils.ps1
 
-if ($IsLinux) {
-    Test-Dependencies(@("zip"))
-}
-
 $toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
 
 Write-Message "installing roslyn at $toolPath"
