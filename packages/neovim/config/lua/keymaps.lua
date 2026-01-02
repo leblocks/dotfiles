@@ -121,6 +121,8 @@ map('n', '\\2', '2gt', opts)
 map('n', '\\3', '3gt', opts)
 map('n', '\\4', '4gt', opts)
 map('n', '\\5', '5gt', opts)
+map('n', '\\\\', ':tabs<CR>', opts)
+
 
 -- terminal
 map('n', '<Leader>00', ':Terminal<CR>', opts)

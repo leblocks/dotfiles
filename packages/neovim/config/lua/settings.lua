@@ -31,6 +31,7 @@ opt.syntax = 'enable'
 opt.filetype = 'on'
 opt.mouse = ''
 opt.exrc = true
+opt.showtabline = 0
 
 -- spellcheck configuration
 opt.spelllang = 'en'
