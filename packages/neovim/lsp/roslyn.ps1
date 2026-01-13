@@ -10,11 +10,10 @@ New-Folder $toolPath
 
 Push-Location $toolPath
 
-
 $arch = ($IsWindows ? "win" : "linux")
 
 $params = @{
-    Uri = "https://github.com/Crashdummyy/roslynLanguageServer/releases/download/5.3.0-2.25626.1/microsoft.codeanalysis.languageserver.$ARCH-x64.zip"
+    Uri = "https://github.com/Crashdummyy/roslynLanguageServer/releases/latest/download/microsoft.codeanalysis.languageserver.$ARCH-x64.zip"
     OutFile = "roslyn.zip"
     MaximumRetryCount = 5
     RetryIntervalSec = 3
