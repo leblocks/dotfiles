@@ -165,3 +165,6 @@ end, opts)
 vim.keymap.set({ 'n' }, '<Leader>ht', function()
     require('hopcsharp').get_type_hierarchy()
 end, opts)
+
+-- toggle
+vim.keymap.set({ 'n' }, '<Leader><Tab>', require('toggle').toggle, opts)
