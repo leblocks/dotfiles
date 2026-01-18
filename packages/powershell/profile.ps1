@@ -50,7 +50,13 @@ function touch([string] $Path) {
 
 function reload { . $PROFILE }
 
-function Git-RemoveBranch { git branch -D $((git branch | fzf).Trim()) }
+function Git-RemoveBranch {
+    (git branch | fzf -m) -split "\s+" | Where-Object { $_ -ne "" }
+        | ForEach-Object {
+            git branch -D $_
+        }
+}
+
 function Git-PushUpstream { git push -u origin $(git branch --show-current) }
 function Git-CheckoutBranch { git checkout $((git branch | fzf).Trim()) }
 function Git-CopyBranchName { Set-Clipboard $((git branch | fzf).Trim()) }
