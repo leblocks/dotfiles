@@ -24,7 +24,7 @@ map({ '(', ')' })
 map({ '{', '}' })
 map({ '-', '+' })
 map({ '<', '>' })
-map({ '\'', '"' })
+map({ "'", '"' })
 map({ '&&', '||' })
 map({ 'or', 'and' })
 map({ 'get', 'set' })
@@ -59,4 +59,3 @@ M.toggle = function()
 end
 
 return M
-
