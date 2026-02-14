@@ -48,7 +48,9 @@ function touch([string] $Path) {
     }
 }
 
-function reload { . $PROFILE }
+function cf {
+    Push-Location $(fd --type directory --max-depth 2 | fzf)
+}
 
 function Git-RemoveBranch {
     (git branch | fzf -m) -split "\s+" | Where-Object { $_ -ne "" }
