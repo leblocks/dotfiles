@@ -1,7 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require('wezterm')
 local mux = wezterm.mux
-local os = require('os')
 
 -- This will hold the configuration.
 local config = wezterm.config_builder();
@@ -19,7 +18,7 @@ config.font = wezterm.font('CaskaydiaMono Nerd Font')
 config.front_end = "WebGpu"
 config.max_fps = 120
 config.animation_fps = 120
-config.color_scheme = 'Ubuntu'
+config.color_scheme = 'Modus-Vivendi'
 config.window_decorations = 'RESIZE'
 config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
@@ -57,7 +56,7 @@ config.keys = {
         mods = 'LEADER',
         action = act.PromptInputLine {
             description = 'Enter new name for tab',
-            action = wezterm.action_callback(function(window, pane, line)
+            action = wezterm.action_callback(function(window, _, line)
                 if line then
                     window:active_tab():set_title(line)
                 end
@@ -77,20 +76,6 @@ wezterm.on("gui-startup", function()
   local _, _, window = mux.spawn_window{}
   window:gui_window():maximize()
 end)
-
--- devbox specific
-local is_devbox = string.lower(os.getenv('IsDevBox') or '') == 'true'
-local devbox_config_path = os.getenv('DEVBOX_WEZTERM_CONFIG') or ''
-
--- pass config inside and override it
-if is_devbox ~= false then
-    local status, err = pcall(function() dofile(devbox_config_path) end)
-    if not status then
-        print('failed to load external configuration from "' .. devbox_config_path .. '" error: ' .. err)
-    else
-        set_configuration_overrides(config)
-    end
-end
 
 return config
 
