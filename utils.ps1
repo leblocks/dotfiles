@@ -243,7 +243,11 @@ function Get-CurrentGitBranch
         return ""
     }
 
-    $gitBranchName = (git branch --show-current 2>&1).ToString()
+    try {
+        $gitBranchName = (git branch --show-current 2>&1).ToString()
+    } catch [System.Management.Automation.NativeCommandExitException] {
+        $gitBranchName = ""
+    }
 
     if ($gitBranchName.Contains('fata'))
     {
