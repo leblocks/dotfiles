@@ -2,7 +2,8 @@
 
 Test-Dependencies @("winget")
 
-$path = Join-Path $PSScriptRoot "configuration.yaml"
+$path = Join-Path $PSScriptRoot configuration.yaml
 
-"winget configure $path --accept-configuration-agreements" | Invoke-FailFastExpression
+winget install Microsoft.PowerToys --uninstall-previous
+winget configure $path --accept-configuration-agreements
 
