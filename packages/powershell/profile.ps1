@@ -5,11 +5,19 @@ $ErrorActionPreference = "Stop"
 # I have to do some magic to get actual file location
 $actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path $PSScriptRoot $MyInvocation.MyCommand.Name)).Target)
 
+# if this file wasn't symlinked by itself
+if (($null -eq $actualProfileLocation) -Or (-Not(Test-Path -Path $actualProfileLocation)))
+{
+    $actualProfileLocation = $PSScriptRoot
+}
+
 . $(Join-Path $actualProfileLocation .. .. utils.ps1)
 . $(Join-Path $actualProfileLocation watchFiles.ps1)
 
 # add dotfiles to path
 Add-PathEntry (Join-Path $actualProfileLocation .. ..)
+
+
 
 <#
     prompt setup
