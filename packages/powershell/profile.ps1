@@ -1,21 +1,12 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-# import utils.ps1, this file is being symlinked so
-# I have to do some magic to get actual file location
-$actualProfileLocation = [System.IO.Path]::GetDirectoryName((Get-Item (Join-Path $PSScriptRoot $MyInvocation.MyCommand.Name)).Target)
-
-# if this file wasn't symlinked by itself
-if (($null -eq $actualProfileLocation) -Or (-Not(Test-Path -Path $actualProfileLocation)))
-{
-    $actualProfileLocation = $PSScriptRoot
-}
-
-. $(Join-Path $actualProfileLocation .. .. utils.ps1)
-. $(Join-Path $actualProfileLocation watchFiles.ps1)
+# utils.ps1 symlinked into $PROFILE folder with profile itself
+. $(Join-Path $HOME repos dotfiles utils.ps1)
+. $(Join-Path $HOME repos dotfiles packages powershell watchFiles.ps1)
 
 # add dotfiles to path
-Add-PathEntry (Join-Path $actualProfileLocation .. ..)
+Add-PathEntry (Join-Path $HOME repos dotfiles)
 
 <#
     prompt setup
