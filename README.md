@@ -15,6 +15,7 @@ from the headache of managing different sets of scripts, making development more
 
 ## TODOs
 * make sure that none of commands requires admin (except package installations)
+* consider moving to winget in case of windows?
 
 ## Repository structure
 
