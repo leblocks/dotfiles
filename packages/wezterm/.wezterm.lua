@@ -1,6 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require('wezterm')
 local mux = wezterm.mux
+local os = require('os')
 
 -- This will hold the configuration.
 local config = wezterm.config_builder();
@@ -69,6 +70,16 @@ config.keys = {
 for i = 1, 9 do
   -- LEADER + number to activate that tab
   table.insert(config.keys, { key = tostring(i), mods = 'LEADER', action = act.ActivateTab(i - 1), })
+end
+
+-- ssh domains
+config.ssh_domains = {}
+for i = 0, 9 do
+    table.insert(config.ssh_domains, {
+        name = 'tu' .. i,
+        remote_address = 'localhost:' .. (9000 + i),
+        username = os.getenv('USER'),
+    })
 end
 
 -- automatic fullscreen
