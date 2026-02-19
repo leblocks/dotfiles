@@ -4,6 +4,6 @@ Test-Dependencies @("winget")
 
 $path = Join-Path $PSScriptRoot configuration.yaml
 
-winget install Microsoft.PowerToys --uninstall-previous
+# TODO add here check for esting if powertoys are installed
 winget configure $path --accept-configuration-agreements
 
