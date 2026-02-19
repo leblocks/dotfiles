@@ -17,8 +17,6 @@ if (($null -eq $actualProfileLocation) -Or (-Not(Test-Path -Path $actualProfileL
 # add dotfiles to path
 Add-PathEntry (Join-Path $actualProfileLocation .. ..)
 
-
-
 <#
     prompt setup
 #>
