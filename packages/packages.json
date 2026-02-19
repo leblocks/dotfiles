@@ -15,7 +15,8 @@
         "stylua",
         "tree",
         "universal-ctags",
-        "unzip"
+        "unzip",
+        "wezterm"
     ],
 
     "pacman": [
