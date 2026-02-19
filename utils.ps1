@@ -25,6 +25,11 @@ function LinkToHome ([string] $folder, [string] $fileName)
 
 function Get-PackageManager
 {
+    if (Test-Command -Command "winget")
+    {
+        return "winget"
+    }
+
     if (Test-Command -Command "scoop")
     {
         return "scoop"
@@ -42,6 +47,11 @@ function Get-PackageManagerInstallCommand([string] $PackageManager, [string] $Pa
 {
     switch($PackageManager)
     {
+        "winget"
+        {
+            return "winget install $Package --accept-package-agreements --accept-source-agreements"
+        }
+
         "scoop"
         {
             return "scoop install $Package"

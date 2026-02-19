@@ -14,6 +14,7 @@ Push-Location $toolPath
 
 $ARCH = ""
 switch (Get-PackageManager) {
+    "winget" { $ARCH = "win32-x64.zip" }
     "scoop"  { $ARCH = "win32-x64.zip" }
     "pacman" { $ARCH = "linux-x64.tar.gz" }
     default  { throw "unsupported OS" }
