@@ -19,6 +19,25 @@
         "wezterm"
     ],
 
+    "winget": [
+        "BurntSushi.ripgrep.MSVC",
+        "Clement.bottom",
+        "GNU.MidnightCommander",
+        "GitHub.Copilot",
+        "MartinStorsjo.LLVM-MinGW.MSVCRT",
+        "Microsoft.PowerToys",
+        "Microsoft.devtunnel",
+        "Neovim.Neovim",
+        "Python.Python.3.14",
+        "cURL.cURL",
+        "jqlang.jq",
+        "junegunn.fzf",
+        "koalaman.shellcheck",
+        "sharkdp.bat",
+        "sharkdp.fd",
+        "wez.wezterm"
+    ],
+
     "pacman": [
         "bash",
         "bat",

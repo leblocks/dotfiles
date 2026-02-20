@@ -21,6 +21,22 @@ BeforeAll {
         bottom = 'btm'
         mingw = 'bash'
         'universal-ctags' = 'ctags'
+        'BurntSushi.ripgrep.MSVC' = 'rg'
+        'Clement.bottom' = 'btm'
+        'GNU.MidnightCommander' = 'mc'
+        'GitHub.Copilot' = 'copilot'
+        'MartinStorsjo.LLVM-MinGW.MSVCRT' = 'gcc'
+        # Microsoft.PowerToys,
+        'Microsoft.devtunnel' = 'devtunnel'
+        'Neovim.Neovim' = 'nvim'
+        'Python.Python.3.14' = 'python'
+        'cURL.cURL' = 'curl'
+        'jqlang.jq' = 'jq'
+        'junegunn.fzf' = 'fzf'
+        'koalaman.shellcheck' = 'shellcheck'
+        'sharkdp.bat' = 'bat'
+        'sharkdp.fd' = 'fd'
+        'wez.wezterm' = 'wezterm'
     }
 }
 
