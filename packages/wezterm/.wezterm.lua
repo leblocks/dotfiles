@@ -13,7 +13,6 @@ config.audible_bell = 'Disabled'
 -- font
 config.font_size = 14
 config.line_height = 1.1
-config.font = wezterm.font('CaskaydiaMono Nerd Font')
 
 -- ui
 config.front_end = "WebGpu"
