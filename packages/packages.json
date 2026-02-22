@@ -22,10 +22,8 @@
     "winget": [
         "BurntSushi.ripgrep.MSVC",
         "Clement.bottom",
-        "GNU.MidnightCommander",
         "GitHub.Copilot",
         "MartinStorsjo.LLVM-MinGW.MSVCRT",
-        "Microsoft.PowerToys",
         "Microsoft.devtunnel",
         "Neovim.Neovim",
         "Python.Python.3.14",
