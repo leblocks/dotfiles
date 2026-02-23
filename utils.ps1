@@ -49,7 +49,7 @@ function Get-PackageManagerInstallCommand([string] $PackageManager, [string] $Pa
     {
         "winget"
         {
-            return "winget install --id $Package --accept-package-agreements --accept-source-agreements --force"
+            return "winget install --id $Package --accept-package-agreements --accept-source-agreements"
         }
 
         "scoop"
