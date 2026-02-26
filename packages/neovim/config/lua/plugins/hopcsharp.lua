@@ -1,5 +1,12 @@
 local M = {}
 
+require('hopcsharp').setup({
+    hop = {
+        jump_on_quickfix = true,
+        filter_entry_under_cursor = false,
+    },
+})
+
 M.hopcsharp_menu = function()
     local lists = {
         { name = 'list all types', action = require('hopcsharp.pickers.fzf').all_definitions },
