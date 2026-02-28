@@ -37,6 +37,7 @@ return packer.startup(function(use)
 
     -- hopcsharp yay
     use({ 'leblocks/hopcsharp.nvim', requires = { { 'kkharji/sqlite.lua' } } })
+    use({ 'leblocks/toggle.nvim' })
 
     -- some colors
     use({ 'miikanissi/modus-themes.nvim' })
