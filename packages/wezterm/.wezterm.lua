@@ -29,7 +29,7 @@ config.window_padding = {
 }
 
 -- keys
-config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.leader = { key = '`', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 local act = wezterm.action
 
