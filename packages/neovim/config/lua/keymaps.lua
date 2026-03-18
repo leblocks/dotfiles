@@ -1,6 +1,9 @@
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+-- disable macros mapping
+map('n', 'q', '<Nop>', { noremap = true })
+
 map('i', 'jj', '<Esc>', { noremap = true })
 
 -- make Y work as expected (same as C and D)
@@ -154,4 +157,4 @@ vim.keymap.set({ 'n' }, '<Leader>hr', require('hopcsharp').hop_to_reference, opt
 vim.keymap.set({ 'n' }, '<Leader>ht', require('hopcsharp').get_type_hierarchy, opts)
 
 -- toggle
-vim.keymap.set({ 'n' }, '<Leader><Tab>', require('toggle').toggle, opts)
+vim.keymap.set({ 'n', 'v' }, '<Leader><Tab>', require('toggle').toggle, opts)
