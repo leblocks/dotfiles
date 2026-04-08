@@ -19,4 +19,10 @@ vim.api.nvim_create_user_command('BufCopyPath', function()
     vim.notify('copied to clipboard ' .. path)
 end, {})
 
-vim.api.nvim_create_user_command('HopcsharpInitDatabase', require('hopcsharp').init_database, {})
+vim.api.nvim_create_user_command('VimPackUpdate', function()
+    vim.pack.update()
+end, {})
+
+vim.api.nvim_create_user_command('VimPackExplore', function()
+    vim.pack.update(nil, { offline = true })
+end, {})

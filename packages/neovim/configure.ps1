@@ -27,17 +27,8 @@ Remove-Item -Path $pathToLink -ErrorAction SilentlyContinue -Force
 
 New-Item -ItemType SymbolicLink -Path $pathToLink -Target $pathToConfig -Force
 
-$pathToPacker = $IsWindows ? (Join-Path $HOME "\AppData\Local\nvim-data\site\pack\packer\start\packer.nvim")
-    : (Join-Path $HOME "/.local/share/nvim/site/pack/packer/start/packer.nvim")
-
-# ensure packer is bootstrapped
-if (-Not (Test-Path $pathToPacker)) {
-    "git clone --depth 1 https://github.com/wbthomason/packer.nvim $pathToPacker"
-        | Invoke-FailFastExpression
-}
-
-# update plugins
-"nvim --headless -c `"autocmd User PackerComplete quitall`" -c `"PackerSync`""
+# install\update plugins
+"nvim --headless -c `"VimPackUpdate`" -c `"qall`""
     | Invoke-FailFastExpression
 
 $pathToLanguageTools = Join-Path $HOME ".neovim"

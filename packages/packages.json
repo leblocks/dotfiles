@@ -1,24 +1,4 @@
 {
-    "scoop": [
-        "bat",
-        "bottom",
-        "curl",
-        "fd",
-        "fzf",
-        "jq",
-        "luacheck",
-        "mc",
-        "mingw",
-        "neovim",
-        "ripgrep",
-        "shellcheck",
-        "stylua",
-        "tree",
-        "universal-ctags",
-        "unzip",
-        "wezterm"
-    ],
-
     "winget": [
         "BurntSushi.ripgrep.MSVC",
         "Clement.bottom",

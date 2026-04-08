@@ -7,5 +7,7 @@ $pathToProfile = Join-Path $PSScriptRoot "profile.ps1"
 
 New-Item -ItemType SymbolicLink -Path $PROFILE -Target $pathToProfile -Force
 
+Add-PathEntry (Join-Path $HOME repos dotfiles)
+
 . $PROFILE
 

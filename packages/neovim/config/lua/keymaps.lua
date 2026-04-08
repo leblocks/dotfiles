@@ -45,9 +45,6 @@ map('n', '<Leader>gl', ':FzfLua live_grep<CR>', opts)
 map('n', '<Leader>]]', ':FzfLua tags<CR>', opts)
 map('n', '<Leader>]b', ':FzfLua btags<CR>', opts)
 
--- (t)reesitter commands
-map('n', '<Leader>tt', ':FzfLua treesitter<CR>', opts)
-
 -- (l)ist commands
 map('n', '<Leader>l/', ':FzfLua builtin<CR>', opts)
 map('n', '<Leader>lb', ':FzfLua buffers<CR>', opts)
@@ -92,7 +89,7 @@ local function register_lsp_keybindings(ls_server_name, pattern)
     local event = { 'FileType' }
 
     local function server_start_callback()
-        vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>ss', ':LspStart ' .. ls_server_name .. '<CR>', opts)
+        vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>ss', ':lsp enable ' .. ls_server_name .. '<CR>', opts)
     end
 
     local function server_attach_callback()
@@ -109,7 +106,7 @@ local function register_lsp_keybindings(ls_server_name, pattern)
     vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = server_attach_callback, group = group })
 end
 
-map('n', '<Leader>si', ':LspInfo<CR>', opts)
+map('n', '<Leader>si', ':checkhealth vim.lsp<CR>', opts)
 register_lsp_keybindings('bashls', 'sh')
 register_lsp_keybindings('pyright', 'python')
 register_lsp_keybindings('lua_ls', { 'lua' })
@@ -147,14 +144,6 @@ map('n', '<Leader>bb', ':ls<CR>:b<Space>', opts)
 
 -- (4)genda, used to be agenda, now bookmarks
 map('n', '<Leader>4', ':BookmarkList<CR>', opts)
-
--- (h)opcsharp
-local hopcsharp = require('plugins.hopcsharp')
-vim.keymap.set({ 'n' }, '<Leader>hh', hopcsharp.hopcsharp_menu, opts)
-vim.keymap.set({ 'n' }, '<Leader>hd', require('hopcsharp').hop_to_definition, opts)
-vim.keymap.set({ 'n' }, '<Leader>hi', require('hopcsharp').hop_to_implementation, opts)
-vim.keymap.set({ 'n' }, '<Leader>hr', require('hopcsharp').hop_to_reference, opts)
-vim.keymap.set({ 'n' }, '<Leader>ht', require('hopcsharp').get_type_hierarchy, opts)
 
 -- toggle
 vim.keymap.set({ 'n', 'v' }, '<Leader><Tab>', require('toggle').toggle, opts)
