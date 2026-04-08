@@ -1,4 +1,5 @@
 local fn = vim.fn
+
 -- packer installation bootstrapping
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 local packer_bootstrap = nil
@@ -18,10 +19,6 @@ local packer = require('packer')
 return packer.startup(function(use)
     use('ibhagwan/fzf-lua')
 
-    -- treesitter
-    use({ 'nvim-treesitter/nvim-treesitter', branch = 'master' })
-    use('windwp/nvim-ts-autotag')
-
     -- hail to the tpope
     use('tpope/vim-surround')
     use('tpope/vim-fugitive')
@@ -35,8 +32,6 @@ return packer.startup(function(use)
     -- ui
     use({ 'nvim-lualine/lualine.nvim' })
 
-    -- hopcsharp yay
-    use({ 'leblocks/hopcsharp.nvim', requires = { { 'kkharji/sqlite.lua' } } })
     use({ 'leblocks/toggle.nvim' })
 
     -- some colors

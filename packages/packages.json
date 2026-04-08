@@ -13,7 +13,6 @@
         "koalaman.shellcheck",
         "sharkdp.bat",
         "sharkdp.fd",
-        "tree-sitter.tree-sitter-cli",
         "wez.wezterm"
     ],
 
@@ -35,7 +34,6 @@
         "tar",
         "tmux",
         "tree",
-        "tree-sitter-cli",
         "universal-ctags",
         "unzip"
     ]
