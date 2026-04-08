@@ -92,7 +92,7 @@ local function register_lsp_keybindings(ls_server_name, pattern)
     local event = { 'FileType' }
 
     local function server_start_callback()
-        vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>ss', ':LspStart ' .. ls_server_name .. '<CR>', opts)
+        vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>ss', ':lsp enable ' .. ls_server_name .. '<CR>', opts)
     end
 
     local function server_attach_callback()
@@ -109,7 +109,7 @@ local function register_lsp_keybindings(ls_server_name, pattern)
     vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = server_attach_callback, group = group })
 end
 
-map('n', '<Leader>si', ':LspInfo<CR>', opts)
+map('n', '<Leader>si', ':checkhealth vim.lsp<CR>', opts)
 register_lsp_keybindings('bashls', 'sh')
 register_lsp_keybindings('pyright', 'python')
 register_lsp_keybindings('lua_ls', { 'lua' })
