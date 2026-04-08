@@ -49,6 +49,14 @@ function cf {
     Push-Location $(fd --type directory --max-depth 2 | fzf)
 }
 
+function fpush ([string] $FileExtension) {
+    if ([String]::IsNullOrEmpty($FileExtension)) {
+        Push-Location $(fzf | Split-Path -Parent | Resolve-Path)
+    } else {
+        Push-Location $(fd -e $FileExtension | fzf | Split-Path -Parent | Resolve-Path)
+    }
+}
+
 function Git-RemoveBranch {
     (git branch | fzf -m) -split "\s+" | Where-Object { $_ -ne "" }
         | ForEach-Object {
