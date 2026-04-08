@@ -45,6 +45,14 @@ function touch([string] $Path) {
     }
 }
 
+function fpush ([string] $FileExtension) {
+    if ([String]::IsNullOrEmpty($FileExtension)) {
+        Push-Location $(fzf | Split-Path -Parent | Resolve-Path)
+    } else {
+        Push-Location $(fd -e $FileExtension | fzf | Split-Path -Parent | Resolve-Path)
+    }
+}
+
 function cf {
     Push-Location $(fd --type directory --max-depth 2 | fzf)
 }
