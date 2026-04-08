@@ -30,11 +30,6 @@ function Get-PackageManager
         return "winget"
     }
 
-    if (Test-Command -Command "scoop")
-    {
-        return "scoop"
-    }
-
     if (Test-Command -Command "pacman")
     {
         return "pacman"
@@ -50,11 +45,6 @@ function Get-PackageManagerInstallCommand([string] $PackageManager, [string] $Pa
         "winget"
         {
             return "winget install --id $Package --accept-package-agreements --accept-source-agreements"
-        }
-
-        "scoop"
-        {
-            return "scoop install $Package"
         }
 
         "pacman"
