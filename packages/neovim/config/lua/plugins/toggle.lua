@@ -6,6 +6,5 @@ require('toggle').setup({
         { 'IsNull', 'IsNotNull' },
         { 'IsTrue', 'IsFalse' },
         { 'class', 'record', 'struct' },
-    }
+    },
 })
-
