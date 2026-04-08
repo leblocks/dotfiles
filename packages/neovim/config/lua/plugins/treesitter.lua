@@ -1,49 +1,29 @@
-require('nvim-treesitter.configs').setup({
-    ensure_installed = {
-        'bash',
-        'c_sharp',
-        'dockerfile',
-        'html',
-        'javascript',
-        'json',
-        'lua',
-        'powershell',
-        'python',
-        'sql',
-        'typescript',
-        'yaml',
-        'markdown',
-        'xml',
-    },
-
-    additional_vim_regex_highlighting = false,
-
-    highlight = {
-        enable = true,
-    },
-
-    indent = {
-        enable = true,
-    },
-
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = '<Leader>v',
-            node_incremental = '<Leader>v',
-            scope_incremental = false,
-            node_decremental = '<Leader>V',
-        },
-    },
+require('nvim-treesitter').install({
+    'bash',
+    'c_sharp',
+    'dockerfile',
+    'html',
+    'javascript',
+    'json',
+    'lua',
+    'powershell',
+    'python',
+    'sql',
+    'typescript',
+    'yaml',
+    'markdown',
+    'xml',
 })
 
--- had to do it on windows machine
--- use clang to compile language grammar
-if vim.loop.os_uname().sysname == 'Windows_NT' then
-    require('nvim-treesitter.install').compilers = { 'clang', 'gcc' }
-end
-
 -- set code folding
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldenable = false
+vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.wo[0][0].foldmethod = 'expr'
+
+-- indentation
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+-- highlights (TODO, add here more while encounterint new filetypes)
+vim.api.nvim_create_autocmd('FileType', { pattern = { 'cs', }, callback = function() vim.treesitter.start() end, })
+vim.api.nvim_create_autocmd('FileType', { pattern = { 'xml', }, callback = function() vim.treesitter.start() end, })
+vim.api.nvim_create_autocmd('FileType', { pattern = { 'ps1', }, callback = function() vim.treesitter.start() end, })
+vim.api.nvim_create_autocmd('FileType', { pattern = { 'markdown', }, callback = function() vim.treesitter.start() end, })
