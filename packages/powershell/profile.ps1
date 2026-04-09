@@ -5,8 +5,6 @@ $ErrorActionPreference = "Stop"
 . $(Join-Path $HOME repos dotfiles utils.ps1)
 . $(Join-Path $HOME repos dotfiles packages powershell watchFiles.ps1)
 
-Add-PathEntry (Join-Path $HOME repos dotfiles)
-
 <#
     prompt setup
 #>
