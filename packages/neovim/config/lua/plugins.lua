@@ -1,43 +1,11 @@
-local fn = vim.fn
 
--- packer installation bootstrapping
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-local packer_bootstrap = nil
-if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({
-        'git',
-        'clone',
-        '--depth',
-        '1',
-        'https://github.com/wbthomason/packer.nvim',
-        install_path,
-    })
-end
-
-local packer = require('packer')
-
-return packer.startup(function(use)
-    use('ibhagwan/fzf-lua')
-
-    -- hail to the tpope
-    use('tpope/vim-surround')
-    use('tpope/vim-fugitive')
-    use('tpope/vim-commentary')
-    use('tpope/vim-vinegar')
-    use('tpope/vim-unimpaired')
-
-    -- lsp
-    use('neovim/nvim-lspconfig')
-
-    -- ui
-    use({ 'nvim-lualine/lualine.nvim' })
-
-    use({ 'leblocks/toggle.nvim' })
-
-    -- some colors
-    use({ 'miikanissi/modus-themes.nvim' })
-
-    if packer_bootstrap then
-        packer.sync()
-    end
-end)
+vim.pack.add({ 'https://github.com/ibhagwan/fzf-lua' })
+vim.pack.add({ 'https://github.com/leblocks/toggle.nvim' })
+vim.pack.add({ 'https://github.com/miikanissi/modus-themes.nvim' })
+vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
+vim.pack.add({ 'https://github.com/nvim-lualine/lualine.nvim' })
+vim.pack.add({ 'https://github.com/tpope/vim-commentary' })
+vim.pack.add({ 'https://github.com/tpope/vim-fugitive' })
+vim.pack.add({ 'https://github.com/tpope/vim-surround' })
+vim.pack.add({ 'https://github.com/tpope/vim-unimpaired' })
+vim.pack.add({ 'https://github.com/tpope/vim-vinegar' })

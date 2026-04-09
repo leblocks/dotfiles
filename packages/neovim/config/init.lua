@@ -4,9 +4,10 @@ if vim.loader ~= nil then
     vim.loader.enable()
 end
 
+-- load plugins first
+require('plugins')
 require('global')
 require('settings')
-require('plugins')
 require('keymaps')
 require('bookmark')
 require('abbreviations')
