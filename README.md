@@ -15,6 +15,8 @@ from the headache of managing different sets of scripts, making development more
 
 ## TODOs
 * make sure that none of commands requires admin (except package installations)
+* pull out lsp configurations from neovim install, those should be configured like packages
+* alternative folds for treesitter
 
 ## Repository structure
 
