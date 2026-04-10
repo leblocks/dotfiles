@@ -316,3 +316,13 @@ function Invoke-Stylua
     stylua $path --config-path $(Join-Path $path stylua.toml) --color Always --check
 }
 
+function Get-NeovimPath
+{
+    return $(Join-Path $HOME ".neovim")
+}
+
+function Get-LspToolPath([string] $LspToolName)
+{
+    return $(Join-Path (Get-NeovimPath) "lsp" $LspToolName)
+}
+

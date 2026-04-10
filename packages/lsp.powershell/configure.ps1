@@ -1,8 +1,6 @@
-param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
+. $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
-. $(Join-Path $PSScriptRoot .. .. .. utils.ps1)
-
-$toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
+$toolPath = Get-LspToolPath "powershell"
 
 Write-Message "installing powershell editor services at $toolPath"
 
