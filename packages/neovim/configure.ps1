@@ -34,7 +34,6 @@ New-Item -ItemType SymbolicLink -Path $pathToLink -Target $pathToConfig -Force
 $pathToLanguageTools = Join-Path $HOME ".neovim"
 New-Folder $pathToLanguageTools
 
-. $PSScriptRoot/lsp/typescript.ps1 $pathToLanguageTools
 . $PSScriptRoot/lsp/bash.ps1 $pathToLanguageTools
 . $PSScriptRoot/lsp/python.ps1 $pathToLanguageTools
 . "$PSScriptRoot/lsp/vscode-langservers-extracted.ps1" $pathToLanguageTools
