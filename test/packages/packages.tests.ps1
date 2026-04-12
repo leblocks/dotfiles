@@ -20,6 +20,7 @@ BeforeAll {
         ripgrep = 'rg'
         bottom = 'btm'
         mingw = 'bash'
+        'tree-sitter-cli' = 'tree-sitter'
         'universal-ctags' = 'ctags'
         'BurntSushi.ripgrep.MSVC' = 'rg'
         'Clement.bottom' = 'btm'

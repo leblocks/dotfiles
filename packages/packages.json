@@ -1,9 +1,9 @@
 {
     "winget": [
+        "BrechtSanders.WinLibs.POSIX.MSVCRT.LLVM",
         "BurntSushi.ripgrep.MSVC",
         "Clement.bottom",
         "GitHub.Copilot",
-        "MartinStorsjo.LLVM-MinGW.MSVCRT",
         "Microsoft.devtunnel",
         "Neovim.Neovim",
         "Python.Python.3.14",
@@ -13,6 +13,7 @@
         "koalaman.shellcheck",
         "sharkdp.bat",
         "sharkdp.fd",
+        "tree-sitter.tree-sitter-cli",
         "wez.wezterm"
     ],
 
@@ -34,6 +35,7 @@
         "tar",
         "tmux",
         "tree",
+        "tree-sitter-cli",
         "universal-ctags",
         "unzip"
     ]
