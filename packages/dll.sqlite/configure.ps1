@@ -1,4 +1,6 @@
-param([Parameter(Position=0, Mandatory=$True)] [string] $rootPath)
+# download sqlite3 dll for sqlite.lua (windows only)
+#
+. $(Join-Path $PSScriptRoot .. .. utils.ps1)
 
 if (-Not ($IsWindows)) {
     return
@@ -6,12 +8,9 @@ if (-Not ($IsWindows)) {
 
 $SQLITE_BINARY_VERSION = "3490200"
 
-. $(Join-Path $PSScriptRoot .. .. .. utils.ps1)
-
-$toolPath = Join-Path $rootPath "lsp" ($MyInvocation.MyCommand.Name.Replace(".ps1", ""))
+$toolPath = Join-Path (Get-NeovimPath) "dll"
 
 Write-Message "downloading sqlite.dll at $toolPath"
-# download sqlite3 dll for sqlite.lua (windows only)
 
 New-Folder $toolPath
 
@@ -27,6 +26,8 @@ $params = @{
 Invoke-WebRequest @params
 
 Expand-Archive -LiteralPath "sqlitedll.zip" -DestinationPath . -Force
+
+Remove-Item "sqlitedll.zip"
 
 Set-EnvironmentVariable "NEOVIM_SQLITE_DLL_PATH" (Resolve-Path sqlite3.dll).Path.Replace('\', '/')
 
