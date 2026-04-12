@@ -1,5 +1,6 @@
-
 vim.pack.add({ 'https://github.com/ibhagwan/fzf-lua' })
+vim.pack.add({ 'https://github.com/kkharji/sqlite.lua' })
+vim.pack.add({ 'https://github.com/leblocks/hopcsharp.nvim' })
 vim.pack.add({ 'https://github.com/leblocks/toggle.nvim' })
 vim.pack.add({ 'https://github.com/miikanissi/modus-themes.nvim' })
 vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
@@ -9,3 +10,4 @@ vim.pack.add({ 'https://github.com/tpope/vim-fugitive' })
 vim.pack.add({ 'https://github.com/tpope/vim-surround' })
 vim.pack.add({ 'https://github.com/tpope/vim-unimpaired' })
 vim.pack.add({ 'https://github.com/tpope/vim-vinegar' })
+vim.pack.add({ { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' } })

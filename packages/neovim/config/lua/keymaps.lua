@@ -30,6 +30,9 @@ map('n', '<Leader>q', ':q<CR>', opts)
 map('n', '<Leader>Q', ':q!<CR>', opts)
 map('n', '<Leader><Leader>', ':nohl<CR>', opts)
 
+-- (t)reesitter
+map('n', '<Leader>lt', ':FzfLua treesitter<CR>', opts)
+
 -- (f)ile commnands
 map('n', '<Leader>ff', ':FzfLua files<CR>', opts)
 map('n', '<Leader>fb', ':FzfLua blines<CR>', opts)
@@ -144,6 +147,13 @@ map('n', '<Leader>bb', ':ls<CR>:b<Space>', opts)
 
 -- (4)genda, used to be agenda, now bookmarks
 map('n', '<Leader>4', ':BookmarkList<CR>', opts)
+
+-- (h)opcsharp
+vim.keymap.set({ 'n' }, '<Leader>hh', function() require('plugins.hopcsharp').hopcsharp_menu() end, opts)
+vim.keymap.set({ 'n' }, '<Leader>hd', function() require('hopcsharp').hop_to_definition() end, opts)
+vim.keymap.set({ 'n' }, '<Leader>hi', function() require('hopcsharp').hop_to_implementation() end, opts)
+vim.keymap.set({ 'n' }, '<Leader>hr', function() require('hopcsharp').hop_to_reference() end, opts)
+vim.keymap.set({ 'n' }, '<Leader>ht', function() require('hopcsharp').get_type_hierarchy() end, opts)
 
 -- toggle
 vim.keymap.set({ 'n', 'v' }, '<Leader><Tab>', require('toggle').toggle, opts)
