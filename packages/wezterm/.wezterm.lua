@@ -71,16 +71,6 @@ for i = 1, 9 do
   table.insert(config.keys, { key = tostring(i), mods = 'LEADER', action = act.ActivateTab(i - 1), })
 end
 
--- ssh domains
-config.ssh_domains = {}
-for i = 0, 9 do
-    table.insert(config.ssh_domains, {
-        name = 'tu' .. i,
-        remote_address = 'localhost:' .. (9000 + i),
-        username = os.getenv('USER'),
-    })
-end
-
 -- automatic fullscreen
 wezterm.on("gui-startup", function()
   local _, _, window = mux.spawn_window{}

@@ -15,10 +15,6 @@ from the headache of managing different sets of scripts, making development more
 
 ## TODOs
 * make sure that none of commands requires admin (except package installations)
-* pull out lsp configurations from neovim install, those should be configured like packages
-* alternative folds for treesitter
-* remove c-v binding from wezterm? (is it a psmux bug?)
-* remove ssh domains from wezterm
 
 ## Repository structure
 
