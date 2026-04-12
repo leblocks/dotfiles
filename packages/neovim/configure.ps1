@@ -31,9 +31,3 @@ New-Item -ItemType SymbolicLink -Path $pathToLink -Target $pathToConfig -Force
 "nvim --headless -c `"VimPackUpdate`" -c `"qall`""
     | Invoke-FailFastExpression
 
-$pathToLanguageTools = Join-Path $HOME ".neovim"
-New-Folder $pathToLanguageTools
-
-. "$PSScriptRoot/lsp/vscode-langservers-extracted.ps1" $pathToLanguageTools
-. $PSScriptRoot/lsp/sqlite.ps1 $pathToLanguageTools
-
