@@ -1,3 +1,4 @@
 **/.venv/
 packages/neovim/config/plugin/**
 **/*.log
+nvim-pack-lock.json
