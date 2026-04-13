@@ -32,6 +32,7 @@ opt.filetype = 'on'
 opt.mouse = ''
 opt.exrc = true
 opt.showtabline = 0
+opt.foldlevelstart = 99
 
 -- spellcheck configuration
 opt.spelllang = 'en'
