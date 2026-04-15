@@ -5,7 +5,7 @@ require('nvim-treesitter').install({
     'lua',
     'markdown',
     'powershell',
-    "json",
+    'json',
     'xml',
 })
 
@@ -45,3 +45,11 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'lua' },
+    callback = function()
+        vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.wo[0][0].foldmethod = 'expr'
+        vim.treesitter.start(0, 'lua')
+    end,
+})
