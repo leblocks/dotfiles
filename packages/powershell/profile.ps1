@@ -74,13 +74,6 @@ function Git-CheckoutBranch { git checkout $((git branch | fzf).Trim()) }
 function Git-CopyBranchName { Set-Clipboard $((git branch | fzf).Trim()) }
 function Git-NewBranch([string] $BranchName) { git checkout -b $BranchName }
 
-if ($IsWindows)
-{
-    # TODO move this to a package install
-    # this is a fix for windows to use gcc during tree-sitter compilations
-    $env:CC = 'gcc'
-}
-
 <#
     ENVIRONMENT VARIABLES LOAD
 #>
