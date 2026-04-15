@@ -149,11 +149,11 @@ map('n', '<Leader>bb', ':ls<CR>:b<Space>', opts)
 map('n', '<Leader>4', ':BookmarkList<CR>', opts)
 
 -- (h)opcsharp
-vim.keymap.set({ 'n' }, '<Leader>hh', function() require('plugins.hopcsharp').hopcsharp_menu() end, opts)
-vim.keymap.set({ 'n' }, '<Leader>hd', function() require('hopcsharp').hop_to_definition() end, opts)
-vim.keymap.set({ 'n' }, '<Leader>hi', function() require('hopcsharp').hop_to_implementation() end, opts)
-vim.keymap.set({ 'n' }, '<Leader>hr', function() require('hopcsharp').hop_to_reference() end, opts)
-vim.keymap.set({ 'n' }, '<Leader>ht', function() require('hopcsharp').get_type_hierarchy() end, opts)
+vim.keymap.set({ 'n' }, '<Leader>hh', require('plugins.hopcsharp').hopcsharp_menu, opts)
+vim.keymap.set({ 'n' }, '<Leader>hd', require('hopcsharp').hop_to_definition, opts)
+vim.keymap.set({ 'n' }, '<Leader>hi', require('hopcsharp').hop_to_implementation, opts)
+vim.keymap.set({ 'n' }, '<Leader>hr', require('hopcsharp').hop_to_reference, opts)
+vim.keymap.set({ 'n' }, '<Leader>ht', require('hopcsharp').get_type_hierarchy, opts)
 
 -- toggle
 vim.keymap.set({ 'n', 'v' }, '<Leader><Tab>', require('toggle').toggle, opts)
