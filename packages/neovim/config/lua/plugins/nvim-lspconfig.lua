@@ -70,4 +70,10 @@ vim.lsp.config('roslyn_ls', {
         vim.fs.joinpath(vim.uv.os_tmpdir(), 'roslyn_ls/logs'),
         '--stdio',
     },
+    settings = {
+        ["csharp|background_analysis"] = {
+            dotnet_analyzer_diagnostics_scope = "openFiles",
+            dotnet_compiler_diagnostics_scope = "openFiles",
+        },
+    },
 })
