@@ -38,6 +38,9 @@ $command = @(
     ($IsWindows ? "-Version" : "--version"), $Version
 ) -Join " "
 
+# kill dotnet proceses before running installation
+Get-Process dotnet -ErrorAction SilentlyContinue | Stop-Process -ErrorAction SilentlyContinue
+
 $command | Invoke-FailFastExpression
 
 $DOTNET_ROOT = $INSTALL_DIR
