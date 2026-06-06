@@ -71,9 +71,9 @@ vim.lsp.config('roslyn_ls', {
         '--stdio',
     },
     settings = {
-        ["csharp|background_analysis"] = {
-            dotnet_analyzer_diagnostics_scope = "openFiles",
-            dotnet_compiler_diagnostics_scope = "openFiles",
+        ['csharp|background_analysis'] = {
+            dotnet_analyzer_diagnostics_scope = 'openFiles',
+            dotnet_compiler_diagnostics_scope = 'openFiles',
         },
     },
 })
