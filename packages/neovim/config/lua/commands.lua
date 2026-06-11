@@ -23,6 +23,13 @@ vim.api.nvim_create_user_command('HopcsharpInitDatabase', function()
     require('hopcsharp').init_database()
 end, {})
 
+vim.api.nvim_create_user_command('HopcsharpDropDebugLog', function()
+    local debug = require('hopcsharp.debug')
+    local db = debug.__get_db()
+
+    db:eval([[ delete from logs where project = :project ]], { project = vim.fn.getcwd() })
+end, {})
+
 vim.api.nvim_create_user_command('HopcsharpShowDebugLog', function()
     local buf_name = 'hopcsharp://debug'
     local buffers = vim.api.nvim_list_bufs()
@@ -39,7 +46,7 @@ vim.api.nvim_create_user_command('HopcsharpShowDebugLog', function()
     local db = debug.__get_db()
 
     local messages = db:eval(
-        [[ select l.date, l.message from logs l where project = :project order by l.date desc ]],
+        [[ select l.date, l.message from logs l where project = :project ]],
         { project = vim.fn.getcwd() })
 
     if type(messages) ~= 'table' then
@@ -48,7 +55,8 @@ vim.api.nvim_create_user_command('HopcsharpShowDebugLog', function()
 
     local buffer_lines = {}
     for _, message in ipairs(messages) do
-        table.insert(buffer_lines, string.format("[%s] %s", message.date, message.message))
+        -- TODO fix \n lines in message
+        table.insert(buffer_lines, string.format("[%s] %s", message.date, message.message:gsub("[\n\r]", '')))
     end
 
     local buf = vim.api.nvim_create_buf(true, true)
