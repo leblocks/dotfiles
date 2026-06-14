@@ -1,7 +1,7 @@
 local M = {}
 
 require('hopcsharp').setup({
-    debug = true,
+    debug = false,
     hop = {
         jump_on_quickfix = true,
         filter_entry_under_cursor = false,
