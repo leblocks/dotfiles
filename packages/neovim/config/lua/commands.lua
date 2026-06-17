@@ -45,9 +45,8 @@ vim.api.nvim_create_user_command('HopcsharpShowDebugLog', function()
     local debug = require('hopcsharp.debug')
     local db = debug.__get_db()
 
-    local messages = db:eval(
-        [[ select l.date, l.message from logs l where project = :project ]],
-        { project = vim.fn.getcwd() })
+    local messages =
+        db:eval([[ select l.date, l.message from logs l where project = :project ]], { project = vim.fn.getcwd() })
 
     if type(messages) ~= 'table' then
         return
@@ -56,7 +55,7 @@ vim.api.nvim_create_user_command('HopcsharpShowDebugLog', function()
     local buffer_lines = {}
     for _, message in ipairs(messages) do
         -- TODO fix \n lines in message
-        table.insert(buffer_lines, string.format("[%s] %s", message.date, message.message:gsub("[\n\r]", '')))
+        table.insert(buffer_lines, string.format('[%s] %s', message.date, message.message:gsub('[\n\r]', '')))
     end
 
     local buf = vim.api.nvim_create_buf(true, true)
