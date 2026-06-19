@@ -54,7 +54,6 @@ vim.api.nvim_create_user_command('HopcsharpShowDebugLog', function()
 
     local buffer_lines = {}
     for _, message in ipairs(messages) do
-        -- TODO fix \n lines in message
         table.insert(buffer_lines, string.format('[%s] %s', message.date, message.message:gsub('[\n\r]', '')))
     end
 
