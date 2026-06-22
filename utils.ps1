@@ -249,7 +249,7 @@ function Get-CurrentGitBranch
         $gitBranchName = ""
     }
 
-    if ($gitBranchName.Contains('fata'))
+    if (($gitBranchName.Contains('fata')) -Or ($gitBranchName.Contains('[]')))
     {
         return ""
     }
