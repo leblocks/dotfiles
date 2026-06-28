@@ -34,6 +34,11 @@ function env { Get-ChildItem env: }
 function top { btm -b }
 function guid { (New-Guid).ToString() }
 
+function qn([string] $note) {
+    $path = Join-Path $HOME repos zettelkasten "add-quick-note.ps1"
+    . $path $note
+}
+
 function touch([string] $Path) {
     if (Test-Path -Path $Path) {
         (Get-Item $Path).LastWriteTime = Get-Date
