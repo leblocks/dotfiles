@@ -23,6 +23,10 @@ vim.api.nvim_create_user_command('HopcsharpInitDatabase', function()
     require('hopcsharp').init_database()
 end, {})
 
+vim.api.nvim_create_user_command('HopcsharpIncrementalInitDatabase', function()
+    require('hopcsharp').init_database(true)
+end, {})
+
 vim.api.nvim_create_user_command('HopcsharpDropDebugLog', function()
     local debug = require('hopcsharp.debug')
     local db = debug.__get_db()

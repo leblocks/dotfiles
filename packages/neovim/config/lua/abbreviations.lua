@@ -14,4 +14,3 @@ vim.api.nvim_create_autocmd(
 vim.cmd('iabbrev td TODO')
 vim.cmd('iabbrev lk []()<esc>3h')
 vim.cmd("iab ts <ESC>:lua vim.api.nvim_put({ require('os').date('%d%m%Y') .. ' ' }, 'b', true, true)<CR>i")
-
