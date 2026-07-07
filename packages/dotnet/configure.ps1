@@ -52,6 +52,6 @@ if (-Not (Test-Path $WINDOWS_GLOBAL_INSTALLATION)) {
 
     Set-EnvironmentVariable "DOTNET_ROOT" $DOTNET_ROOT
     Set-EnvironmentVariable "DOTNET_CLI_TELEMETRY_OPTOUT" "true"
-    Set-EnvironmentVariable "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT" "1"
+    Set-EnvironmentVariable "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT" "0"
 }
 
