@@ -52,8 +52,8 @@ local act = wezterm.action
 config.keys = {
     -- tmux like keybindings
     { key = "r", mods = "LEADER", action = act.ReloadConfiguration },
-    { key = "%", mods = "LEADER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-    { key = '"', mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+    { key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+    { key = '\\', mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
     { key = "&", mods = "LEADER|SHIFT", action = act.CloseCurrentTab({ confirm = true }) },
     { key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
     { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
