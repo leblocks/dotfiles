@@ -119,12 +119,7 @@ register_lsp_keybindings('html', { 'html' })
 register_lsp_keybindings('roslyn_ls', { 'cs' })
 
 -- tabs
-map('n', '\\1', '1gt', opts)
-map('n', '\\2', '2gt', opts)
-map('n', '\\3', '3gt', opts)
-map('n', '\\4', '4gt', opts)
-map('n', '\\5', '5gt', opts)
-map('n', '\\\\', ':tabs<CR>', opts)
+map('n', '\\\\', ':TabJump<CR>', opts)
 
 -- terminal
 map('n', '<Leader>00', ':Terminal<CR>', opts)
