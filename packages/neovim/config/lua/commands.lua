@@ -19,6 +19,22 @@ vim.api.nvim_create_user_command('BufCopyPath', function()
     vim.notify('copied to clipboard ' .. path)
 end, {})
 
+vim.api.nvim_create_user_command('LangHebrew', function()
+  if not vim.b.hebrew_mode_enabled then
+    vim.opt_local.keymap   = "hebrew"
+    vim.opt_local.iminsert = 1
+    vim.opt_local.imsearch = 1
+    vim.opt_local.rightleft = true
+    vim.b.hebrew_mode_enabled = true
+  else
+    vim.opt_local.keymap   = ""
+    vim.opt_local.iminsert = 0
+    vim.opt_local.imsearch = 0
+    vim.opt_local.rightleft = false
+    vim.b.hebrew_mode_enabled = false
+  end
+end, {})
+
 vim.api.nvim_create_user_command('HopcsharpInitDatabase', function()
     require('hopcsharp').init_database()
 end, {})
@@ -75,4 +91,22 @@ end, {})
 
 vim.api.nvim_create_user_command('VimPackExplore', function()
     vim.pack.update(nil, { offline = true })
+end, {})
+
+vim.api.nvim_create_user_command('TabJump', function()
+    -- TODO refactor
+    local tabs = {}
+    for i = 1, vim.fn.tabpagenr('$') do
+        local buflist = vim.fn.tabpagebuflist(i)
+        local winnr = vim.fn.tabpagewinnr(i)
+        local bufname = vim.fn.bufname(buflist[winnr])
+        local name = bufname ~= '' and vim.fn.fnamemodify(bufname, ':t') or '[No Name]'
+        table.insert(tabs, { index = i, label = i .. ': ' .. name })
+    end
+    vim.ui.select(tabs, {
+        prompt = 'Jump to tab:',
+        format_item = function(item) return item.label end,
+    }, function(choice)
+        if choice then vim.cmd(choice.index .. 'tabnext') end
+    end)
 end, {})
