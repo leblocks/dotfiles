@@ -19,22 +19,6 @@ vim.api.nvim_create_user_command('BufCopyPath', function()
     vim.notify('copied to clipboard ' .. path)
 end, {})
 
-vim.api.nvim_create_user_command('LangHebrew', function()
-  if not vim.b.hebrew_mode_enabled then
-    vim.opt_local.keymap   = "hebrew"
-    vim.opt_local.iminsert = 1
-    vim.opt_local.imsearch = 1
-    vim.opt_local.rightleft = true
-    vim.b.hebrew_mode_enabled = true
-  else
-    vim.opt_local.keymap   = ""
-    vim.opt_local.iminsert = 0
-    vim.opt_local.imsearch = 0
-    vim.opt_local.rightleft = false
-    vim.b.hebrew_mode_enabled = false
-  end
-end, {})
-
 vim.api.nvim_create_user_command('HopcsharpInitDatabase', function()
     require('hopcsharp').init_database()
 end, {})
