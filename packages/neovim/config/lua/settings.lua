@@ -61,7 +61,7 @@ end
 
 -- wrapping in a pcall so it won't fail config if
 -- colorscheme was not installed
-pcall(vim.api.nvim_command, 'colorscheme modus')
+pcall(vim.api.nvim_command, 'colorscheme retrobox')
 
 if vim.fn.executable('pwsh') == 1 then
     local shellcommand = '$PSStyle.OutputRendering = [System.Management.Automation.OutputRendering]::PlainText;'
