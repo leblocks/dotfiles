@@ -14,10 +14,17 @@ vim.api.nvim_create_user_command('BufSetUnixFileFormat', function()
 end, {})
 
 vim.api.nvim_create_user_command('BufCopyPath', function()
+    local path = vim.fs.relpath(vim.fn.getcwd(), vim.fn.expand('%:p'))
+    vim.fn.setreg('+', path)
+    vim.notify('copied to clipboard ' .. path)
+end, {})
+
+vim.api.nvim_create_user_command('BufCopyPathFull', function()
     local path = vim.fn.expand('%:p')
     vim.fn.setreg('+', path)
     vim.notify('copied to clipboard ' .. path)
 end, {})
+
 
 vim.api.nvim_create_user_command('HopcsharpInitDatabase', function()
     require('hopcsharp').init_database()
@@ -75,6 +82,17 @@ end, {})
 
 vim.api.nvim_create_user_command('VimPackExplore', function()
     vim.pack.update(nil, { offline = true })
+end, {})
+
+vim.api.nvim_create_user_command('TreetagsInitAsync', function()
+    require('treetags').init_database()
+end, {})
+
+vim.api.nvim_create_user_command('TreetagsInit', function()
+    require('treetags').init_database()
+    vim.wait(600000, function()
+        return vim.g.treetags_processing == false
+    end)
 end, {})
 
 vim.api.nvim_create_user_command('TabJump', function()

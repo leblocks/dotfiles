@@ -150,5 +150,16 @@ vim.keymap.set({ 'n' }, '<Leader>hi', require('hopcsharp').hop_to_implementation
 vim.keymap.set({ 'n' }, '<Leader>hr', require('hopcsharp').hop_to_reference, opts)
 vim.keymap.set({ 'n' }, '<Leader>ht', require('hopcsharp').get_type_hierarchy, opts)
 
+-- (t)reetags
+vim.keymap.set({ 'n' }, '<Leader>tt', require('treetags').get_pickers('fzf').treetags_all, opts)
+vim.keymap.set({ 'n' }, '<Leader>tw', require('treetags').get_pickers('fzf').treetags_cword, opts)
+vim.keymap.set({ 'n' }, '<Leader>tW', require('treetags').get_pickers('fzf').treetags_cWORD, opts)
+vim.keymap.set({ 'n' }, '<Leader>tl', require('treetags').get_pickers('fzf').treetags_live, opts)
+
+vim.keymap.set({ 'n' }, '<Leader>Tt', require('treetags').get_pickers('telescope').treetags_all, opts)
+vim.keymap.set({ 'n' }, '<Leader>Tw', require('treetags').get_pickers('telescope').treetags_cword, opts)
+vim.keymap.set({ 'n' }, '<Leader>TW', require('treetags').get_pickers('telescope').treetags_cWORD, opts)
+vim.keymap.set({ 'n' }, '<Leader>Tl', require('treetags').get_pickers('telescope').treetags_live, opts)
+
 -- toggle
 vim.keymap.set({ 'n', 'v' }, '<Leader><Tab>', require('toggle').toggle, opts)
