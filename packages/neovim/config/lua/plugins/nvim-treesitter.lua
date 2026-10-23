@@ -2,10 +2,11 @@ require('nvim-treesitter').install({
     'bash',
     'c_sharp',
     'html',
+    'json',
     'lua',
     'markdown',
     'powershell',
-    'json',
+    'sql',
     'xml',
 })
 

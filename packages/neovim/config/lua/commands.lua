@@ -95,6 +95,13 @@ vim.api.nvim_create_user_command('TreetagsInit', function()
     end)
 end, {})
 
+vim.api.nvim_create_user_command('TreetagsInitIncremental', function()
+    require('treetags').init_database({ incremental = true })
+    vim.wait(600000, function()
+        return vim.g.treetags_processing == false
+    end)
+end, {})
+
 vim.api.nvim_create_user_command('TabJump', function()
     -- TODO refactor
     local tabs = {}
