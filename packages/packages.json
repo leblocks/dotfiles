@@ -2,6 +2,7 @@
     "winget": [
         "BrechtSanders.WinLibs.POSIX.MSVCRT.LLVM",
         "BurntSushi.ripgrep.MSVC",
+        "Casey.Just",
         "Clement.bottom",
         "GitHub.Copilot",
         "Microsoft.devtunnel",
@@ -27,6 +28,7 @@
         "fzf",
         "gcc",
         "jq",
+        "just",
         "luacheck",
         "mc",
         "neovim",
